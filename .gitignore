@@ -1,4 +1,5 @@
 ___res
+cache
 classes/phpmailer
 classes/tcpdf
 DB
