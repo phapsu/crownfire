@@ -1,24 +1,24 @@
 <?php
 session_start();
-//$_SERVER['DOCUMENT_ROOT'] = $_SERVER['DOCUMENT_ROOT'].'/crownfire';
-include($_SERVER['DOCUMENT_ROOT'].'/config/config.php');
-include($_SERVER['DOCUMENT_ROOT'].'/classes/db.class.php');
-include($_SERVER['DOCUMENT_ROOT'].'/classes/validate.class.php');
+//$_SERVER['DOCUMENT_ROOT'] = '../crownfire';
+include('../config/config.php');
+include('../classes/db.class.php');
+include('../classes/validate.class.php');
 $validate = new Validate();
 
-include($_SERVER['DOCUMENT_ROOT'].'/classes/crownfire.class.php');
+include('../classes/crownfire.class.php');
 $crownfire = new crownfire();
 
-include($_SERVER['DOCUMENT_ROOT'].'/classes/display.class.php');
+include('../classes/display.class.php');
 $display = new Display();
 
-include($_SERVER['DOCUMENT_ROOT'].'/classes/user.class.php');
-include($_SERVER['DOCUMENT_ROOT'].'/classes/property.class.php');
-include($_SERVER['DOCUMENT_ROOT'].'/classes/document.class.php');
-include($_SERVER['DOCUMENT_ROOT'].'/classes/error.class.php');
+include('../classes/user.class.php');
+include('../classes/property.class.php');
+include('../classes/document.class.php');
+include('../classes/error.class.php');
 if (in_array(basename($_SERVER['PHP_SELF']), array('view_document.php','view_cert.php'))) {
-	require_once($_SERVER['DOCUMENT_ROOT'].'/classes/tcpdf/config/lang/eng.php');
-	require_once($_SERVER['DOCUMENT_ROOT'].'/classes/tcpdf/tcpdf.php');
+	require_once('../classes/tcpdf/config/lang/eng.php');
+	require_once('../classes/tcpdf/tcpdf.php');
 }
-include($_SERVER['DOCUMENT_ROOT'].'/classes/logger.class.php');
+include('../classes/logger.class.php');
 ?>

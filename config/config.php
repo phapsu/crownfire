@@ -31,6 +31,7 @@ if ($cfg['mode'] == 'live') {
 	$cfg['db_username']			= 'crownfire';
 	$cfg['db_password']			= 'uu9cyK9f';
 	$cfg['db_name']				= 'crownfire';
+	$cfg['log_directory']		= '/var2/vhosts/crownfire.ca/httpdocs/cache';
 	$cfg['log_directory']		= '/var2/vhosts/crownfire.ca/httpdocs/logs';
 	$cfg['include_directory']	= '/var2/vhosts/crownfire.ca/httpdocs/'.$cfg['admin_directory'].'/includes';
 	$cfg['image_save_directory']    = '/var2/vhosts/crownfire.ca/httpdocs/document_images';
@@ -41,6 +42,7 @@ if ($cfg['mode'] == 'live') {
 	$cfg['db_username']			= 'root';
 	$cfg['db_password']			= '';
 	$cfg['db_name']				= 'crownfire';
+	$cfg['cache_directory']		= 'C:\\xampp\\htdocs\\crownfire\\cache';
 	$cfg['log_directory']		= 'C:\\xampp\\htdocs\\crownfire\\logs';
 	$cfg['include_directory']	= 'C:\\xampp\\htdocs\\crownfire\\'.$cfg['admin_directory'].'\\includes';
 	$cfg['image_save_directory']    = 'C:\\xampp\\htdocs\\crownfire\\document_images';

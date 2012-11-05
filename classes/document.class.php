@@ -583,7 +583,7 @@ outlined in the Annual Fire and Life Safety Report.
 
 				   	<br />
 
-				   	<table style="font-size: 24px;" cellpadding="0" cellspacing="3" width="90%">
+				   	<table style="font-size: 24px;" cellpadding="0" cellspacing="3" width="100%">
 				   	 <tr>
 				   	  <td width="15%">&nbsp; </td>
 				   	  <td width="15%">&nbsp; </td>
@@ -740,7 +740,7 @@ outlined in the Annual Fire and Life Safety Report.
 				$html .= '<table width="100%">
 						   <tr>
 						   	 <td width="75%">
-								 <table style="font-size: 25px;" cellpadding="0" cellspacing="5" width="90%">
+								 <table style="font-size: 25px;" cellpadding="0" cellspacing="5" width="100%">
 								  <tr valign="top">
 								   <td width="25%" align="right"><b>Customer Name:</b></td>
 								   <td width="25%" align="left">'.$documentInfo['customer_name'].'</td>
@@ -840,7 +840,7 @@ outlined in the Annual Fire and Life Safety Report.
 				$html .= '<table width="100%">
 						   <tr>
 						   	 <td width="75%">
-						   	 <table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="90%">
+						   	 <table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
 							  <tr valign="top">
 							   <td width="25%" align="right"><b>Customer Name:</b></td>
 							   <td width="25%" align="left">'.$documentInfo['customer_name'].'</td>
@@ -945,7 +945,7 @@ outlined in the Annual Fire and Life Safety Report.
 				$testingInfo		= document::getDataSimple('valve_testing_options');
 				$testingOptions 	= document::getTestingOptions($document_id);
 
-				$html .= '<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="90%">
+				$html .= '<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
 						  <tr valign="top">
 						   <td width="25%" align="right"><b>Customer Name:</b></td>
 						   <td width="25%" align="left">'.$documentInfo['customer_name'].'</td>
@@ -960,7 +960,7 @@ outlined in the Annual Fire and Life Safety Report.
 						  </tr>
 						 </table><br />';
 
-				$html .= '<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="90%">';
+				$html .= '<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">';
 				$html .= '<tr>';
 				$html .= '<td width="50%">Fire Hydrant Location</td>';
 				$html .= '<td width="50%">Technician Comments</td>';
@@ -1009,7 +1009,7 @@ outlined in the Annual Fire and Life Safety Report.
 				$componentInfo		= document::getDataSimple('component_options');
 				$componentOptions	= document::getDataSimple('document_data_7_component');
 
-				$html .= '<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="90%">
+				$html .= '<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
 						 <tr>
 						  <td width="25%">Inspection Date:</td>
 						  <td>'.$documentInfo['inspection_date'].'</td>
@@ -1036,7 +1036,7 @@ outlined in the Annual Fire and Life Safety Report.
 				$html .= self::getQuestionsHTML($document_id, $documentObj->getTypeId());
 
 				$html .= '<br /><font size="10"><b>Valve Info</b></font><br />
-						<table style="font-size: 30px;" cellpadding="0" width="90%">
+						<table style="font-size: 30px;" cellpadding="0" width="100%">
 						 <tr align="center" bgcolor="#000000" style="color: #fff; font-weight: bold;">
 						  <td width="16%">Type of Valve</td>
 						  <td width="16%">Make of Valve</td>
@@ -1059,7 +1059,7 @@ outlined in the Annual Fire and Life Safety Report.
 				 	// Fetch our options (if any)
 
  					$html .= '<br /><font size="10"><b>System Components</b></font><br />
-								<table border="1" style="font-size: 30px; border: 1px solid #000000;" cellpadding="5" width="90%">
+								<table border="1" style="font-size: 30px; border: 1px solid #000000;" cellpadding="5" width="100%">
 								 <tr align="center" bgcolor="#000000" style="color: #fff; font-weight: bold;">
 								  <td>System Component</td>
 								  <td>OK</td>
@@ -1084,7 +1084,7 @@ outlined in the Annual Fire and Life Safety Report.
 				 }
 
 				 $html .= '<font size="10"><b>Make &amp; Model Switches</b></font><br />
-						<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="0" cellspacing="5" width="90%">
+						<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="0" cellspacing="5" width="100%">
 						 <tr>
 						  <td><b>Pressure Switches:</b></td>
 						  <td>'.$switchInfo['pressure_switches'].'</td>
@@ -1100,7 +1100,7 @@ outlined in the Annual Fire and Life Safety Report.
 						</table><br />
 
 						<font size="10"><b>Flow Test Report</b></font><br />
-						<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="0" cellspacing="5" width="90%">
+						<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="0" cellspacing="5" width="100%">
 						 <tr>
 						  <td width="25%"><b>City Pressure PSI:</b></td>
 						  <td>'.$reportInfo['city_pressure'].'</td>
@@ -1117,7 +1117,7 @@ outlined in the Annual Fire and Life Safety Report.
 
 						<font size="10"><b>Time &amp; Trip Test Report</b><br />
 
-						<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="0" cellspacing="5" width="90%">
+						<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="0" cellspacing="5" width="100%">
 						 <tr>
 						  <td width="25%"><b>Trip Pressure PSI:</b></td>
 						  <td>'.$reportInfo['trip_pressure'].'</td>
@@ -1142,7 +1142,7 @@ outlined in the Annual Fire and Life Safety Report.
 				$testInfo 	 	 	= $documentObj->getData('document_data_8_test','document_id',$document_id,false);
 				$waterInfo 	 	 	= $documentObj->getData('document_data_8_water','document_id',$document_id,false);
 
-				$html .= '<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="90%">
+				$html .= '<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
 						  <tr valign="top">
 						   <td width="25%" align="right"><b>Customer Name:</b></td>
 						   <td width="25%" align="left">'.$documentInfo['customer_name'].'</td>
@@ -1168,7 +1168,7 @@ outlined in the Annual Fire and Life Safety Report.
 						 </table><br />
 
 						<font size="10"><b>Pump Info</b></font><br />
-						<table style="font-size: 30px; border: 1px solid #000000;" width="90%" cellpadding="5">
+						<table style="font-size: 30px; border: 1px solid #000000;" width="100%" cellpadding="5">
 						 <tr>
 						  <td width="30%"><b>Water Supply Source:</b></td>
 						  <td width="70%">'.$pumpInfo['water_supply_source'].'</td>
@@ -1184,7 +1184,7 @@ outlined in the Annual Fire and Life Safety Report.
 						</table><br />
 
 						<font size="10"><b>Test Information</b></font><br />
-						<table style="font-size: 30px; border: 1px solid #000000;" width="90%" cellpadding="5">
+						<table style="font-size: 30px; border: 1px solid #000000;" width="100%" cellpadding="5">
 						 <tr>
 						  <td width="30%"><b>Location Of Highest Fire Hose Cabinet:</b></td>
 						  <td width="70%">'.$testInfo['location_cabinet'].'</td>
@@ -1207,7 +1207,7 @@ outlined in the Annual Fire and Life Safety Report.
 
 				$html .= '<br /><font size="10"><b>Water Flow Data</b></font><br />';
 
-				$html .= '<table style="font-size: 30px; border: 1px solid #000000;" width="90%" cellpadding="5">
+				$html .= '<table style="font-size: 30px; border: 1px solid #000000;" width="100%" cellpadding="5">
 							 <tr>
 							  <td width="30%"><b>Hose Length:</b></td>
 							  <td width="70%">'.$waterInfo['hose_length'].'</td>
@@ -1281,7 +1281,7 @@ outlined in the Annual Fire and Life Safety Report.
 				19 => 'Confirm field device protective dust shield of covers removed');
 
 				$html .= '<font size="10"><b>E1. Fire Alarm System Annual Test and Inspection Report - CAN/ULC S536-04</b></font><br /><br />';
-				$header = '<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="5" width="90%">
+				$header = '<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="5" width="100%">
 						 <tr>
 						  <td width="30%"><b>Building Name:</b></td>
 						  <td width="70%">'.$documentInfo['building_name'].'</td>
@@ -1308,7 +1308,7 @@ outlined in the Annual Fire and Life Safety Report.
 
 				$html .= '<br /><b>Comments</b>: '.$documentInfo['comments'];
 
-				$html .= '<br /> <br /><table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="90%">
+				$html .= '<br /> <br /><table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
 							 <tr>
 							  <td width="35%" align="left" style="border-bottom:0.5px solid #000;">'.$documentInfo['primary_technician'].'</td>
 							  <td width="20%" align="left" style="border-bottom:0.5px solid #000;">'.$documentInfo['primary_company'].'</td>
@@ -1339,7 +1339,7 @@ outlined in the Annual Fire and Life Safety Report.
 				$html .= '<br pagebreak="true"/>';
 				$html .= $header;
 				$html .= '<font size="10"><b>E2.1 Control Unit or Transponder Test - CAN/ULC S536-04</b></font><br /><br />
-							<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="5" width="90%">
+							<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="5" width="100%">
 							 <tr>
 							  <td width="40%"><b>Control unit or transponder location:</b></td>
 							  <td width="60%">'.$documentInfo['e21_transponder_location'].'</td>
@@ -1361,7 +1361,7 @@ outlined in the Annual Fire and Life Safety Report.
 				$html .= '<br pagebreak="true"/>';
 				$html .= $header;
 				$html .= '<font size="10"><b>E2.3 Control Unit or Transponder Inspection - CAN/ULC S536-04</b></font><br /><br />
-							<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="5" width="90%">
+							<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="5" width="100%">
 							 <tr>
 							  <td width="40%">Control unit or transponder location:</td>
 							  <td width="60%">'.$documentInfo['e23_transponder_location'].'</td>
@@ -1377,7 +1377,7 @@ outlined in the Annual Fire and Life Safety Report.
 				$html .= '<br pagebreak="true"/>';
 				$html .= $header;
 				$html .= '<font size="10"><b>E2.4 Power Supply Inspection - CAN/ULC S536-04</b></font><br /><br />
-							<table style="font-size: 30px; border: 1px solid #000000;" width="90%" cellpadding="5">
+							<table style="font-size: 30px; border: 1px solid #000000;" width="100%" cellpadding="5">
 							 <tr>
 							  <td width="40%">Control unit or transponder location:</td>
 							  <td width="60%">'.$documentInfo['e24_transponder_location'].'</td>
@@ -1392,7 +1392,7 @@ outlined in the Annual Fire and Life Safety Report.
 				$html .= '<br pagebreak="true"/>';
 				$html .= $header;
 				$html .= '<font size="10"><b>E2.5 Emergency Power Supply Test and Inspection - CAN/ULC S536-04</b></font><br /><br />
-							<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="90%">
+							<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
 							 <tr>
 							  <td width="40%">Control unit or transponder location:</td>
 							  <td width="60%">'.$documentInfo['e25_transponder_location'].'</td>
@@ -1409,7 +1409,7 @@ outlined in the Annual Fire and Life Safety Report.
 				if (!empty($documentInfo['e25_transponder_location_2'])) {
 						$html .= $header;
 						$html .= '<font size="10"><b>E2.5 (B) Emergency Power Supply Test and Inspection - CAN/ULC S536-04</b></font><br /><br />
-							<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="90%">
+							<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
 							 <tr>
 							  <td width="40%">Control unit or transponder location:</td>
 							  <td width="60%">'.$documentInfo['e25_transponder_location_2'].'</td>
@@ -1427,7 +1427,7 @@ outlined in the Annual Fire and Life Safety Report.
 				if (!empty($documentInfo['e25_transponder_location_3'])) {
 						$html .= $header;
 						$html .= '<font size="10"><b>E2.5 (C) Emergency Power Supply Test and Inspection - CAN/ULC S536-04</b></font><br /><br />
-							<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="90%">
+							<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
 							 <tr>
 							  <td width="40%">Control unit or transponder location:</td>
 							  <td width="60%">'.$documentInfo['e25_transponder_location_3'].'</td>
@@ -1445,7 +1445,7 @@ outlined in the Annual Fire and Life Safety Report.
 				if (!empty($documentInfo['e25_transponder_location_4'])) {
 						$html .= $header;
 						$html .= '<font size="10"><b>E2.5 (D) Emergency Power Supply Test and Inspection - CAN/ULC S536-04</b></font><br /><br />
-							<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="90%">
+							<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
 							 <tr>
 							  <td width="40%">Control unit or transponder location:</td>
 							  <td width="60%">'.$documentInfo['e25_transponder_location_4'].'</td>
@@ -1463,7 +1463,7 @@ outlined in the Annual Fire and Life Safety Report.
 
 				$html .= $header;
 				$html .= '<font size="10"><b>E2.6 Annunciator and Remote Trouble Signal Unit Test and Inspection - CAN/ULC S536-04</b></font><br /><br />
-							<table style="font-size: 30px; border: 1px solid #000000;" width="90%" cellpadding="5">
+							<table style="font-size: 30px; border: 1px solid #000000;" width="100%" cellpadding="5">
 							 <tr>
 							  <td width="40%">Annunciator or remote trouble signal unit location:</td>
 							  <td width="60%">'.$documentInfo['e26_annunciator_location'].'</td>
@@ -1479,7 +1479,7 @@ outlined in the Annual Fire and Life Safety Report.
 				$html .= '<br pagebreak="true"/>';
 				$html .= $header;
 				$html .= '<font size="10"><b>E2.7 Annunciator or Sequential Displays - CAN/ULC S536-04</b></font><br /><br />
-							<table style="font-size: 30px; border: 1px solid #000000;" width="90%" cellpadding="5">
+							<table style="font-size: 30px; border: 1px solid #000000;" width="100%" cellpadding="5">
 							 <tr>
 							  <td width="40%">Annunciator or remote trouble signal unit location:</td>
 							  <td width="60%">'.$documentInfo['e27_annunciator_location'].'</td>
@@ -1495,7 +1495,7 @@ outlined in the Annual Fire and Life Safety Report.
 				$html .= '<br pagebreak="true"/>';
 				$html .= $header;
 				$html .= '<font size="10"><b>E2.8 Remote Trouble Signal Unit Test and Inspection - CAN/ULC S536-04</b></font><br /><br />
-							<table style="font-size: 30px; border: 1px solid #000000;" width="90%" cellpadding="5">
+							<table style="font-size: 30px; border: 1px solid #000000;" width="100%" cellpadding="5">
 							 <tr>
 							  <td width="40%">Remote trouble signal unit location:</td>
 							  <td width="60%">'.$documentInfo['e28_remote_location'].'</td>
@@ -1511,7 +1511,7 @@ outlined in the Annual Fire and Life Safety Report.
 				$html .= '<br pagebreak="true"/>';
 				$html .= $header;
 				$html .= '<font size="10"><b>E2.9 Printer Test - CAN/ULC S536-04</b></font><br /><br />
-							<table style="font-size: 30px; border: 1px solid #000000;" width="90%" cellpadding="5">
+							<table style="font-size: 30px; border: 1px solid #000000;" width="100%" cellpadding="5">
 							 <tr>
 							  <td width="40%">Printer location:</td>
 							  <td width="60%">'.$documentInfo['e29_printer_location'].'</td>
@@ -1527,7 +1527,7 @@ outlined in the Annual Fire and Life Safety Report.
 				$html .= '<br pagebreak="true"/>';
 				$html .= $header;
 				$html .= '<font size="10"><b>E2.10 Communication Link Test - CAN/ULC S536-04</b></font><br /><br />
-							<table style="font-size: 30px; border: 1px solid #000000;" width="90%" cellpadding="5">
+							<table style="font-size: 30px; border: 1px solid #000000;" width="100%" cellpadding="5">
 							 <tr>
 							  <td width="40%">Control unit or transponder location:</td>
 							  <td width="60%">'.$documentInfo['e210_transponder_location'].'</td>
@@ -1546,7 +1546,7 @@ outlined in the Annual Fire and Life Safety Report.
 				$html .= '<br pagebreak="true"/>';
 				$html .= $header;
 				$html .= '<font size="10"><b>E2.11 Ancillary Device Circuit Test - CAN/ULC S536-04</b></font><br /><br />
-							<table style="font-size: 30px; border: 1px solid #000000;" width="90%" cellpadding="5">
+							<table style="font-size: 25px; border: 1px solid #000;" cellpadding="3" cellspacing="0" width="100%" border="1">
 							 <tr bgcolor="#000000">
 							  <td colspan="2" style="color: #ffffff;">Record Specific Type of Ancillary Circuit</td>
 							 </tr>
@@ -1575,7 +1575,7 @@ outlined in the Annual Fire and Life Safety Report.
 				$html .= '<br pagebreak="true"/>';
 				$html .= $header;
 				$html .= '<font size="10"><b>E3.1 Field Device Testing - Legend and Notes - CAN/ULC S536-04</b></font><br /><br />
-							<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="90%">
+							<table style="font-size: 25px; border: 1px solid #000;" cellpadding="3" cellspacing="0" width="100%" border="1">
 							 <tr bgcolor="#000000" style="font-weight: bold; color: #ffffff;" align="center">
 							  <td width="10%">Device</td>
 							  <td width="30%">Description</td>
@@ -1713,7 +1713,7 @@ outlined in the Annual Fire and Life Safety Report.
 							</table><br />
 
 							<font size="7"><b>The following notes apply to Appendix E3.2, Individual Device Record:</b></font><br />
-							<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="90%" border="0">';
+							<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%" border="0">';
 							foreach($notes_array as $num => $note) {
 								$html .= '<tr>
 										   <td width="11%"><b>Note '.$num.'.</b></td>
@@ -1726,7 +1726,7 @@ outlined in the Annual Fire and Life Safety Report.
 				$html .= $header;
 				if (is_array($formInfo)) {
 					$html .= '<h3>E3.2 Device Record - CAN/ULC S536-04</h3>
-								<table style="font-size: 25px; border: 1px solid #000;" cellpadding="3" cellspacing="0" width="90%" border="1">
+								<table style="font-size: 25px; border: 1px solid #000;" cellpadding="3" cellspacing="0" width="100%" border="1">
 								 <tr bgcolor="#000000" style="font-weight: bold; color: #ffffff;" align="center">
 								  <td width="10%">Location</td>
 								  <td width="10%">Device Type</td>
@@ -1784,7 +1784,7 @@ outlined in the Annual Fire and Life Safety Report.
 							$html .= '<br pagebreak="true"/>';
 							$html .= $header;
 							$html .= ' <br /> <h3>E3.2 Device Record - CAN/ULC S536-04 (Page '.$page.')</h3>
-								<table style="font-size: 25px; border: 1px solid #000;" cellpadding="3" cellspacing="0" width="90%" border="1">
+								<table style="font-size: 25px; border: 1px solid #000;" cellpadding="3" cellspacing="0" width="100%" border="1">
 								 <tr bgcolor="#000000" style="font-weight: bold; color: #ffffff;" align="center">
 								  <td width="10%">Location</td>
 								  <td width="10%">Device Type</td>
@@ -1807,7 +1807,7 @@ outlined in the Annual Fire and Life Safety Report.
 				$documentInfo 		= array_merge($documentInfo, $documentObj->getData('document_data_10_test','document_id',$document_id));
 				$documentInfo 		= array_merge($documentInfo, $documentObj->getData('document_data_10_piping','document_id',$document_id));
 
-				$html .= '<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="90%">
+				$html .= '<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
 							 <tr>
 							  <td width="30%"><b>Location:</b></td>
 							  <td>'.$documentInfo['location'].'</td>
@@ -1829,7 +1829,7 @@ outlined in the Annual Fire and Life Safety Report.
 
 							<font size="10"><b>Fire Pump Info</b></font><br /><br />
 
-							<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="0" cellspacing="5" width="90%">
+							<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="0" cellspacing="5" width="100%">
 							 <tr bgcolor="#EEEEEE" align="center">
 							  <td colspan="2" width="50%"><b>Driver</b></td>
 							  <td colspan="2" width="50%"><b>Pump</b></td>
@@ -1893,7 +1893,7 @@ outlined in the Annual Fire and Life Safety Report.
 
 							<font size="10"><b>Associated Piping</b></font><br /><br />
 
-							<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="0" cellspacing="5" width="90%">
+							<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="0" cellspacing="5" width="100%">
 							 <tr>
 							  <td width="25%"><b>Suction Piping:</b></td>
 							  <td width="25%">'.$documentInfo['suction_piping'].'</td>
@@ -1922,7 +1922,7 @@ outlined in the Annual Fire and Life Safety Report.
 
 							<font size="10"><b>Test Data</b></font><br /><br />
 
-							<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="0" cellspacing="5" width="90%">
+							<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="0" cellspacing="5" width="100%">
 							 <tr>
 							  <td width="40%"><b>Time of Test</b></td>
 							  <td colspan="3" align="left">'.$documentInfo['time_of_test'].'</td>
@@ -1991,7 +1991,7 @@ outlined in the Annual Fire and Life Safety Report.
 							 </tr>
 							</table>
 							<br />
-							<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="90%">
+							<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
 							 <tr>
 							  <td><b>Lead Technicion:</b></td>
 							  <td>'.$documentInfo['primary_technician'].'</td>
@@ -2240,7 +2240,7 @@ outlined in the Annual Fire and Life Safety Report.
 		if (is_array($questions)) {
 			$nums = 1;
 			$letters = 'A';
-			$html .= '<br /> <table border="1" style="font-size: 30px; border: 1px solid #000000;" cellpadding="5" width="90%">';
+			$html .= '<br /> <table border="1" style="font-size: 30px; border: 1px solid #000000;" cellpadding="5" width="100%">';
 
 			$html .= '<tr bgcolor="#000000" align="center">';
 			if (!is_null($iterate)) {

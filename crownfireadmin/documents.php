@@ -39,24 +39,26 @@ foreach($document_list as $document_obj) {
 		$icon = 'images/icons/active.png';
 		$alt = 'Active';
 	}
+        $typeName = document::getDocumentTypeById($document_obj->getTypeId());
+        $created = $document_obj->getDateAdded();
 	?>
 	<tr align="center">
 	 <td><?=$document_obj->getDocumentId();?></td>
          <td><?=$document_obj->getYear()?></td>
 	 <td><?=$document_obj->getName();?></td>
-	 <td><?=document::getDocumentTypeById($document_obj->getTypeId());?></td>
-	 <td><?=date('F, jS, Y H:i:s',$document_obj->getDateAdded())?></td>
+	 <td><?=$typeName;?></td>
+	 <td><?=date('F, jS, Y H:i:s',$created);?></td>
 	 <td><?=date('F, jS, Y H:i:s',$document_obj->getDateUpdated())?></td>
 	 <td><a href="edit_document.php?id=<?=$document_obj->getDocumentId();?>&user_id=<?=$document_obj->getUserId();?>&type_id=<?=$document_obj->getTypeId();?>&property_id=<?=$document_obj->getPropertyId();?>"><img border="0" src="images/icons/edit.png" /></a></td>
 	 <td><a href="delete_document_do.php?id=<?=$document_obj->getDocumentId();?>&user_id=<?=$document_obj->getUserId();?>&property_id=<?=$document_obj->getPropertyId();?>" onclick="return confirm('Are you sure you want to delete this document? \n\n ALL DATA WILL BE LOST');"><img border="0" src="images/icons/delete.png" /></a></td>
 	 <?php
 	 if($document_obj->getTypeId() == 11) {
 	 	?>
-	 	<td><a href="<?=$cfg['site_url']?>/members/view_cert.php?property_id=<?=$document_obj->getPropertyId();?>"><img border="0" src="images/icons/view.png" /></a></td>
+	 	<td><a href="<?=$cfg['site_url']?>/members/view_cert.php?property_id=<?=$document_obj->getPropertyId();?>&name=<?php echo urlencode($document_obj->getName());?>&type=<?php echo urlencode($typeName);?>&created=<?php echo $created;?>"><img border="0" src="images/icons/view.png" /></a></td>
 	 	<?php
 	 } else {
 	 	?>
-	 	<td><a href="view_document.php?id=<?=$document_obj->getDocumentId();?>"><img border="0" src="images/icons/view.png" /></a></td>
+                <td><a href="view_document.php?id=<?=$document_obj->getDocumentId();?>&name=<?php echo urlencode($document_obj->getName());?>&type=<?php echo urlencode($typeName);?>&created=<?php echo $created;?>"><img border="0" src="images/icons/view.png" /></a></td>
 	 	<?php
 	 }
 	 ?>

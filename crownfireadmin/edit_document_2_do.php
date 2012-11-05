@@ -2,6 +2,7 @@
 
 session_start();
 include("includes/init.php");
+include('../includes/JG_Cache.php');
 ///////////////////////////////////////////////////////////
 // Let's unset all the errors.
 unset($_SESSION['post']);
@@ -38,6 +39,14 @@ if ($validate->validateForm($required) && $err != 1) {
     $document->setDeficiency($deficiency);
     $document->setDateUpdated(time());
     $new_document_id = $document->save();
+    
+    /**
+     * Clear cache
+     */
+    $cache = new JG_Cache($cfg['cache_directory']);
+    $cache->clear('document_'.$new_document_id);
+    $cache->clear('cert_'.$property_id);
+    
 
     // Now, depending on the document type_id we need to save data
     switch ($type_id) {

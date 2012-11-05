@@ -1,8 +1,16 @@
 <?php
 include('includes/init.php');
+include('../includes/JG_Cache.php');
 
 $property_id = $_REQUEST['property_id'];
+$document_name = (isset($_REQUEST['name']) && !empty($_REQUEST['name'])) ? '_'.urldecode($_REQUEST['name']) : '';
+$created = (isset($_REQUEST['created']) && !empty($_REQUEST['created'])) ? date('M d, Y', $_REQUEST['created']) : date('M d, Y');
+$document_name = (isset($_REQUEST['type']) && !empty($_REQUEST['type'])) ? '['.urldecode($_REQUEST['type']).']'.$document_name.'_'.$created.'.pdf' : 'Document #'.$document_id.'.pdf';
 
+$cache = new JG_Cache($cfg['cache_directory']);
+$output_pdf = $cache->get('cert_'.$property_id, 0);
+if ($output_pdf === FALSE)
+{
 // create new PDF document
 $pdf = new TCPDF('Lanscape', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
@@ -58,8 +66,13 @@ $pdf->writeHTML($html, true, false, true, false, '');
 $pdf->lastPage();
 
 //Close and output PDF document
-$pdf->Output('example_006.pdf', 'I');
+$output_pdf = $pdf->Output($document_name, 'S');
 
 //============================================================+
 // END OF FILE                                                
 //============================================================+
+$cache->set('cert_'.$property_id, $output_pdf);
+}
+header('Content-Disposition: attachment; filename="'.$document_name.'";');
+header('Content-Transfer-Encoding: binary');
+echo $output_pdf;
