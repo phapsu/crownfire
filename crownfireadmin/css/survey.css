@@ -1,0 +1,129 @@
+/* ######### CSS for Shade Tabs. Remove if not using ######### */
+
+.shadetabs{
+padding: 3px 0;
+margin-left: 0;
+margin-top: 1px;
+margin-bottom: 0;
+font: bold 12px Verdana;
+list-style-type: none;
+text-align: left; /*set to left, center, or right to align the menu as desired*/
+}
+
+.shadetabs li{
+display: inline;
+margin: 0;
+}
+
+.shadetabs li a{
+text-decoration: none;
+position: relative;
+z-index: 1;
+padding: 3px 7px;
+margin-right: 3px;
+border: 1px solid #778;
+color: #2d2b2b;
+background: white url(../images/shade.gif) top left repeat-x;
+}
+
+.shadetabs li a:visited{
+color: #2d2b2b;
+}
+
+.shadetabs li a:hover{
+text-decoration: underline;
+color: #2d2b2b;
+}
+
+.shadetabs li a.selected{ /*selected main tab style */
+position: relative;
+top: 1px;
+}
+
+.shadetabs li a.selected{ /*selected main tab style */
+background-image: url(../images/shadeactive.gif);
+border-bottom-color: white;
+}
+
+.shadetabs li a.selected:hover{ /*selected main tab style */
+text-decoration: none;
+}
+
+.tbl th{
+ background-color: #6699FF;
+ color:#FFFFFF;
+ font-size:11px; 
+}
+.tbl tr#odd{
+ background-color: #EEEEEE;
+}
+.tbl td#num{
+ text-align:right;
+ padding-right:10px;
+}
+
+.tbl td#txt{
+ text-align:left;
+ padding-left:7px;
+ font-size:11px;
+}
+
+.tbl tr#odd:hover{
+ background-color: #FFFFFF;
+}
+.tbl tr:hover{
+ background-color:#FFFFFF;
+}
+
+.txt{ 
+ border:#CCCCCC solid 1px; 
+ font-size:11px; 
+ font-family:Arial, Helvetica, sans-serif; vertical-align:middle;
+}
+
+.datepicker{
+ font-size:11px;
+ margin:2px;
+ padding:2px;
+ width:93%;
+}
+.datepicker input{
+ font-size:11px;
+ width:70px;
+}
+
+#num{
+ text-align:right;
+ padding-right:10px;
+}
+
+#txt{
+ text-align:left;
+ padding-left:7px;
+ font-size:11px;
+}
+
+div#stat_header {
+ font-size:12px;
+ font-weight:bold;
+ margin:5px;
+}
+
+.saved{
+ font-family: Arial, Arial, Helvetica, sans-serif;font-size: 11px;
+ margin:3px;
+ padding:2px;
+ background-color: #D2FFCC;
+ color: #006600;
+ font-weight:bold;
+ border:#006600 thin solid; 
+}
+
+.error {
+ font-family: Arial, Arial, Helvetica, sans-serif;font-size: 11px;
+ font-weight: bold;	color: #FF0000;
+ margin:3px;
+ padding:2px;	
+ width: 100%;
+ border: thin solid #FF0000;	background-color: #FFEAE6;
+} 

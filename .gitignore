@@ -1,0 +1,15 @@
+___res
+classes/phpmailer
+classes/tcpdf
+DB
+img
+images
+logs
+nbproject
+pageincludes
+pooles
+document_images
+crownfireadmin/dbadmin9
+crownfireadmin/tiny_mce
+crownfireadmin/img
+crownfireadmin/images
