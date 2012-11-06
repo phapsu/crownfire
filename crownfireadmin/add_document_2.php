@@ -29,7 +29,7 @@ if (isset($_REQUEST['existing_id'])) {
     <fieldset style="width: 800px;">
         <legend>Options</legend>
         <table>
-            <form method="post" action="add_document_2.php">
+            <form method="post" id="add_document_2" action="add_document_2.php">
                 <input type="hidden" name="type_id" value="<?= $_REQUEST['type_id'] ?>" />
                 <input type="hidden" name="user_id" value="<?= $_REQUEST['user_id'] ?>" />
                 <input type="hidden" name="property_id" value="<?= $_REQUEST['property_id'] ?>" />
@@ -67,7 +67,7 @@ if (isset($_REQUEST['existing_id'])) {
     </fieldset>
 </div>
 
-<form method="post" action="edit_document_2_do.php">
+<form method="post" id="edit_document_2_do" action="edit_document_2_do.php">
     <input type="hidden" name="type_id" value="<?= $_REQUEST['type_id'] ?>" />
     <input type="hidden" name="user_id" value="<?= $_REQUEST['user_id'] ?>" />
     <input type="hidden" name="property_id" value="<?= $_REQUEST['property_id'] ?>" />
@@ -77,7 +77,7 @@ if (isset($_REQUEST['existing_id'])) {
         <table width="100%">
             <tr>
                 <td width="20%">Document Year:</td>
-                <td><input type="text" name="document_year" value="<?php echo date('Y'); ?>" /></td>
+                <td><input type="text" name="document_year" class="required" value="<?php echo date('Y'); ?>" /></td>
             </tr>
         </table>
         <hr color="Red" />
@@ -124,3 +124,10 @@ if (isset($_REQUEST['existing_id'])) {
 <?php
 include('templates/footer.inc.php');
 ?>
+
+<script>
+  $(document).ready(function(){
+	$("#add_document_2").validate();
+    $("#edit_document_2_do").validate();
+  });
+  </script>

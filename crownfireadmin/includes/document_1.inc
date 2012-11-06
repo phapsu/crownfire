@@ -24,27 +24,27 @@ if ($validate->is_error()) {
 <table width="100%">
  <tr>
   <td width="30%">Customer Name:</td>
-  <td><input type="text" name="customer_name" value="<?=@$documentInfo['customer_name']?>" /></td>
+  <td><input type="text" name="customer_name" class="required" value="<?=@$documentInfo['customer_name']?>" /></td>
  </tr>
  <tr>
   <td>Technician:</td>
-  <td><input type="text" name="technician" value="<?=@$documentInfo['technician']?>" /></td>
+  <td><input type="text" name="technician" class="required" value="<?=@$documentInfo['technician']?>" /></td>
  </tr>
  <tr>
   <td>Address:</td>
-  <td><input type="text" name="address" value="<?=@$documentInfo['address']?>" /></td>
+  <td><input type="text" name="address" class="required" value="<?=@$documentInfo['address']?>" /></td>
  </tr>
  <tr>
   <td>Inspection Date:</td>
-  <td><input type="text" name="inspection_date" value="<?=@$documentInfo['inspection_date']?>" /></td>
+  <td><input type="text" name="inspection_date" class="required" value="<?=@$documentInfo['inspection_date']?>" /></td>
  </tr>
  <tr>
   <td>City:</td>
-  <td><input type="text" name="city" value="<?=@$documentInfo['city']?>" /></td>
+  <td><input type="text" name="city" class="required" value="<?=@$documentInfo['city']?>" /></td>
  </tr>
  <tr>
   <td>Manufacturer Name &amp; Model Number:</td>
-  <td><input type="text" name="man_name_model" value="<?=@$documentInfo['man_name_model']?>" /></td>
+  <td><input type="text" name="man_name_model" class="required" value="<?=@$documentInfo['man_name_model']?>" /></td>
  </tr>
 </table>
 

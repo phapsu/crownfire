@@ -13,7 +13,7 @@ $display->userInfoWindow($userInfo);
 
 $documentTypeName = document::getDocumentTypeById($_REQUEST['type_id']);
 ?>
-<form method="post" action="edit_document_2_do.php">
+<form method="post" id="edit_document_2_do" action="edit_document_2_do.php">
     <input type="hidden" name="id" value="<?= $_REQUEST['id'] ?>" />
     <input type="hidden" name="type_id" value="<?= $_REQUEST['type_id'] ?>" />
     <input type="hidden" name="user_id" value="<?= $_REQUEST['user_id'] ?>" />
@@ -23,7 +23,7 @@ $documentTypeName = document::getDocumentTypeById($_REQUEST['type_id']);
         <table width="100%">
             <tr>
                 <td width="20%">Document Year:</td>
-                <td><input type="text" name="document_year" value="<?php echo $document->getYear(); ?>" /></td>
+                <td><input type="text" name="document_year" class="required" value="<?php echo $document->getYear(); ?>" /></td>
             </tr>
         </table>
         <hr color="Red" />
@@ -76,3 +76,9 @@ $documentTypeName = document::getDocumentTypeById($_REQUEST['type_id']);
 <?php
 include('templates/footer.inc.php');
 ?>
+
+<script>
+  $(document).ready(function(){	
+    $("#edit_document_2_do").validate();
+  });
+  </script>

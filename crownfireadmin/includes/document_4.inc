@@ -19,31 +19,31 @@ if ($validate->is_error()) {
 	<table width="100%">
 	 <tr>
 	  <td width="20%">Customer Name:</td>
-	  <td><input type="text" name="customer_name" value="<?=stripslashes($documentInfo['customer_name']);?>" /></td>
+	  <td><input type="text" name="customer_name" class="required" value="<?=@stripslashes($documentInfo['customer_name']);?>" /></td>
 	 </tr>
 	 <tr>
 	  <td>Technician:</td>
-	  <td><input type="text" name="technician" value="<?=stripslashes($documentInfo['technician']);?>" /></td>
+	  <td><input type="text" name="technician" class="required" value="<?=@stripslashes($documentInfo['technician']);?>" /></td>
 	 </tr>
 	 <tr>
 	  <td>Address:</td>
-	  <td><input type="text" name="address" value="<?=stripslashes($documentInfo['address']);?>" /></td>
+	  <td><input type="text" name="address" class="required" value="<?=@stripslashes($documentInfo['address']);?>" /></td>
 	 </tr>
 	 <tr>
 	  <td>Inspection Date:</td>
-	  <td><input type="text" name="inspection_date" value="<?=stripslashes($documentInfo['inspection_date']);?>" /></td>
+	  <td><input type="text" name="inspection_date" class="required" value="<?=@stripslashes($documentInfo['inspection_date']);?>" /></td>
 	 </tr>
 	 <tr>
 	  <td>City:</td>
-	  <td><input type="text" name="city" value="<?=stripslashes($documentInfo['city']);?>" /></td>
+	  <td><input type="text" name="city" class="required" value="<?=@stripslashes($documentInfo['city']);?>" /></td>
 	 </tr>
 	 <tr>
 	  <td>Site:</td>
-	  <td><input type="text" name="site" value="<?=stripslashes($documentInfo['site']);?>" /></td>
+	  <td><input type="text" name="site" class="required" value="<?=@stripslashes($documentInfo['site']);?>" /></td>
 	 </tr>
 	 <tr>
 	  <td>Contact:</td>
-	  <td><input type="text" name="contact" value="<?=stripslashes($documentInfo['contact']);?>" /></td>
+	  <td><input type="text" name="contact" class="required" value="<?=@stripslashes($documentInfo['contact']);?>" /></td>
 	 </tr>
 	</table>
 	<br />

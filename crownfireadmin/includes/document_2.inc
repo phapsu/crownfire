@@ -1,27 +1,27 @@
 <table width="100%">
  <tr>
   <td width="30%">Facility Address:</td>
-  <td><input type="text" name="facility_address" value="<?=$userInfo['facility_address']?>" /></td>
+  <td><input type="text" name="facility_address" class="required" value="<?=@$userInfo['facility_address']?>" /></td>
  </tr>
  <tr>
   <td>UPS Region (Name):</td>
-  <td><input type="text" name="region_name" value="<?=$userInfo['region_name']?>" /></td>
+  <td><input type="text" name="region_name" class="required" value="<?=@$userInfo['region_name']?>" /></td>
  </tr>
  <tr>
   <td>UPS District (Name):</td>
-  <td><input type="text" name="district_name" value="<?=$userInfo['district_name']?>" /></td>
+  <td><input type="text" name="district_name" class="required" value="<?=@$userInfo['district_name']?>" /></td>
  </tr>
  <tr>
   <td>Inspector Name:</td>
-  <td><input type="text" name="inspector_name" value="<?=$userInfo['inspector_name']?>" /></td>
+  <td><input type="text" name="inspector_name" class="required" value="<?=@$userInfo['inspector_name']?>" /></td>
  </tr>
  <tr>
   <td>Date:</td>
-  <td><input type="text" name="inspection_date" value="<?=$userInfo['inspection_date']?>" /></td>
+  <td><input type="text" name="inspection_date" class="required" value="<?=@$userInfo['inspection_date']?>" /></td>
  </tr>
  <tr>
   <td>Obtain the Site Fire Inspection Map.  Is it updated?:</td>
-  <td><input type="text" name="inspection_updated" value="<?=$userInfo['inspection_updated']?>" /></td>
+  <td><input type="text" name="inspection_updated" class="required" value="<?=@$userInfo['inspection_updated']?>" /></td>
  </tr>
 </table>
 

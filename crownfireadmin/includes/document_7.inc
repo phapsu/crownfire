@@ -16,23 +16,23 @@ if ($validate->is_error()) {
 <table width="100%">
  <tr>
   <td>Inspection Date:</td>
-  <td><input type="text" name="inspection_date" value="<?=$documentInfo['inspection_date']?>" /></td>
+  <td><input type="text" name="inspection_date" class="required" value="<?=@$documentInfo['inspection_date']?>" /></td>
  </tr>
  <tr>
   <td>Technician:</td>
-  <td><input type="text" name="technician" value="<?=$documentInfo['technician']?>" /></td>
+  <td><input type="text" name="technician" class="required" value="<?=@$documentInfo['technician']?>" /></td>
  </tr>
  <tr>
   <td>Job Name:</td>
-  <td><input type="text" name="job_name" value="<?=$documentInfo['job_name']?>" /></td>
+  <td><input type="text" name="job_name" class="required" value="<?=@$documentInfo['job_name']?>" /></td>
  </tr>
   <tr>
   <td>Job Address:</td>
-  <td><input type="text" name="job_address" value="<?=$documentInfo['job_address']?>" /></td>
+  <td><input type="text" name="job_address" class="required" value="<?=@$documentInfo['job_address']?>" /></td>
  </tr>
  <tr>
   <td>Site Contact:</td>
-  <td><input type="text" name="site_contact" value="<?=$documentInfo['site_contact']?>" /></td>
+  <td><input type="text" name="site_contact" class="required" value="<?=@$documentInfo['site_contact']?>" /></td>
  </tr>
 </table>
 

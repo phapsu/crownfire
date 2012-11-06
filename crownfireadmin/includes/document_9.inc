@@ -33,23 +33,23 @@ if ($validate->is_error()) {
 <table class="dataTable">
  <tr>
   <td>Building Name:</td>
-  <td><input type="text" name="building_name" value="<?=$documentInfo['building_name']?>" /></td>
+  <td><input type="text" name="building_name" class="required" value="<?=@$documentInfo['building_name']?>" /></td>
  </tr>
  <tr>
   <td>Address:</td>
-  <td><input type="text" name="address" value="<?=$documentInfo['address']?>" /></td>
+  <td><input type="text" name="address" class="required" value="<?=@$documentInfo['address']?>" /></td>
  </tr>
  <tr>
   <td>Date:</td>
-  <td><input type="text" name="date" value="<?=$documentInfo['date']?>" /></td>
+  <td><input type="text" name="date" class="required" value="<?=@$documentInfo['date']?>" /></td>
  </tr>
  <tr>
   <td>System Manufacturer:</td>
-  <td><input type="text" name="system_manufacturer" value="<?=$documentInfo['system_manufacturer']?>" /></td>
+  <td><input type="text" name="system_manufacturer" class="required" value="<?=@$documentInfo['system_manufacturer']?>" /></td>
  </tr>
  <tr>
   <td>Model Number:</td>
-  <td><input type="text" name="model_number" value="<?=$documentInfo['model_number']?>" /></td>
+  <td><input type="text" name="model_number" class="required" value="<?=@$documentInfo['model_number']?>" /></td>
  </tr> 
 </table>
 

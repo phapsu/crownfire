@@ -18,19 +18,19 @@ if ($validate->is_error()) {
 <table width="100%" class="dataTable">
  <tr>
   <td>Location:</td>
-  <td><input type="text" name="location" value="<?=$documentInfo['location']?>" /></td>
+  <td><input type="text" name="location" class="required" value="<?=@$documentInfo['location']?>" /></td>
  </tr>
  <tr>
   <td>Date:</td>
-  <td><input type="text" name="date" value="<?=$documentInfo['date']?>" /></td>
+  <td><input type="text" name="date" class="required" value="<?=@$documentInfo['date']?>" /></td>
  </tr>
  <tr>
   <td>Owner:</td>
-  <td><input type="text" name="owner" value="<?=$documentInfo['owner']?>" /></td>
+  <td><input type="text" name="owner" class="required" value="<?=@$documentInfo['owner']?>" /></td>
  </tr>
  <tr>
   <td>Description of Equiptment:</td>
-  <td><input type="text" name="description" value="<?=$documentInfo['description']?>" /></td>
+  <td><input type="text" name="description" class="required" value="<?=@$documentInfo['description']?>" /></td>
  </tr>
 </table>
 <br />

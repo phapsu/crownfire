@@ -30,6 +30,7 @@ if (!isset($title)) {
 	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" src="js/jquery-ui-1.8.20.custom.min.js"></script>
  	<script type="text/javascript" src="js/functions.js"></script>
+	<script type="text/javascript" src="js/jquery.validate.js"></script>
  	<!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
         <script type="text/javascript" src="js/html5-canvas-drawing-app.js"></script>
  	</script>

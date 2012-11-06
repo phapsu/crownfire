@@ -20,35 +20,35 @@ if ($validate->is_error()) {
 	<table width="100%">
 	 <tr>
 	  <td width="40%">Name:</td>
-	  <td><input type="text" name="customer_name" value="<?=stripslashes($documentInfo['customer_name'])?>" style="width: 200px;" /></td>
+	  <td><input type="text" name="customer_name" class="required" value="<?=@stripslashes($documentInfo['customer_name'])?>" style="width: 200px;" /></td>
 	 </tr>
 	 <tr>
 	  <td>Address:</td>
-	  <td><input type="text" name="address" value="<?=stripslashes($documentInfo['address'])?>" style="width: 200px;" /></td>
+	  <td><input type="text" name="address" class="required" value="<?=@stripslashes($documentInfo['address'])?>" style="width: 200px;" /></td>
 	 </tr>
 	 <tr>
 	  <td>City:</td>
-	  <td><input type="text" name="city" value="<?=stripslashes($documentInfo['city'])?>" style="width: 200px;" /></td>
+	  <td><input type="text" name="city" class="required" value="<?=@stripslashes($documentInfo['city'])?>" style="width: 200px;" /></td>
 	 </tr>
 	 <tr>
 	  <td>State:</td>
-	  <td><input type="text" name="state" value="<?=stripslashes($documentInfo['state'])?>" style="width: 200px;" /></td>
+	  <td><input type="text" name="state" class="required" value="<?=@stripslashes($documentInfo['state'])?>" style="width: 200px;" /></td>
 	 </tr>
 	  <tr>
 	 <td>Zip:</td>
-	  <td><input type="text" name="zip" value="<?=stripslashes($documentInfo['zip'])?>" style="width: 200px;" /></td>
+	  <td><input type="text" name="zip" class="required" value="<?=@stripslashes($documentInfo['zip'])?>" style="width: 200px;" /></td>
 	 </tr>
 	 <tr>
 	  <td>Telephone:</td>
-	  <td><input type="text" name="telephone" value="<?=stripslashes($documentInfo['telephone'])?>" style="width: 200px;" /></td>
+	  <td><input type="text" name="telephone" class="required" value="<?=@stripslashes($documentInfo['telephone'])?>" style="width: 200px;" /></td>
 	 </tr>
 	 <tr>
 	  <td>Store No.:</td>
-	  <td><input type="text" name="store" value="<?=stripslashes($documentInfo['store'])?>" style="width: 200px;" /></td>
+	  <td><input type="text" name="store" class="required" value="<?=@stripslashes($documentInfo['store'])?>" style="width: 200px;" /></td>
 	 </tr>
 	 <tr>
 	  <td>Owner or Manager:</td>
-	  <td><input type="text" name="owner" value="<?=stripslashes($documentInfo['owner'])?>" style="width: 200px;" /></td>
+	  <td><input type="text" name="owner" class="required" value="<?=@stripslashes($documentInfo['owner'])?>" style="width: 200px;" /></td>
 	 </tr> 
 	</table>
   </td>

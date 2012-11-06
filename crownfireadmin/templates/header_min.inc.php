@@ -16,6 +16,7 @@ if (!isset($_SESSION['user_id']) && basename($_SERVER['PHP_SELF']) != 'login.php
  	<script type="text/javascript" src="css/iepngfix_tilebg.js"></script>
 	<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
  	<script type="text/javascript" src="js/functions.js"></script>
+	<script type="text/javascript" src="js/jquery.validate.js"></script>
  	</script>
 	<link rel='shortcut icon' href="img/favicon.ico" type="image/x-icon" />
 	<!--[if IE 6]>
