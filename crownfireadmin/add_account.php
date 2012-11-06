@@ -39,7 +39,7 @@ $display->error_message();
 	  <td><input type="text" name="email" id="email" value="<?php if(isset($user_info['email'])) echo $user_info['email']?>" /></td>
 	 </tr>
 	 <tr valign="middle">
-	  <td><?=$display->formElement('Closed account when:','Closed account when',1);?></td>
+	  <td><?=$display->formElement('Time to Access the System:','Time to Access the System',1);?></td>
 	  <td>
               <input type="text" name="login_until" id="login_until" value="<?php if(isset($user_info['login_until'])) echo date("M d, Y H:i", strtotime($user_info['login_until']));?>" />
           </td>

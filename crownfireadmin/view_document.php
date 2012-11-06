@@ -8,6 +8,9 @@ $document_name = (isset($_REQUEST['name']) && !empty($_REQUEST['name'])) ? '_'.u
 $created = (isset($_REQUEST['created']) && !empty($_REQUEST['created'])) ? date('M d, Y', $_REQUEST['created']) : date('M d, Y');
 $document_name = (isset($_REQUEST['type']) && !empty($_REQUEST['type'])) ? '['.urldecode($_REQUEST['type']).']'.$document_name.'_'.$created.'.pdf' : 'Document #'.$document_id.'.pdf';
 
+//$html = document::getDocumentHTML($document_id);
+//echo $html;exit;
+
 $cache = new JG_Cache($cfg['cache_directory']);
 $output_pdf = $cache->get('document_'.$document_id, 0);
 

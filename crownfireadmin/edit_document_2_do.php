@@ -11,6 +11,7 @@ unset($_SESSION['general_error']);
 
 $err = 0;
 // Important stuff
+$redirect = (isset($_GET['redirect']) && !empty($_GET['redirect']))  ? urldecode($_GET['redirect']) : '';
 $user_id = $_POST['user_id'];
 $property_id = $_POST['property_id'];
 $type_id = $_POST['type_id'];
@@ -807,7 +808,11 @@ if ($validate->validateForm($required) && $err != 1) {
     if (1 == $_POST['fl_email']) {
         notification::sendDocumentNotification($user_id, $new_document_id);
     }
-    header('Location: documents.php?user_id=' . $user_id . '&property_id=' . $property_id);
+    if($redirect){
+        header('Location: ' . $redirect);
+    }else{
+        header('Location: documents.php?user_id=' . $user_id . '&property_id=' . $property_id);
+    }
 } else {
     header('Location: edit_property.php?id=' . $_POST['id'] . '&user_id=' . $_POST['user_id']);
 }

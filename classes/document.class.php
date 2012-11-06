@@ -626,7 +626,7 @@ outlined in the Annual Fire and Life Safety Report.
 
 		// Get the document type
 		$type = self::getDocumentTypeById($documentObj->getTypeId());
-
+                
 		$html = '<font size="15"><b>'.$type.'</b></font><br /><br />';
 
 		// It's just easier to do a switch here.  I'm sure I could have saved some work but ... meh
@@ -708,23 +708,30 @@ outlined in the Annual Fire and Life Safety Report.
 				if (is_array($summaryInfo) && count($summaryInfo) > 0) {
 					$html .= '<font size="10"><b>Summary</b></font><br /><br />';
 					$html .= '<table border="1" style="font-size: 30px; width: 600px;" cellpadding="5">';
+                                        if(isset($summaryInfo['recommendations']) && !empty($summaryInfo['recommendations'])){
 					$html .= '<tr valign="top">
-								<td>
-								 <b>Deficiencies</b>:<br /><br />
-								 '.nl2br($summaryInfo['deficiencies']).'
-								</td>
-							  </tr>
-							  <tr valign="top">
-							  	<td><b>Recommendations:</b><br /><br />
-							  	'.nl2br($summaryInfo['recommendations']).'
-							  	</td>
-							  </tr>
-							  <tr valign="top">
-								  <td><b>Remarks:</b><br /><br />
-								  '.nl2br($summaryInfo['remarks']).'
-								  </td>
-							  </tr>
-							 </table><br />';
+                                                        <td>
+                                                         <b>Deficiencies</b>:<br /><br />
+                                                         '.nl2br($summaryInfo['deficiencies']).'
+                                                        </td>
+                                                  </tr>';
+                                        }
+                                        if(isset($summaryInfo['recommendations']) && !empty($summaryInfo['recommendations'])){
+                                            $html .= '<tr valign="top">
+                                                            <td><b>Recommendations:</b><br /><br />
+                                                            '.nl2br($summaryInfo['recommendations']).'
+                                                            </td>
+                                                      </tr>';
+                                        }
+                                        if(isset($summaryInfo['remarks']) && !empty($summaryInfo['remarks'])){
+                                            $html .= '<tr valign="top">
+                                                            <td><b>Remarks:</b><br /><br />
+                                                            '.nl2br($summaryInfo['remarks']).'
+                                                            </td>
+                                                        </tr>
+                                                       ';
+                                        }
+                                        $html .= '</table><br />';
 				}
 
 				// Our questions/answers
@@ -1728,12 +1735,12 @@ outlined in the Annual Fire and Life Safety Report.
 					$html .= '<h3>E3.2 Device Record - CAN/ULC S536-04</h3>
 								<table style="font-size: 25px; border: 1px solid #000;" cellpadding="3" cellspacing="0" width="100%" border="1">
 								 <tr bgcolor="#000000" style="font-weight: bold; color: #ffffff;" align="center">
-								  <td width="10%">Location</td>
+								  <td width="20%">Location</td>
 								  <td width="10%">Device Type</td>
 								  <td width="10%">Correctly Installed</td>
 								  <td width="10%">Requires Service</td>
-								  <td width="15%">Alarm Operation Confirmed</td>
-								  <td width="15%">Annunciator Indication Confirmed</td>
+								  <td width="10%">Alarm Operation Confirmed</td>
+								  <td width="10%">Annunciator Indication Confirmed</td>
 								  <td width="10%">Zone Address</td>
                                                                   <td width="10%">Smoke Sensitivity</td>
 								  <td width="10%">Remarks</td>
@@ -1772,6 +1779,7 @@ outlined in the Annual Fire and Life Safety Report.
 						} else {
 							$html .= ' &nbsp; ';
 						}
+                                                $form['remarks'] = (!empty($form['remarks'])) ? $form['remarks'] : '&nbsp;';
 						$html .= '</td>
 								  <td width="10%">'.$form['zone_address'].'</td>
                                                                   <td width="10%">'.$form['smoke_sensitivity'].'</td>
@@ -1786,13 +1794,14 @@ outlined in the Annual Fire and Life Safety Report.
 							$html .= ' <br /> <h3>E3.2 Device Record - CAN/ULC S536-04 (Page '.$page.')</h3>
 								<table style="font-size: 25px; border: 1px solid #000;" cellpadding="3" cellspacing="0" width="100%" border="1">
 								 <tr bgcolor="#000000" style="font-weight: bold; color: #ffffff;" align="center">
-								  <td width="10%">Location</td>
+								  <td width="20%">Location</td>
 								  <td width="10%">Device Type</td>
 								  <td width="10%">Correctly Installed</td>
 								  <td width="10%">Requires Service</td>
-								  <td width="20%">Alarm Operation Confirmed</td>
-								  <td width="20%">Annunciator Indication Confirmed</td>
+								  <td width="10%">Alarm Operation Confirmed</td>
+								  <td width="10%">Annunciator Indication Confirmed</td>
 								  <td width="10%">Zone Address</td>
+                                                                  <td width="10%">Smoke Sensitivity</td>
 								  <td width="10%">Remarks</td>
 								 </tr>';
 						}
@@ -2240,15 +2249,15 @@ outlined in the Annual Fire and Life Safety Report.
 		if (is_array($questions)) {
 			$nums = 1;
 			$letters = 'A';
-			$html .= '<br /> <table border="1" style="font-size: 30px; border: 1px solid #000000;" cellpadding="5" width="100%">';
+			$html .= '<br /> <table border="1" style="font-size: 30px; border: 1px solid #000000;border: 1px solid red;" cellpadding="5" width="100%">';
 
 			$html .= '<tr bgcolor="#000000" align="center">';
 			if (!is_null($iterate)) {
-				$html .= '<td width="8%">&nbsp; </td>';
+				$html .= '<td width="5.9%">&nbsp; </td>';
 			}
 			$html .= '<td width="40%">&nbsp; </td>';
 			foreach($options_array as $key => $value) {
-				$html .= '<td width="20%" align="center" style="color: #ffffff;">';
+				$html .= '<td width="18%" align="center" style="color: #ffffff;">';
 				if (!$skip_html) {
 					$html .= $value;
 				} else {
@@ -2260,9 +2269,9 @@ outlined in the Annual Fire and Life Safety Report.
 			foreach($questions as $questionArray) {
 				$html .= '<tr valign="middle">';
 				if ($iterate == 'numbers') {
-					$html .= '<td width="8%">'.$nums.'.</td>';
+					$html .= '<td width="5.9%">'.$nums.'.</td>';
 				} elseif ($iterate == 'letters') {
-					$html .= '<td width="8%">'.strtoupper($letters).'.</td>';
+					$html .= '<td width="5.9%">'.strtoupper($letters).'.</td>';
 				}
 				$html .= '<td width="40%">'.$questionArray['question'];
 				$html .= ($add_question) ? '?' : '';
@@ -2276,7 +2285,7 @@ outlined in the Annual Fire and Life Safety Report.
 						} else {
 							$width = '50';
 						}
-
+                                                $width = '18';
 						if (!empty($row['optionname_before']) && !empty($row['optionname_after'])) {
 							$align = 'center';
 						} elseif (!empty($row['optionname_before'])) {
@@ -2297,7 +2306,7 @@ outlined in the Annual Fire and Life Safety Report.
 					$html .= '</table></td>';
 				} else {
 					foreach($options_array as $key => $value) {
-						$html .= '<td width="20%" align="center" valign="middle">';
+						$html .= '<td width="18%" align="center" valign="middle">';
 						if (!empty($answers[$questionArray['id']]) && $answers[$questionArray['id']] == $value) {
 							//$html .= $value;
 							$html .= '<img src="'.$cfg['site_url'].'/images/red_checkmark.gif" width="8" height="8" />';

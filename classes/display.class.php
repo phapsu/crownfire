@@ -105,7 +105,9 @@ class Display {
 		return file_get_contents($cfg['include_directory'].'/registrationEmail.inc');
 	}
 	
-	public static function displayQuestionsByTypeId($type_id, $section=null, $options_array, $add_question = false, $iterate = null) {
+       
+        
+	public static function displayQuestionsByTypeId($type_id, $section=null, $options_array, $add_question = false, $iterate = null, $default_answer=true) {
 		$questions = document::getDocumentQuestionsByTypeId($type_id, $section);
 		
 		if ($_REQUEST['id']) {
@@ -113,10 +115,11 @@ class Display {
 			$custom_answers = document::getCustomDocumentAnswers($_REQUEST['id']);
                         $default_answer = false;
 		} else {
-			$answers = array();
-                        $default_answer = true;
-		}
-		if (is_array($questions)) {
+			$answers = array();                        
+		}                
+                //var_dump($default_answer);exit;
+
+                if (is_array($questions)) {
 			$nums = 1;
 			$letters = 'A';
 			echo '<table width="100%" class="dataTable">';
