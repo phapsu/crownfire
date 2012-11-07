@@ -9,8 +9,8 @@ $created = (isset($_REQUEST['created']) && !empty($_REQUEST['created'])) ? date(
 $document_name = (isset($_REQUEST['type']) && !empty($_REQUEST['type'])) ? '['.urldecode($_REQUEST['type']).']'.$document_name.'_'.$created.'.pdf' : 'Document #'.$document_id.'.pdf';
 $blank_document = (isset($_REQUEST['blank'])) ? $_REQUEST['blank'] : false;
 
-$html = document::getDocumentHTML($document_id, $blank_document);
-echo $html;exit;
+//$html = document::getDocumentHTML($document_id, $blank_document);
+//echo $html;exit;
 
 $cache = new JG_Cache($cfg['cache_directory']);
 $output_pdf = $cache->get('document_'.$document_id, 0);
