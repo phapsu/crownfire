@@ -7,7 +7,10 @@ $document_id = $_REQUEST['id'];
 $document_name = (isset($_REQUEST['name']) && !empty($_REQUEST['name'])) ? '_'.urldecode($_REQUEST['name']) : '';
 $created = (isset($_REQUEST['created']) && !empty($_REQUEST['created'])) ? date('M d, Y', $_REQUEST['created']) : date('M d, Y');
 $document_name = (isset($_REQUEST['type']) && !empty($_REQUEST['type'])) ? '['.urldecode($_REQUEST['type']).']'.$document_name.'_'.$created.'.pdf' : 'Document #'.$document_id.'.pdf';
+$blank_document = (isset($_REQUEST['blank'])) ? $_REQUEST['blank'] : false;
 
+$html = document::getDocumentHTML($document_id, $blank_document);
+echo $html;exit;
 
 $cache = new JG_Cache($cfg['cache_directory']);
 $output_pdf = $cache->get('document_'.$document_id, 0);
@@ -60,7 +63,7 @@ $pdf->SetFont('dejavusans', '', 10);
 $pdf->AddPage();
 
 // create some HTML content
-$html = document::getDocumentHTML($document_id);
+$html = document::getDocumentHTML($document_id, $blank_document);
 
 // output the HTML content
 $pdf->writeHTML($html, true, false, true, false, '');

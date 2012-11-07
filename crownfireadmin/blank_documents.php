@@ -44,11 +44,11 @@ foreach($document_list as $document_obj) {
 	 <?php
 	 if($document_obj->getTypeId() == 11) {
 	 	?>
-	 	<td><a href="<?=$cfg['site_url']?>/members/view_cert.php?property_id=<?=$document_obj->getPropertyId();?>&name=<?php echo urlencode($document_obj->getName());?>&type=<?php echo urlencode($typeName);?>&created=<?php echo $created;?>"><img border="0" src="images/icons/view.png" /></a></td>
+	 	<td><a href="<?=$cfg['site_url']?>/members/view_cert.php?property_id=<?=$document_obj->getPropertyId();?>&name=<?php echo urlencode($document_obj->getName());?>&type=<?php echo urlencode($typeName);?>&created=<?php echo $created;?>&blank=true"><img border="0" src="images/icons/view.png" /></a></td>
 	 	<?php
 	 } else {
 	 	?>
-                <td><a href="view_document.php?id=<?=$document_obj->getDocumentId();?>&name=<?php echo urlencode($document_obj->getName());?>&type=<?php echo urlencode($typeName);?>&created=<?php echo $created;?>"><img border="0" src="images/icons/view.png" /></a></td>
+                <td><a href="view_document.php?id=<?=$document_obj->getDocumentId();?>&name=<?php echo urlencode($document_obj->getName());?>&type=<?php echo urlencode($typeName);?>&created=<?php echo $created;?>&blank=true"><img border="0" src="images/icons/view.png" /></a></td>
 	 	<?php
 	 }
 	 ?>

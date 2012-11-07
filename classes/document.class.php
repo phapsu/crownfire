@@ -619,7 +619,7 @@ outlined in the Annual Fire and Life Safety Report.
 		return $html;
 	}
 
-	public static function getDocumentHTML($document_id) {
+	public static function getDocumentHTML($document_id, $blank=false) {
 		$db = new database();
 		// Get some basic document info
 		$documentObj = new self($document_id);
@@ -1079,7 +1079,7 @@ outlined in the Annual Fire and Life Safety Report.
 				 		  $checked = false;
 						  for($i=1;$i<=3;$i++) {
 						  	$html .= '<td>';
-						  	if($i==$componentOptions[$valueArray['id']]['option_value'] || ($i==3 && $checked == false)) {
+						  	if(($i==$componentOptions[$valueArray['id']]['option_value'] || ($i==3 && $checked == false)) && $blank==false) {
 						  		$html .= '<img src="'.$cfg['site_url'].'/images/red_checkmark.gif" width="8" height="8" />';
 						  		$checked = true;
 						  	}
