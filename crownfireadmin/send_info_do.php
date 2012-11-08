@@ -13,6 +13,6 @@ $user_id = $_REQUEST['user_id'];
 $userObj = new users();
 $userInfo = $userObj->getUserInfo($user_id);
 ////////////////////////////////////////////////
-$user->sendWelcomeEmail($userInfo);
+notification::sendWelcomeEmail($userInfo);
 header('Location: customers.php');
 ?>
