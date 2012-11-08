@@ -9,7 +9,7 @@ include('config/meta.php');
 	<title>Crownfire</title>
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/jquery_002.js"></script>
-	<script type="text/javascript" src="js/crownfire2010.js"></script>
+	<script type="text/javascript" src="js/crownfire2010.js"></script>	
     <link rel="stylesheet" href="css/crownfire2010.css" media="screen" type="text/css">
 	<link rel="stylesheet" href="css/uniform.css" media="screen" type="text/css">
 	<script type="text/javascript">

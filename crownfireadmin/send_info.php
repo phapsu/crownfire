@@ -2,6 +2,7 @@
 $title = 'Properties';
 include('templates/header.inc.php');
 
+$redirect = (isset($_GET['redirect'])) ? '?redirect='.$_GET['redirect'] : '';
 if ($validate->is_error()) {
 	$user_info = $validate->get_error_data();
 } elseif ($_REQUEST['user_id']) {
@@ -19,7 +20,7 @@ $display->error_message();
 <fieldset style="width: 800px;">
   <legend>Send Email</legend>
 	<table cellpadding="8">
-	<form method="post" action="send_info_do.php">
+        <form method="post" action="send_info_do.php<?php echo $redirect;?>">
 	 <tr valign="top">
 	  <td><b><?=$display->formElement('Email Contents:','name',1);?></b></td>
 	  <td><textarea name="email" style="width: 700px; height: 300px;"><?=$email_content?></textarea></td>

@@ -14,5 +14,7 @@ $userObj = new users();
 $userInfo = $userObj->getUserInfo($user_id);
 ////////////////////////////////////////////////
 notification::sendWelcomeEmail($userInfo);
-header('Location: customers.php');
+
+$redirect = (isset($_GET['redirect'])) ? $_GET['redirect'] : 'customers.php';
+header('Location: '.$redirect);
 ?>

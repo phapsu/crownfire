@@ -2,7 +2,7 @@
 $title = 'Documents';
 include('templates/header.template.php');
 
-if ($_REQUEST['year']) {
+if (isset($_REQUEST['year'])) {
     $year = $_REQUEST['year'];
 } else {
     $year = date('Y');

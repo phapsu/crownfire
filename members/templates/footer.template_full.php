@@ -1,16 +1,5 @@
 </div>
-			<div class="third_col sidebar">
-				<ul class="righttoolbar">
-                                    <?php 
-                                        $property_id = (isset($_REQUEST['property_id'])) ? $_REQUEST['property_id'] : null; 
-                                        if($property_id):
-                                    ?>
-					<li> <a href="blank_documents.php?property_id=<?php echo $property_id;?>" class="profile">Blank Document</a></li>
-                                    <?php endif; ?>
-					<li> <a href="profile.php" class="profile">Update your Profile</a></li>
-					<li> <a href="logout.php" class="profile">Logout</a></li>
-				</ul>
-			</div>
+			
 		</div>
 	</div>
 	<div id="footer">

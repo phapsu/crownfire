@@ -56,10 +56,11 @@ class document extends crownfire {
 		 			type_id 		= '".$this->db->escape_string($this->type_id)."',
 		 			state_id 		= '".$this->db->escape_string($this->state_id)."',
 		 			deficiency 		= '".intval($this->db->escape_string($this->deficiency))."',
+		 			is_blank_document 	= '".intval($this->db->escape_string($this->is_blank_document))."',
 		 			date_added		= '".$this->db->escape_string($this->date_added)."',
 		 			date_updated	= '".$this->db->escape_string($this->date_updated)."'";
 
-		if ($this->document_id) {
+		if (isset($this->document_id)) {
 			$query .= " WHERE id = '".$this->db->escape_string($this->document_id)."'";
 			$results = $this->db->dbQuery($query);
 			return $this->document_id;
@@ -125,6 +126,30 @@ class document extends crownfire {
 
 	public function getDocumentsByPropertyId($property_id, $state = null, $group = null, $year = null) {
 		$query = "SELECT documents.id FROM documents, document_types WHERE documents.property_id = '".$this->db->escape_string($property_id)."' AND document_types.id = documents.type_id";
+		if(!is_null($state)) {
+			$query .= " AND documents.state_id = '".$this->db->escape_string($state)."'";
+		}
+
+                if (!is_null($year)) {
+                    $query .= " AND documents.year = $year";
+                }
+                
+		if (!is_null($group)) {
+			$query .= " GROUP BY documents.type_id";
+		}
+
+		$query .= ' ORDER BY document_types.type ASC, documents.date_added DESC';
+                
+		$results = $this->db->dbQuery($query);
+		$return = array();
+		while($myrow = $this->db->row($results)) {
+			$return[] = new self($myrow['id']);
+		}
+		return $return;
+	}
+        
+	public function getBlankDocumentsByPropertyId($property_id, $state = null, $group = null, $year = null) {
+		$query = "SELECT documents.id FROM documents, document_types WHERE documents.property_id = '".$this->db->escape_string($property_id)."' AND document_types.id = documents.type_id AND documents.is_blank_document=1";
 		if(!is_null($state)) {
 			$query .= " AND documents.state_id = '".$this->db->escape_string($state)."'";
 		}
@@ -224,6 +249,11 @@ class document extends crownfire {
 
 	public function setDeficiency($deficiency) {
 		$this->deficiency = $deficiency;
+	}
+        
+        var $is_blank_document = 0;
+	public function setIsBlankDocument($is_blank=0) {
+		$this->is_blank_document = $is_blank;
 	}
         
 	public function setStateId($state_id) {
@@ -624,13 +654,14 @@ outlined in the Annual Fire and Life Safety Report.
 		// Get some basic document info
 		$documentObj = new self($document_id);
 
+                $typeID = ($blank) ? $blank : $documentObj->getTypeId();
 		// Get the document type
-		$type = self::getDocumentTypeById($documentObj->getTypeId());
+		$type = self::getDocumentTypeById($typeID);
                 
 		$html = '<font size="15"><b>'.$type.'</b></font><br /><br />';
 
 		// It's just easier to do a switch here.  I'm sure I could have saved some work but ... meh
-		switch($documentObj->getTypeId()) {
+		switch($typeID) {
 			case '1':
 				$documentInfo = $documentObj->getData('document_data_1_head','document_id',$document_id, false);
 
@@ -735,7 +766,7 @@ outlined in the Annual Fire and Life Safety Report.
 				}
 
 				// Our questions/answers
-				$html .= self::getQuestionsHTML($document_id, $documentObj->getTypeId()).'<br /><br />';
+				$html .= self::getQuestionsHTML($document_id, $typeID).'<br /><br />';
 
 			break;
 
@@ -1006,7 +1037,7 @@ outlined in the Annual Fire and Life Safety Report.
 				$html .= '</table><br />';
 
 				// Our questions/answers
-				$html .= self::getQuestionsHTML($document_id, $documentObj->getTypeId()).'<br /><br />';
+				$html .= self::getQuestionsHTML($document_id, $typeID).'<br /><br />';
 			break;
 
 			case '7':
@@ -1040,7 +1071,7 @@ outlined in the Annual Fire and Life Safety Report.
 						</table>';
 
 				// Our questions/answers
-				$html .= self::getQuestionsHTML($document_id, $documentObj->getTypeId());
+				$html .= self::getQuestionsHTML($document_id, $typeID);
 
 				$html .= '<br /><font size="10"><b>Valve Info</b></font><br />
 						<table style="font-size: 30px;" cellpadding="0" width="100%">
@@ -1210,7 +1241,7 @@ outlined in the Annual Fire and Life Safety Report.
 						 </tr>
 						</table><br />';
 
-				$html .= self::getQuestionsHTML($document_id, $documentObj->getTypeId());
+				$html .= self::getQuestionsHTML($document_id, $typeID);
 
 				$html .= '<br /><font size="10"><b>Water Flow Data</b></font><br />';
 
@@ -1265,7 +1296,7 @@ outlined in the Annual Fire and Life Safety Report.
 				$documentInfo 		= array_merge($documentInfo, $documentObj->getData('document_data_9_e_2_11','document_id',$document_id));
 				$documentInfo 		= array_merge($documentInfo, $documentObj->getData('document_data_9_e_3_1','document_id',$document_id));
 				$formInfo 			= $documentObj->getData('document_data_9_device','document_id',$document_id, true);
-
+//echo '<pre>';print_r($documentInfo);echo '</pre>';exit;
 				$notes_array = array(
 				1 => 'Smoke detector sensitivity confirmation or measurement should be recorded in the remarks column',
 				2 => 'Smoke detector cleaning or replacement date should also be recorded in the remarks column',
@@ -1311,7 +1342,7 @@ outlined in the Annual Fire and Life Safety Report.
 						 </tr>
 						</table><br /><br />';
 				$html .= $header;
-				$html .= self::getQuestionsHTML($document_id, $documentObj->getTypeId(), 1, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+				$html .= self::getQuestionsHTML($document_id, $typeID, 1, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
 
 				$html .= '<br /><b>Comments</b>: '.$documentInfo['comments'];
 
@@ -1357,13 +1388,13 @@ outlined in the Annual Fire and Life Safety Report.
 							 </tr>
 							</table>';
 
-				$html .= self::getQuestionsHTML($document_id, $documentObj->getTypeId(), 2, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+				$html .= self::getQuestionsHTML($document_id, $typeID, 2, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
 
 				$html .= '<br pagebreak="true"/>';
 				$html .= $header;
 				$html .= '<font size="10"><b>E2.2 Voice Communication Test - CAN/ULC S536-04</b></font><br />';
 
-				$html .= self::getQuestionsHTML($document_id, $documentObj->getTypeId(), 3, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+				$html .= self::getQuestionsHTML($document_id, $typeID, 3, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
 
 				$html .= '<br pagebreak="true"/>';
 				$html .= $header;
@@ -1379,7 +1410,7 @@ outlined in the Annual Fire and Life Safety Report.
 							 </tr>
 							</table>';
 
-				$html .= self::getQuestionsHTML($document_id, $documentObj->getTypeId(), 4, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+				$html .= self::getQuestionsHTML($document_id, $typeID, 4, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
 
 				$html .= '<br pagebreak="true"/>';
 				$html .= $header;
@@ -1394,7 +1425,7 @@ outlined in the Annual Fire and Life Safety Report.
 							  <td width="60%">'.$documentInfo['e24_transponder_identification'].'</td>
 							 </tr>
 							</table>';
-				$html .= self::getQuestionsHTML($document_id, $documentObj->getTypeId(), 5, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+				$html .= self::getQuestionsHTML($document_id, $typeID, 5, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
 
 				$html .= '<br pagebreak="true"/>';
 				$html .= $header;
@@ -1410,7 +1441,7 @@ outlined in the Annual Fire and Life Safety Report.
 							 </tr>
 							</table>';
 
-				$html .= self::getQuestionsHTML($document_id, $documentObj->getTypeId(), 6, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+				$html .= self::getQuestionsHTML($document_id, $typeID, 6, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
 				$html .= '<br pagebreak="true"/>';
 
 				if (!empty($documentInfo['e25_transponder_location_2'])) {
@@ -1427,7 +1458,7 @@ outlined in the Annual Fire and Life Safety Report.
 							 </tr>
 							</table>';
 
-						$html .= self::getQuestionsHTML($document_id, $documentObj->getTypeId(), 15, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+						$html .= self::getQuestionsHTML($document_id, $typeID, 15, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
 						$html .= '<br pagebreak="true"/>';
 				}
 
@@ -1445,7 +1476,7 @@ outlined in the Annual Fire and Life Safety Report.
 							 </tr>
 							</table>';
 
-						$html .= self::getQuestionsHTML($document_id, $documentObj->getTypeId(), 16, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+						$html .= self::getQuestionsHTML($document_id, $typeID, 16, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
 						$html .= '<br pagebreak="true"/>';
 				}
 
@@ -1463,7 +1494,7 @@ outlined in the Annual Fire and Life Safety Report.
 							 </tr>
 							</table>';
 
-						$html .= self::getQuestionsHTML($document_id, $documentObj->getTypeId(), 17, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+						$html .= self::getQuestionsHTML($document_id, $typeID, 17, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
 						$html .= '<br pagebreak="true"/>';
 				}
 
@@ -1481,7 +1512,7 @@ outlined in the Annual Fire and Life Safety Report.
 							 </tr>
 							</table>';
 
-				$html .= self::getQuestionsHTML($document_id, $documentObj->getTypeId(), 9, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+				$html .= self::getQuestionsHTML($document_id, $typeID, 9, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
 
 				$html .= '<br pagebreak="true"/>';
 				$html .= $header;
@@ -1497,7 +1528,7 @@ outlined in the Annual Fire and Life Safety Report.
 							 </tr>
 							</table>';
 
-				$html .= self::getQuestionsHTML($document_id, $documentObj->getTypeId(), 9, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+				$html .= self::getQuestionsHTML($document_id, $typeID, 9, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
 
 				$html .= '<br pagebreak="true"/>';
 				$html .= $header;
@@ -1513,7 +1544,7 @@ outlined in the Annual Fire and Life Safety Report.
 							 </tr>
 							</table>';
 
-				$html .= self::getQuestionsHTML($document_id, $documentObj->getTypeId(), 11, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+				$html .= self::getQuestionsHTML($document_id, $typeID, 11, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
 
 				$html .= '<br pagebreak="true"/>';
 				$html .= $header;
@@ -1529,7 +1560,7 @@ outlined in the Annual Fire and Life Safety Report.
 							 </tr>
 							</table>';
 
-				$html .= self::getQuestionsHTML($document_id, $documentObj->getTypeId(), 12, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+				$html .= self::getQuestionsHTML($document_id, $typeID, 12, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
 
 				$html .= '<br pagebreak="true"/>';
 				$html .= $header;
@@ -1548,7 +1579,7 @@ outlined in the Annual Fire and Life Safety Report.
 							  <td width="60%">'.$documentInfo['e210_data_identification'].'</td>
 							 </tr>
 							</table>';
-				$html .= self::getQuestionsHTML($document_id, $documentObj->getTypeId(), 13, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+				$html .= self::getQuestionsHTML($document_id, $typeID, 13, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
 
 				$html .= '<br pagebreak="true"/>';
 				$html .= $header;
@@ -2160,7 +2191,7 @@ outlined in the Annual Fire and Life Safety Report.
 							 </tr>
 							</table>&nbsp; <br />';
 
-							$html .= self::getQuestionsHTML($document_id, $documentObj->getTypeId(), null, array(1 => 'Yes'), false, 'numbers');
+							$html .= self::getQuestionsHTML($document_id, $typeID, null, array(1 => 'Yes'), false, 'numbers');
 
 							$html .= '<h3>Comments</h3>
 							<font size="10">'.$documentInfo['comments'].'</font>
@@ -2216,7 +2247,7 @@ outlined in the Annual Fire and Life Safety Report.
 					$html .= '<font size="8"><u><b>'.$title.'</b></u></font><br />';
 					$html .= '<font size="6">'.$documentInfo[$field_name].'</font><br /><br />';
 					if (!empty($questions[$field_name][0])) {
-						$html .= self::getQuestionsHTML($document_id, $documentObj->getTypeId(), $questions[$field_name][0], array(1 => 'Yes', 0 => 'No', 'n/a' => 'N/A'), false, 'letters', $questions[$field_name][1]);
+						$html .= self::getQuestionsHTML($document_id, $typeID, $questions[$field_name][0], array(1 => 'Yes', 0 => 'No', 'n/a' => 'N/A'), false, 'letters', $questions[$field_name][1]);
 						$html .= '<br />';
 					}
 				}
@@ -2245,7 +2276,7 @@ outlined in the Annual Fire and Life Safety Report.
 		$questions = document::getDocumentQuestionsByTypeId($type_id, $section);
 		$answers = document::getDocumentAnswers($document_id);
 		$custom_answers = document::getCustomDocumentAnswers($document_id);
-
+                $html = '';
 		if (is_array($questions)) {
 			$nums = 1;
 			$letters = 'A';
