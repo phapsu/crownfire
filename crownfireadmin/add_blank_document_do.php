@@ -14,13 +14,14 @@ if (isset($_REQUEST['existing_id'])) {
     $_REQUEST['id'] = $_REQUEST['existing_id'];
     $document = new document($_REQUEST['id']);
 }
+
 ?>
 
 <div id="options_link_on">   
     <a href="javascript:history.back(-1);">Back</a>
 </div>
 <br/>
-<form method="post" action="edit_document_2_do.php?redirect=<?php echo urlencode($redirect);?>">
+<form method="post" action="blank_document_do.php?redirect=<?php echo urlencode($redirect);?>">
     <input type="hidden" name="type_id" value="<?= $_REQUEST['type_id'] ?>" />
     <input type="hidden" name="user_id" value="<?= $_REQUEST['user_id'] ?>" />
     <input type="hidden" name="property_id" value="<?= $_REQUEST['property_id'] ?>" />

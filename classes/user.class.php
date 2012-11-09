@@ -45,6 +45,29 @@ class users extends crownfire {
 
         return $return;
     }
+    
+    public function getMemberList() {
+
+        $type = 'type = 2';
+        $query = "SELECT * FROM users WHERE $type AND fl_deleted = 0 AND fl_admin = 0 ORDER BY users.name ASC";
+        $results = $this->db->dbQuery($query);
+
+        $return = array();
+        while ($myrow = $this->db->row($results)) {
+            $return[] = $myrow;
+        }
+
+        return $return;
+    }
+    
+    public function getMemberById($id) {
+
+        $type = 'type = 2';
+        $query = "SELECT * FROM users WHERE $type AND fl_deleted = 0 AND fl_admin = 0 AND users.id = $id ORDER BY users.name ASC";
+        $results = $this->db->dbQuery($query);
+        
+        return $this->db->row($results);
+    }
 
     public static function getSessionId() {
         return $_SESSION['user_id'];

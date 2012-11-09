@@ -13,12 +13,13 @@ $display = new Display();
 
 include('../classes/user.class.php');
 include('../classes/property.class.php');
+include('../classes/blank_document.class.php');
 include('../classes/document.class.php');
 include('../classes/error.class.php');
 include('../classes/notification.class.php');
 include('../classes/logger.class.php');
 
-if (in_array(basename($_SERVER['PHP_SELF']),array('view_document.php','view_document_all.php'))) {
+if (in_array(basename($_SERVER['PHP_SELF']),array('view_document.php','view_document_all.php', 'view_blank_document.php'))) {
 	require_once('../classes/tcpdf/config/lang/eng.php');
 	require_once('../classes/tcpdf/tcpdf.php');
 }

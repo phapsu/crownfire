@@ -1,25 +1,22 @@
 <?php
 $title = 'Documents';
-include('templates/header.inc.php');
+include('templates/header.template_full.php');
 
-$user = new users();
-$user_data = $user->getUserInfo($_REQUEST['user_id']);
 
 // And get their properties
+$property_id = (isset($_REQUEST['property_id'])) ? $_REQUEST['property_id'] : null;
 $document = new document();
-$document_list = $document->getBlankDocumentsByUserId($_SESSION['user_id']);
+$document_list = $document->getBlankDocumentsByPropertyId($property_id);
 ?>
-<?=$display->userInfoWindow($user_data)?>
-<br />
+
 <ul class="tools">
-    <li><a href="add_blank_document.php?user_id=<?=$_REQUEST['user_id']?>&redirect=<?php echo urlencode('blank_documents.php?user_id='.$_SESSION['admin_id']);?>" class="addproperty">Add Document</a></li>	
+    <li><a href="add_blank_document.php?property_id=<?php echo $property_id;?>" class="addproperty">Add Document</a></li>	
 </ul>
 <br />
 
 <table class="listTable highlight" cellspacing="0" cellpadding="0" border="0">
 <tr class="tableRowHeader">
 <th width="5%">ID</th>
-<th width="5%">Year</th>
 <th width="15%">Type</th>
 <th width="5%">&nbsp; </th>
 <th width="5%">&nbsp; </th>
@@ -38,17 +35,16 @@ foreach($document_list as $document_obj) {
 	?>
 	<tr align="center">
 	 <td><?=$document_obj->getDocumentId();?></td>
-         <td><?=$document_obj->getYear()?></td>
 	 <td><?=$typeName;?></td>	
 	 <td><a href="delete_document_do.php?id=<?=$document_obj->getDocumentId();?>&user_id=<?=$document_obj->getUserId();?>&property_id=<?=$document_obj->getPropertyId();?>" onclick="return confirm('Are you sure you want to delete this document? \n\n ALL DATA WILL BE LOST');"><img border="0" src="images/icons/delete.png" /></a></td>
 	 <?php
 	 if($document_obj->getTypeId() == 11) {
 	 	?>
-	 	<td><a href="<?=$cfg['site_url']?>/members/view_cert.php?property_id=<?=$document_obj->getPropertyId();?>&name=<?php echo urlencode($document_obj->getName());?>&type=<?php echo urlencode($typeName);?>&created=<?php echo $created;?>&blank=true"><img border="0" src="images/icons/view.png" /></a></td>
+	 	<td><a href="<?=$cfg['site_url']?>/members/view_cert.php?property_id=<?=$document_obj->getPropertyId();?>&name=<?php echo urlencode($document_obj->getName());?>&type=<?php echo urlencode($typeName);?>&created=<?php echo $created;?>&blank=<?php echo $document_obj->getTypeId();?>"><img border="0" src="images/icons/view.png" /></a></td>
 	 	<?php
 	 } else {
 	 	?>
-                <td><a href="blank_document_select_property.php?id=<?=$document_obj->getDocumentId();?>&name=<?php echo urlencode($document_obj->getName());?>&type=<?php echo urlencode($typeName);?>&typeId=<?php echo urlencode($document_obj->getTypeId());?>&created=<?php echo $created;?>&blank=true"><img border="0" src="images/icons/view.png" /></a></td>
+                <td><a href="export_blank_document.php?id=<?=$document_obj->getDocumentId();?>&name=<?php echo urlencode($document_obj->getName());?>&type=<?php echo urlencode($typeName);?>&created=<?php echo $created;?>&blank=<?php echo $document_obj->getTypeId();?>"><img border="0" src="images/icons/view.png" /></a></td>
 	 	<?php
 	 }
 	 ?>
@@ -58,5 +54,5 @@ foreach($document_list as $document_obj) {
 ?>
 </table>
 <?php
-include('templates/footer.inc.php');
+include('templates/footer.template_full.php');
 ?>

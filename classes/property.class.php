@@ -44,6 +44,17 @@ class property extends crownfire {
 		}
 		return $return;
 	}
+        
+	public function getJsonListByUserId($user_id) {
+		$query = "SELECT id, name FROM properties WHERE user_id = '".$this->db->escape_string($user_id)."'";
+		$results = $this->db->dbQuery($query);
+		//echo $query;
+		$return = array();
+		while ($myrow = $this->db->row($results)) {
+			$return[$myrow['id']] = $myrow['name'];	
+		}
+		return json_encode($return);
+	}
 	
 	// Setters
 	public function setPropertyId($id) { 
