@@ -1,11 +1,7 @@
 <?php
-
-class blank_document extends crownfire {
-    public function __construct() {
-            parent::__construct();           
-    }
+class blank_document {   
     
-    private static function tableDottedHeader($cusName){
+    protected static function tableDottedHeader($cusName){
             $header = '<table style="font-size: 25px;" border="0" cellpadding="0" cellspacing="5" width="95%">
                         <tr valign="top">
                          <td width="35%" align="right"><b>Customer Name:</b></td>
@@ -28,7 +24,7 @@ class blank_document extends crownfire {
             return $header;
     }
     
-    private static function dottedLine($numofLine = 20) {
+    protected static function dottedLine($numofLine = 20) {
         $html = '';
 
         for ($i = 0; $i < $numofLine; $i++) {
@@ -44,29 +40,11 @@ class blank_document extends crownfire {
         switch ($typeID) {
             case '1':
 
-                $html .= self::tableDottedHeader($customerInfo['name']);
-
-                $html .= $header;
-                $html .= '<font size="10"><b>Alarm Panel Information</b></font><br /><br />';
-                $html .= '<table border="1" style="font-size: 25px; width: 100%;" cellpadding="5">';
-                $html .= '<tr bgcolor="#000000" style="color: #FFFFFF;">
-                                                                                <td colspan="4" width="50%">&nbsp; </td>
-                                                                                <td width="25%">Alarm Circuit</td>
-                                                                                <td width="25%">Supervisory Circuit</td>
-                                                                          </tr>';
-                for ($i = 0; $i < 20; $i++) {
-                    $html .= '<tr>
-                                                                                   <td width="15%">Zone Name:</td>
-                                                                                   <td width="15%"></td>
-                                                                                   <td width="10%">Zone #:</td>
-                                                                                   <td width="10%"></td>
-                                                                                   <td width="25%"></td>
-                                                                                   <td width="25%"></td>
-                                                                                  </tr>';
-                }
-                $html .= '</table>';
-
-                $html .= '<br /><br />';
+                include('blank_document/document_'.$typeID.'.php');
+                $class = 'document_'.$typeID;
+                $doc = new $class;
+                $html .= $doc->show($customerInfo);
+                
                 break;
 
             case '3':

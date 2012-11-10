@@ -18,8 +18,8 @@ $cusInfo = $users->getMemberById($_POST['customer_id']);
 //echo '</pre>';
 
 $typeID = $_GET['typeId'];
-//$html = blank_document::getDocumentHTML($typeID, $cusInfo);
-//echo $html;exit;
+$html = blank_document::getDocumentHTML($typeID, $cusInfo);
+echo $html;exit;
 
 $cache = new JG_Cache($cfg['cache_directory']);
 $output_pdf = $cache->get('document_'.$document_id, 0);
