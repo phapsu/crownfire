@@ -2,22 +2,50 @@
 class blank_document {   
     
     protected static function tableDottedHeader($cusName){
-            $header = '<table style="font-size: 25px;" border="0" cellpadding="0" cellspacing="5" width="95%">
+            $header = '<table style="font-size: 25px;" border="0" cellpadding="0" cellspacing="0" width="100%">
                         <tr valign="top">
-                         <td width="35%" align="right"><b>Customer Name:</b></td>
-                         <td width="25%" align="left" style="border-bottom: dotted 1px black;">' .$cusName . '</td>
-                         <td width="15%" align="right"><b>Technician:</b></td>
+                            <td colspan="4"><br></td>
+                        </tr>
+                        <tr valign="top">
+                         <td width="15%" align="right"><b>Customer Name:</b></td>
+                         <td width="45%" align="left" style="border-bottom: dotted 1px black;">' .$cusName . '</td>
+                         <td width="15%" align="right"><b>Technician 1:</b></td>
                          <td width="25%" align="left" style="border-bottom: dotted 1px black;"></td>
                         </tr>
                         <tr valign="top">
-                         <td width="35%" style="padding-top:40px;" align="right"><b>Address:</b></td>
+                            <td colspan="4"><br></td>
+                        </tr>
+                        <tr valign="top">
+                         <td width="15%" style="padding-top:40px;" align="right"><b>Address:</b></td>
                          <td align="left" style="padding-top:40px;border-bottom: dotted 1px black;"></td>
-                         <td width="15%" style="padding-top:40px;" align="right"><b>Inspection Date:</b></td>
+                         <td width="15%" style="padding-top:40px;" align="right"><b>Technician 2:</b></td>
                          <td align="left" style="padding-top:40px;border-bottom: dotted 1px black;"></td>
                         </tr>
                         <tr valign="top">
-                         <td align="right" style="padding-top:40px;"><b>Manufacturer Name & Model Number:</b> </td>
-                         <td colspan="3" style="border-bottom: dotted 1px black;"></td>
+                            <td colspan="4"><br></td>
+                        </tr>
+                        <tr valign="top">
+                            <td colspan="4">
+                                <table style="font-size: 25px; width:100%" width="100%">
+                                    <tr>
+                                        <td width="35%" style="padding-top:40px; text-align:right;"><b>Inspection Date:</b></td>
+                                        <td style="padding-top:40px;border-bottom: dotted 1px black;"></td>
+                                    </tr>
+                                </table>
+                            </td>                         
+                        </tr>
+                        <tr valign="top">
+                            <td colspan="4"><br></td>
+                        </tr>
+                        <tr valign="top">
+                            <td colspan="4">
+                                <table style="font-size: 25px; width:100%" width="100%">
+                                    <tr>
+                                        <td width="35%" style="padding-top:40px; text-align:right;"><b>Manufacturer Name & Model Number:</b></td>
+                                        <td style="padding-top:40px;border-bottom: dotted 1px black;"></td>
+                                    </tr>
+                                </table>
+                            </td>                         
                         </tr>
                        </table><br />';    
             
@@ -64,7 +92,7 @@ class blank_document {
                 $html .= '</table><br />';
 
                 // Our questions/answers
-                //$html .= self::getQuestionsHTML($document_id, $typeID).'<br /><br />';
+                $html .= self::getQuestionsHTML(null, $typeID).'<br /><br />';
 
                 break;
 
@@ -1572,12 +1600,11 @@ class blank_document {
         global $cfg;
         // Process our questions
         $questions = document::getDocumentQuestionsByTypeId($type_id, $section);
-        $answers = document::getDocumentAnswers($document_id);
-        $custom_answers = document::getCustomDocumentAnswers($document_id);
         $html = '';
         if (is_array($questions)) {
             $nums = 1;
             $letters = 'A';
+            $widthRemainCols = 54/count($options_array).'%';
             $html .= '<br /> <table border="1" style="font-size: 30px; border: 1px solid #000000;border: 1px solid red;" cellpadding="5" width="100%">';
 
             $html .= '<tr bgcolor="#000000" align="center">';
@@ -1586,7 +1613,7 @@ class blank_document {
             }
             $html .= '<td width="40%">&nbsp; </td>';
             foreach ($options_array as $key => $value) {
-                $html .= '<td width="18%" align="center" style="color: #ffffff;">';
+                $html .= '<td width="'.$widthRemainCols.'" align="center" style="color: #ffffff;">';
                 if (!$skip_html) {
                     $html .= $value;
                 } else {
@@ -1614,7 +1641,7 @@ class blank_document {
                         } else {
                             $width = '50';
                         }
-                        $width = '18';
+                        $width = $widthRemainCols;
                         if (!empty($row['optionname_before']) && !empty($row['optionname_after'])) {
                             $align = 'center';
                         } elseif (!empty($row['optionname_before'])) {
@@ -1624,9 +1651,9 @@ class blank_document {
                         }
                         $html .= '<tr>';
                         if (!empty($row['optionname_before'])) {
-                            $html .= '<td width="' . $width . '%" align="right">' . $row['optionname_before'] . ':</td>';
+                            $html .= '<td width="' . $width . '" align="right">' . $row['optionname_before'] . ':</td>';
                         }
-                        $html .= '<td width="' . $width . '%" align="' . $align . '">' . $custom_answers[$row['id']] . '</td>';
+                        $html .= '<td width="' . $width . '" align="' . $align . '">' . $custom_answers[$row['id']] . '</td>';
                         if (!empty($row['optionname_after'])) {
                             $html .= '<td width="' . $width . '%" align="left">' . $row['optionname_after'] . '</td>';
                         }
@@ -1635,11 +1662,8 @@ class blank_document {
                     $html .= '</table></td>';
                 } else {
                     foreach ($options_array as $key => $value) {
-                        $html .= '<td width="18%" align="center" valign="middle">';
-                        if (!empty($answers[$questionArray['id']]) && $answers[$questionArray['id']] == $value) {
-                            //$html .= $value;
-                            $html .= '<img src="' . $cfg['site_url'] . '/images/red_checkmark.gif" width="8" height="8" />';
-                        }
+                        $html .= '<td width="'.$widthRemainCols.'" align="center" valign="middle">';
+                        
                         $html .= '</td>';
                     }
                 }
