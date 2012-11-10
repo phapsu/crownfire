@@ -1,40 +1,61 @@
 <?php
+
 class blank_document extends crownfire {
-	
-	public static function getDocumentHTML($typeID, $customerInfo=null, $buildingInfo=null) {
-		$html = '';
-		switch($typeID) {
-			case '1':				
+    public function __construct() {
+            parent::__construct();           
+    }
+    
+    private static function tableDottedHeader($cusName){
+            $header = '<table style="font-size: 25px;" border="0" cellpadding="0" cellspacing="5" width="95%">
+                        <tr valign="top">
+                         <td width="35%" align="right"><b>Customer Name:</b></td>
+                         <td width="25%" align="left" style="border-bottom: dotted 1px black;">' .$cusName . '</td>
+                         <td width="15%" align="right"><b>Technician:</b></td>
+                         <td width="25%" align="left" style="border-bottom: dotted 1px black;"></td>
+                        </tr>
+                        <tr valign="top">
+                         <td width="35%" style="padding-top:40px;" align="right"><b>Address:</b></td>
+                         <td align="left" style="padding-top:40px;border-bottom: dotted 1px black;"></td>
+                         <td width="15%" style="padding-top:40px;" align="right"><b>Inspection Date:</b></td>
+                         <td align="left" style="padding-top:40px;border-bottom: dotted 1px black;"></td>
+                        </tr>
+                        <tr valign="top">
+                         <td align="right" style="padding-top:40px;"><b>Manufacturer Name & Model Number:</b> </td>
+                         <td colspan="3" style="border-bottom: dotted 1px black;"></td>
+                        </tr>
+                       </table><br />';    
+            
+            return $header;
+    }
+    
+    private static function dottedLine($numofLine = 20) {
+        $html = '';
 
-				$header = '<table style="font-size: 25px;" border="0" cellpadding="0" cellspacing="5" width="95%">
-						  <tr valign="top">
-						   <td width="35%" align="right"><b>Customer Name:</b></td>
-						   <td width="25%" align="left" style="border-bottom: dotted 1px black;">'.$customerInfo['name'].'</td>
-						   <td width="15%" align="right"><b>Technician:</b></td>
-						   <td width="25%" align="left" style="border-bottom: dotted 1px black;"></td>
-						  </tr>
-						  <tr valign="top">
-						   <td width="35%" style="padding-top:20px;" align="right"><b>Address:</b></td>
-						   <td align="left" style="padding-top:20px;border-bottom: dotted 1px black;"></td>
-						   <td width="15%" style="padding-top:20px;" align="right"><b>Inspection Date:</b></td>
-						   <td align="left" style="padding-top:20px;border-bottom: dotted 1px black;"></td>
-						  </tr>
-						  <tr valign="top">
-						   <td align="right" style="padding-top:20px;"><b>Manufacturer Name & Model Number:</b> </td>
-						   <td colspan="3" style="border-bottom: dotted 1px black;"></td>
-						  </tr>
-						 </table><br />';
+        for ($i = 0; $i < $numofLine; $i++) {
+            $html .= '<p style="border-bottom: dotted 1px black;">&nbsp;</p>';
+            $html .='<br>';
+        }
 
-				$html .= $header;
-                                $html .= '<font size="10"><b>Alarm Panel Information</b></font><br /><br />';
-                                $html .= '<table border="1" style="font-size: 25px; width: 100%;" cellpadding="5">';
-                                $html .= '<tr bgcolor="#000000" style="color: #FFFFFF;">
+        return $html;
+    }
+
+    public static function getDocumentHTML($typeID, $customerInfo = null, $buildingInfo = null) {
+        $html = '';
+        switch ($typeID) {
+            case '1':
+
+                $html .= self::tableDottedHeader($customerInfo['name']);
+
+                $html .= $header;
+                $html .= '<font size="10"><b>Alarm Panel Information</b></font><br /><br />';
+                $html .= '<table border="1" style="font-size: 25px; width: 100%;" cellpadding="5">';
+                $html .= '<tr bgcolor="#000000" style="color: #FFFFFF;">
                                                                                 <td colspan="4" width="50%">&nbsp; </td>
                                                                                 <td width="25%">Alarm Circuit</td>
                                                                                 <td width="25%">Supervisory Circuit</td>
                                                                           </tr>';
-                                for ($i=0; $i<20; $i++) {
-                                    $html .= '<tr>
+                for ($i = 0; $i < 20; $i++) {
+                    $html .= '<tr>
                                                                                    <td width="15%">Zone Name:</td>
                                                                                    <td width="15%"></td>
                                                                                    <td width="10%">Zone #:</td>
@@ -42,102 +63,63 @@ class blank_document extends crownfire {
                                                                                    <td width="25%"></td>
                                                                                    <td width="25%"></td>
                                                                                   </tr>';
-                                }
-                                $html .= '</table>';
-				
-				$html .= '<br /><br />';
-			break;
+                }
+                $html .= '</table>';
 
-			case '3':
-				$documentInfo = $documentObj->getData('document_data_3_head','document_id',$document_id,false);
+                $html .= '<br /><br />';
+                break;
 
-				$html .= '<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="95%">
-						  <tr valign="top">
-						   <td width="25%" align="right"><b>Customer Name:</b></td>
-						   <td width="25%" align="left">'.$documentInfo['customer_name'].'</td>
-						   <td width="25%" align="right"><b>Technician 1:</b></td>
-						   <td width="25%" align="left">'.$documentInfo['technician_1'].'</td>
-						  </tr>
-						  <tr valign="top">
-						   <td width="25%" align="right"><b>Address:</b></td>
-						   <td width="25%" align="left">'.$documentInfo['address'].'</td>
-						   <td width="25%" align="right"><b>Technician 2:</b></td>
-						   <td width="25%" align="left">'.$documentInfo['technician_2'].'</td>
-						  </tr>
-						  <tr>
-						   <td width="25%" align="right"><b>City:</b></td>
-						   <td width="25%" align="left">'.$documentInfo['city'].'</td>
-						   <td width="25%" align="right"><b>Inspection Date:</b></td>
-						   <td width="25%" align="left">'.$documentInfo['inspection_date'].'</td>
-						  </tr>
-						 </table><br />';
+            case '3':
+                
+                $html .= self::tableDottedHeader($customerInfo['name']);
 
-				$summaryInfo 	  = $documentObj->getData('document_data_3_summary','document_id',$document_id,false);
+                $html .= '<h1>Summary</h1></font><br /><br>';
+                $html .= '<table border="0" style="font-size: 30px; width: 100%;" cellpadding="0">';
 
-				if (is_array($summaryInfo) && count($summaryInfo) > 0) {
-					$html .= '<font size="10"><b>Summary</b></font><br /><br />';
-					$html .= '<table border="1" style="font-size: 30px; width: 600px;" cellpadding="5">';
-                                        if(isset($summaryInfo['recommendations']) && !empty($summaryInfo['recommendations'])){
-					$html .= '<tr valign="top">
-                                                        <td>
-                                                         <b>Deficiencies</b>:<br /><br />
-                                                         '.nl2br($summaryInfo['deficiencies']).'
-                                                        </td>
-                                                  </tr>';
-                                        }
-                                        if(isset($summaryInfo['recommendations']) && !empty($summaryInfo['recommendations'])){
-                                            $html .= '<tr valign="top">
-                                                            <td><b>Recommendations:</b><br /><br />
-                                                            '.nl2br($summaryInfo['recommendations']).'
-                                                            </td>
-                                                      </tr>';
-                                        }
-                                        if(isset($summaryInfo['remarks']) && !empty($summaryInfo['remarks'])){
-                                            $html .= '<tr valign="top">
-                                                            <td><b>Remarks:</b><br /><br />
-                                                            '.nl2br($summaryInfo['remarks']).'
-                                                            </td>
-                                                        </tr>
-                                                       ';
-                                        }
-                                        $html .= '</table><br />';
-				}
+                $html .= '<tr valign="top"><td><h3>Deficiencies:</h3></td></tr>';
+                $html .= '<tr valign="top"><td> '.self::dottedLine(7).'</td></tr>';
+                $html .= '<tr valign="top"><td><h3>Recommendations:</h3></td></tr>';
+                $html .= '<tr valign="top"><td> '.self::dottedLine(7).'</td></tr>';
+                $html .= '<tr valign="top"><td><h3>Remarks:</h3></td></tr>';
+                $html .= '<tr valign="top"><td> '.self::dottedLine(7).'</td></tr>';
 
-				// Our questions/answers
-				$html .= self::getQuestionsHTML($document_id, $typeID).'<br /><br />';
+                $html .= '</table><br />';
 
-			break;
+                // Our questions/answers
+                //$html .= self::getQuestionsHTML($document_id, $typeID).'<br /><br />';
 
-			case '4':
-				$documentInfo 		= $documentObj->getData('document_data_4_head','document_id',$document_id);
+                break;
 
-				$reportInfo 	  	= $documentObj->getData('document_data_4_report','document_id',$document_id,true);
+            case '4':
+                $documentInfo = $documentObj->getData('document_data_4_head', 'document_id', $document_id);
 
-				$html .= '<table width="100%">
+                $reportInfo = $documentObj->getData('document_data_4_report', 'document_id', $document_id, true);
+
+                $html .= '<table width="100%">
 						   <tr>
 						   	 <td width="75%">
 								 <table style="font-size: 25px;" cellpadding="0" cellspacing="5" width="100%">
 								  <tr valign="top">
 								   <td width="25%" align="right"><b>Customer Name:</b></td>
-								   <td width="25%" align="left">'.$documentInfo['customer_name'].'</td>
+								   <td width="25%" align="left">' . $documentInfo['customer_name'] . '</td>
 								   <td width="25%" align="right"><b>Technician:</b></td>
-								   <td width="25%" align="left">'.$documentInfo['technician'].'</td>
+								   <td width="25%" align="left">' . $documentInfo['technician'] . '</td>
 								  </tr>
 								  <tr valign="top">
 								   <td width="25%" align="right"><b>Address:</b></td>
-								   <td width="25%" align="left">'.$documentInfo['address'].'</td>
+								   <td width="25%" align="left">' . $documentInfo['address'] . '</td>
 								   <td width="25%" align="right"><b>Inspection Date:</b></td>
-								   <td width="25%" align="left">'.$documentInfo['inspection_date'].'</td>
+								   <td width="25%" align="left">' . $documentInfo['inspection_date'] . '</td>
 								  </tr>
 								  <tr valign="top">
 								   <td width="25%" align="right"><b>City:</b></td>
-								   <td width="25%" align="left">'.$documentInfo['city'].'</td>
+								   <td width="25%" align="left">' . $documentInfo['city'] . '</td>
 								   <td width="25%" align="right"><b>Site:</b></td>
-								   <td width="25%" align="left">'.$documentInfo['site'].'</td>
+								   <td width="25%" align="left">' . $documentInfo['site'] . '</td>
 								  </tr>
 								  <tr>
 								   <td width="25%" align="right"><b>Contact:</b></td>
-								   <td width="75%" colspan="3" align="left">'.$documentInfo['contact'].'</td>
+								   <td width="75%" colspan="3" align="left">' . $documentInfo['contact'] . '</td>
 								  </tr>
 								 </table>
 							</td>
@@ -175,8 +157,8 @@ class blank_document extends crownfire {
 							</tr></table>';
 
 
-				if (is_array($reportInfo) && count($reportInfo) > 0) {
-					$html .= '<table style="font-size: 20px; border: 1px solid #000000; width: 680px;" cellpadding="5" border="1">
+                if (is_array($reportInfo) && count($reportInfo) > 0) {
+                    $html .= '<table style="font-size: 20px; border: 1px solid #000000; width: 680px;" cellpadding="5" border="1">
 								 <tr align="center" bgcolor="#000000" style="color: #FFFFFF;">
 								  <td width="5%">No.#</td>
 								  <td width="20%">Hose Location</td>
@@ -189,55 +171,55 @@ class blank_document extends crownfire {
 								  <td width="10%">Next <br />6 Year</td>
 								  <td width="15%">Remarks</td>
 								 </tr>';
-					foreach($reportInfo as $key => $report) {
-						  $html .= '<tr align="center">
-									  <td width="5%">'.stripslashes($report['report_num']).'</td>
-									  <td width="20%">'.stripslashes($report['location']).'</td>
-									  <td width="10%">'.stripslashes($report['size_type']).'</td>
-									  <td width="10%">'.stripslashes($report['manufacture']).'</td>
-									  <td width="10%">'.stripslashes($report['serial']).'</td>
-									  <td width="10%">'.stripslashes($report['manufacture_date']).'</td>
-									  <td width="5%">'.stripslashes($report['last_h_test']).'</td>
-									  <td width="5%">'.stripslashes($report['next_h_test']).'</td>
-									  <td width="10%">'.stripslashes($report['next_six_year']).'</td>
-									  <td width="15%">'.stripslashes($report['remarks']).'</td>
+                    foreach ($reportInfo as $key => $report) {
+                        $html .= '<tr align="center">
+									  <td width="5%">' . stripslashes($report['report_num']) . '</td>
+									  <td width="20%">' . stripslashes($report['location']) . '</td>
+									  <td width="10%">' . stripslashes($report['size_type']) . '</td>
+									  <td width="10%">' . stripslashes($report['manufacture']) . '</td>
+									  <td width="10%">' . stripslashes($report['serial']) . '</td>
+									  <td width="10%">' . stripslashes($report['manufacture_date']) . '</td>
+									  <td width="5%">' . stripslashes($report['last_h_test']) . '</td>
+									  <td width="5%">' . stripslashes($report['next_h_test']) . '</td>
+									  <td width="10%">' . stripslashes($report['next_six_year']) . '</td>
+									  <td width="15%">' . stripslashes($report['remarks']) . '</td>
 									</tr>';
-					}
-					$html .= '</table>';
-			}
+                    }
+                    $html .= '</table>';
+                }
 
-			break;
+                break;
 
-			case '5':
-				$documentInfo 		= $documentObj->getData('document_data_5_head','document_id',$document_id);
+            case '5':
+                $documentInfo = $documentObj->getData('document_data_5_head', 'document_id', $document_id);
 
-				$formInfo 		  	= $documentObj->getData('document_data_5_form','document_id',$document_id,true);
+                $formInfo = $documentObj->getData('document_data_5_form', 'document_id', $document_id, true);
 
-				$html .= '<table width="100%">
+                $html .= '<table width="100%">
 						   <tr>
 						   	 <td width="75%">
 						   	 <table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
 							  <tr valign="top">
 							   <td width="25%" align="right"><b>Customer Name:</b></td>
-							   <td width="25%" align="left">'.$documentInfo['customer_name'].'</td>
+							   <td width="25%" align="left">' . $documentInfo['customer_name'] . '</td>
 							   <td width="25%" align="right"><b>Technician:</b></td>
-							   <td width="25%" align="left">'.$documentInfo['technician'].'</td>
+							   <td width="25%" align="left">' . $documentInfo['technician'] . '</td>
 							  </tr>
 							  <tr valign="top">
 							   <td width="25%" align="right"><b>Address:</b></td>
-							   <td width="25%" align="left">'.$documentInfo['address'].'</td>
+							   <td width="25%" align="left">' . $documentInfo['address'] . '</td>
 							   <td width="25%" align="right"><b>Inspection Date:</b></td>
-							   <td width="25%" align="left">'.$documentInfo['inspection_date'].'</td>
+							   <td width="25%" align="left">' . $documentInfo['inspection_date'] . '</td>
 							  </tr>
 							  <tr valign="top">
 							   <td width="25%" align="right"><b>City:</b></td>
-							   <td width="25%" align="left">'.$documentInfo['city'].'</td>
+							   <td width="25%" align="left">' . $documentInfo['city'] . '</td>
 							   <td width="25%" align="right"><b>Site:</b></td>
-							   <td width="25%" align="left">'.$documentInfo['site'].'</td>
+							   <td width="25%" align="left">' . $documentInfo['site'] . '</td>
 							  </tr>
 							  <tr>
 							   <td width="25%" align="right"><b>Contact:</b></td>
-							   <td width="75%" colspan="3" align="left">'.$documentInfo['contact'].'</td>
+							   <td width="75%" colspan="3" align="left">' . $documentInfo['contact'] . '</td>
 							  </tr>
 							 </table>
 							</td>
@@ -271,10 +253,10 @@ class blank_document extends crownfire {
 						   </tr>
 						  </table>';
 
-				if (is_array($formInfo) && count($formInfo) > 0) {
-					$html .= '<font size="10"><b>Emergency Lighting Annual Inspection Form</b></font><br /><br />';
+                if (is_array($formInfo) && count($formInfo) > 0) {
+                    $html .= '<font size="10"><b>Emergency Lighting Annual Inspection Form</b></font><br /><br />';
 
-					$html .= '<table border="1" style="font-size: 25px; border: 1px solid #000000; width: 650px;" cellpadding="5">
+                    $html .= '<table border="1" style="font-size: 25px; border: 1px solid #000000; width: 650px;" cellpadding="5">
 							 <tr bgcolor="#000000" style="color: #fff;">
 							  <td width="10%"><b>Type:</b></td>
 							  <td width="25%">( U ) = Emergency Light Unit</td>
@@ -284,7 +266,7 @@ class blank_document extends crownfire {
 							 </tr>
 							</table><br />';
 
-					$html .= '<table border="1" style="font-size: 25px; border: 1px solid #000000; width: 650px;" cellpadding="5">
+                    $html .= '<table border="1" style="font-size: 25px; border: 1px solid #000000; width: 650px;" cellpadding="5">
 							  <tr align="center" bgcolor="#000000" style="color: #FFFFFF;">
 							   <td width="10%">Unit Type</td>
 							   <td width="30%">Location</td>
@@ -295,123 +277,123 @@ class blank_document extends crownfire {
 							   <td width="5%"># Of Batteries</td>
 							   <td width="20%">Size Of Batteries</td>
 							  </tr>';
-					foreach($formInfo as $key => $form) {
-						$html .= '<tr align="center">
-                                                    <td width="10%">'.$form['unit_type'].'</td>
-                                                    <td width="30%">'.$form['location'].'</td>
-                                                    <td width="5%">'.$form['time_illuminated'].'</td>
-                                                    <td width="10%">'.$form['pass_or_fail'].'</td>
-                                                    <td width="10%">'.$form['unit_voltage'].'</td>
-                                                    <td width="10%">'.$form['unit_watts'].'</td>
-                                                    <td width="5%">'.$form['num_batteries'].'</td>
-                                                    <td width="20%">'.$form['size_batteries'].'</td>
+                    foreach ($formInfo as $key => $form) {
+                        $html .= '<tr align="center">
+                                                    <td width="10%">' . $form['unit_type'] . '</td>
+                                                    <td width="30%">' . $form['location'] . '</td>
+                                                    <td width="5%">' . $form['time_illuminated'] . '</td>
+                                                    <td width="10%">' . $form['pass_or_fail'] . '</td>
+                                                    <td width="10%">' . $form['unit_voltage'] . '</td>
+                                                    <td width="10%">' . $form['unit_watts'] . '</td>
+                                                    <td width="5%">' . $form['num_batteries'] . '</td>
+                                                    <td width="20%">' . $form['size_batteries'] . '</td>
                                             </tr>';
-					}
-					$html .= '</table><br /><br />';
-				}
+                    }
+                    $html .= '</table><br /><br />';
+                }
 
-				$html .= '<font size="10"><b>Remarks</b></font><br />
-						'.$documentInfo['comments'].'<br /><br />';
+                $html .= '<font size="10"><b>Remarks</b></font><br />
+						' . $documentInfo['comments'] . '<br /><br />';
 
-				$html .= '<table width="100%"><tr><td align="center"><font size="6">Records Must Be Available Upon Fire Departments Request for Min 2 Years</font></td></tr></table>';
-			break;
+                $html .= '<table width="100%"><tr><td align="center"><font size="6">Records Must Be Available Upon Fire Departments Request for Min 2 Years</font></td></tr></table>';
+                break;
 
-			case '6':
-				$documentInfo 		= $documentObj->getData('document_data_6_head','document_id',$document_id);
-				$testingInfo		= document::getDataSimple('valve_testing_options');
-				$testingOptions 	= document::getTestingOptions($document_id);
+            case '6':
+                $documentInfo = $documentObj->getData('document_data_6_head', 'document_id', $document_id);
+                $testingInfo = document::getDataSimple('valve_testing_options');
+                $testingOptions = document::getTestingOptions($document_id);
 
-				$html .= '<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
+                $html .= '<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
 						  <tr valign="top">
 						   <td width="25%" align="right"><b>Customer Name:</b></td>
-						   <td width="25%" align="left">'.$documentInfo['customer_name'].'</td>
+						   <td width="25%" align="left">' . $documentInfo['customer_name'] . '</td>
 						   <td width="25%" align="right"><b>Technician:</b></td>
-						   <td width="25%" align="left">'.$documentInfo['technician'].'</td>
+						   <td width="25%" align="left">' . $documentInfo['technician'] . '</td>
 						  </tr>
 						  <tr valign="top">
 						   <td width="25%" align="right"><b>Address:</b></td>
-						   <td width="25%" align="left">'.$documentInfo['address'].'</td>
+						   <td width="25%" align="left">' . $documentInfo['address'] . '</td>
 						   <td width="25%" align="right"><b>Inspection Date:</b></td>
-						   <td width="25%" align="left">'.$documentInfo['inspection_date'].'</td>
+						   <td width="25%" align="left">' . $documentInfo['inspection_date'] . '</td>
 						  </tr>
 						 </table><br />';
 
-				$html .= '<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">';
-				$html .= '<tr>';
-				$html .= '<td width="50%">Fire Hydrant Location</td>';
-				$html .= '<td width="50%">Technician Comments</td>';
-				$html .= '</tr>';
-				$html .= '<tr>';
-				$html .= '<td width="50%" style="border: 1px solid #000;">';
-				$img = document::getDocumentImage($document_id);
-				if ($img) {
-					$html .= '<img src="'.$img.'" />';
-				}
-				$html .= '</td>';
-				$html .= '<td width="50%" style="border: 1px solid #000;">';
-				$html .= $documentInfo['tech_comments'];
-				$html .= '</td>';
-				$html .= '</tr></table>';
+                $html .= '<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">';
+                $html .= '<tr>';
+                $html .= '<td width="50%">Fire Hydrant Location</td>';
+                $html .= '<td width="50%">Technician Comments</td>';
+                $html .= '</tr>';
+                $html .= '<tr>';
+                $html .= '<td width="50%" style="border: 1px solid #000;">';
+                $img = document::getDocumentImage($document_id);
+                if ($img) {
+                    $html .= '<img src="' . $img . '" />';
+                }
+                $html .= '</td>';
+                $html .= '<td width="50%" style="border: 1px solid #000;">';
+                $html .= $documentInfo['tech_comments'];
+                $html .= '</td>';
+                $html .= '</tr></table>';
 
-				$html .= 'Fire Hydrant Make And Model: '.$documentInfo['hydrant_make'].'<br /><br />';
+                $html .= 'Fire Hydrant Make And Model: ' . $documentInfo['hydrant_make'] . '<br /><br />';
 
-				$html .= '<font size="10"><b>Valve Testing</b></font><br /><br />';
+                $html .= '<font size="10"><b>Valve Testing</b></font><br /><br />';
 
-				$html .= '<table style="font-size: 30px; border: 1px solid #000000; width: 350px;" cellpadding="5">
+                $html .= '<table style="font-size: 30px; border: 1px solid #000000; width: 350px;" cellpadding="5">
 							 <tr align="center" bgcolor="#000000" style="color: #FFFFFF;">
 							  <td width="70%">Size of Test Valve</td>
 							  <td>3/4"</td>
 							  <td>1"</td>
 							 </tr>';
-				 if (is_array($testingInfo)) {
-				 	foreach($testingInfo as $key => $valueArray) {
-				 		$html .= '<tr align="center">
-								  <td>'.$valueArray['testing_name'].'</td>
-								  <td>'.$testingOptions[$valueArray['id']]['size_a'].'</td>
-								  <td>'.$testingOptions[$valueArray['id']]['size_b'].'</td>
+                if (is_array($testingInfo)) {
+                    foreach ($testingInfo as $key => $valueArray) {
+                        $html .= '<tr align="center">
+								  <td>' . $valueArray['testing_name'] . '</td>
+								  <td>' . $testingOptions[$valueArray['id']]['size_a'] . '</td>
+								  <td>' . $testingOptions[$valueArray['id']]['size_b'] . '</td>
 								</tr>';
-				 	}
-				 }
-				$html .= '</table><br />';
+                    }
+                }
+                $html .= '</table><br />';
 
-				// Our questions/answers
-				$html .= self::getQuestionsHTML($document_id, $typeID).'<br /><br />';
-			break;
+                // Our questions/answers
+                $html .= self::getQuestionsHTML($document_id, $typeID) . '<br /><br />';
+                break;
 
-			case '7':
-				$documentInfo 		= $documentObj->getData('document_data_7_head','document_id',$document_id);
-				$switchInfo 		= $documentObj->getData('document_data_7_switches','document_id',$document_id);
-				$reportInfo 		= $documentObj->getData('document_data_7_report','document_id',$document_id);
-				$componentInfo		= document::getDataSimple('component_options');
-				$componentOptions	= document::getDataSimple('document_data_7_component');
+            case '7':
+                $documentInfo = $documentObj->getData('document_data_7_head', 'document_id', $document_id);
+                $switchInfo = $documentObj->getData('document_data_7_switches', 'document_id', $document_id);
+                $reportInfo = $documentObj->getData('document_data_7_report', 'document_id', $document_id);
+                $componentInfo = document::getDataSimple('component_options');
+                $componentOptions = document::getDataSimple('document_data_7_component');
 
-				$html .= '<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
+                $html .= '<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
 						 <tr>
 						  <td width="25%">Inspection Date:</td>
-						  <td>'.$documentInfo['inspection_date'].'</td>
+						  <td>' . $documentInfo['inspection_date'] . '</td>
 						 </tr>
 						 <tr>
 						  <td>Technician:</td>
-						  <td>'.$documentInfo['technician'].'</td>
+						  <td>' . $documentInfo['technician'] . '</td>
 						 </tr>
 						 <tr>
 						  <td>Job Name:</td>
-						  <td>'.$documentInfo['job_name'].'</td>
+						  <td>' . $documentInfo['job_name'] . '</td>
 						 </tr>
 						  <tr>
 						  <td>Job Address:</td>
-						  <td>'.$documentInfo['job_address'].'</td>
+						  <td>' . $documentInfo['job_address'] . '</td>
 						 </tr>
 						 <tr>
 						  <td>Site Contact:</td>
-						  <td>'.$documentInfo['site_contact'].'</td>
+						  <td>' . $documentInfo['site_contact'] . '</td>
 						 </tr>
 						</table>';
 
-				// Our questions/answers
-				$html .= self::getQuestionsHTML($document_id, $typeID);
+                // Our questions/answers
+                $html .= self::getQuestionsHTML($document_id, $typeID);
 
-				$html .= '<br /><font size="10"><b>Valve Info</b></font><br />
+                $html .= '<br /><font size="10"><b>Valve Info</b></font><br />
 						<table style="font-size: 30px;" cellpadding="0" width="100%">
 						 <tr align="center" bgcolor="#000000" style="color: #fff; font-weight: bold;">
 						  <td width="16%">Type of Valve</td>
@@ -422,19 +404,19 @@ class blank_document extends crownfire {
 						  <td width="16%">Serial Number</td>
 						 </tr>
 						 <tr align="center">
-						  <td>'.$documentInfo['valve_type'].'</td>
-						  <td>'.$documentInfo['valve_make'].'</td>
-						  <td>'.$documentInfo['valve_model'].'</td>
-						  <td>'.$documentInfo['valve_year'].'</td>
-						  <td>'.$documentInfo['valve_system'].'</td>
-						  <td>'.$documentInfo['valve_serial'].'</td>
+						  <td>' . $documentInfo['valve_type'] . '</td>
+						  <td>' . $documentInfo['valve_make'] . '</td>
+						  <td>' . $documentInfo['valve_model'] . '</td>
+						  <td>' . $documentInfo['valve_year'] . '</td>
+						  <td>' . $documentInfo['valve_system'] . '</td>
+						  <td>' . $documentInfo['valve_serial'] . '</td>
 						 </tr>
 						</table>';
 
-				if (is_array($componentInfo) && is_array($componentOptions)) {
-				 	// Fetch our options (if any)
+                if (is_array($componentInfo) && is_array($componentOptions)) {
+                    // Fetch our options (if any)
 
- 					$html .= '<br /><font size="10"><b>System Components</b></font><br />
+                    $html .= '<br /><font size="10"><b>System Components</b></font><br />
 								<table border="1" style="font-size: 30px; border: 1px solid #000000;" cellpadding="5" width="100%">
 								 <tr align="center" bgcolor="#000000" style="color: #fff; font-weight: bold;">
 								  <td>System Component</td>
@@ -442,36 +424,36 @@ class blank_document extends crownfire {
 								  <td>Needs Work</td>
 								  <td>N/A</td>
 								 </tr>';
-				 	foreach($componentInfo as $key => $valueArray) {
-				 		$html .= '<tr align="center">
-						  		  <td align="left">'.$valueArray['component_option'].'</td>';
-				 		  $checked = false;
-						  for($i=1;$i<=3;$i++) {
-						  	$html .= '<td>';
-						  	if(($i==$componentOptions[$valueArray['id']]['option_value'] || ($i==3 && $checked == false)) && $blank==false) {
-						  		$html .= '<img src="'.$cfg['site_url'].'/images/red_checkmark.gif" width="8" height="8" />';
-						  		$checked = true;
-						  	}
-						  	$html .= '</td>';
-						  }
-						$html .= '</tr>';
-				 	}
-					$html .= '</table><br />';
-				 }
+                    foreach ($componentInfo as $key => $valueArray) {
+                        $html .= '<tr align="center">
+						  		  <td align="left">' . $valueArray['component_option'] . '</td>';
+                        $checked = false;
+                        for ($i = 1; $i <= 3; $i++) {
+                            $html .= '<td>';
+                            if (($i == $componentOptions[$valueArray['id']]['option_value'] || ($i == 3 && $checked == false)) && $blank == false) {
+                                $html .= '<img src="' . $cfg['site_url'] . '/images/red_checkmark.gif" width="8" height="8" />';
+                                $checked = true;
+                            }
+                            $html .= '</td>';
+                        }
+                        $html .= '</tr>';
+                    }
+                    $html .= '</table><br />';
+                }
 
-				 $html .= '<font size="10"><b>Make &amp; Model Switches</b></font><br />
+                $html .= '<font size="10"><b>Make &amp; Model Switches</b></font><br />
 						<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="0" cellspacing="5" width="100%">
 						 <tr>
 						  <td><b>Pressure Switches:</b></td>
-						  <td>'.$switchInfo['pressure_switches'].'</td>
+						  <td>' . $switchInfo['pressure_switches'] . '</td>
 						 </tr>
 						 <tr>
 						  <td><b>Flow Switches:</b></td>
-						  <td>'.$switchInfo['flow_switches'].'</td>
+						  <td>' . $switchInfo['flow_switches'] . '</td>
 						 </tr>
 						 <tr>
 						  <td><b>Supervistory Switches:</b></td>
-						  <td>'.$switchInfo['supervistory_switches'].'</td>
+						  <td>' . $switchInfo['supervistory_switches'] . '</td>
 						 </tr>
 						</table><br />
 
@@ -479,15 +461,15 @@ class blank_document extends crownfire {
 						<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="0" cellspacing="5" width="100%">
 						 <tr>
 						  <td width="25%"><b>City Pressure PSI:</b></td>
-						  <td>'.$reportInfo['city_pressure'].'</td>
+						  <td>' . $reportInfo['city_pressure'] . '</td>
 						  <td width="25%"><b>System Static Pressure PSI:</b></td>
-						  <td>'.$reportInfo['system_pressure'].'</td>
+						  <td>' . $reportInfo['system_pressure'] . '</td>
 						 </tr>
 						 <tr>
 						  <td width="25%"><b>Air Pressure PSI:</b></td>
-						  <td>'.$reportInfo['air_pressure'].'</td>
+						  <td>' . $reportInfo['air_pressure'] . '</td>
 						  <td width="25%"><b>Flow Residual Pressure PSI:</b></td>
-						  <td>'.$reportInfo['flow_pressure'].'</td>
+						  <td>' . $reportInfo['flow_pressure'] . '</td>
 						 </tr>
 						</table><br />
 
@@ -496,50 +478,50 @@ class blank_document extends crownfire {
 						<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="0" cellspacing="5" width="100%">
 						 <tr>
 						  <td width="25%"><b>Trip Pressure PSI:</b></td>
-						  <td>'.$reportInfo['trip_pressure'].'</td>
+						  <td>' . $reportInfo['trip_pressure'] . '</td>
 						  <td width="25%"><b>Trip Time:</b></td>
-						  <td>'.$reportInfo['trip_time_min'].' min. '.$reportInfo['trip_time_sec'].' sec.</td>
+						  <td>' . $reportInfo['trip_time_min'] . ' min. ' . $reportInfo['trip_time_sec'] . ' sec.</td>
 						 </tr>
 						 <tr>
 						  <td width="25%"><b>Inspectors Test Time:</b></td>
-						  <td>'.$reportInfo['test_time_min'].' min. '.$reportInfo['test_time_sec'].' sec</td>
+						  <td>' . $reportInfo['test_time_min'] . ' min. ' . $reportInfo['test_time_sec'] . ' sec</td>
 						  <td width="25%"><b>Trip Time (Q.O.D.):</b></td>
-						  <td>'.$reportInfo['trip_time_qod_min'].' min. '.$reportInfo['trip_time_qod_sec'].' sec</td>
+						  <td>' . $reportInfo['trip_time_qod_min'] . ' min. ' . $reportInfo['trip_time_qod_sec'] . ' sec</td>
 						 </tr>
 						</table><br />
 
 						<font size="10"><b>Comments</b></font><br />
-						'.$documentInfo['comments'].'<br /><br />';
-			break;
+						' . $documentInfo['comments'] . '<br /><br />';
+                break;
 
-			case '8':
-				$documentInfo 		= $documentObj->getData('document_data_8_head','document_id',$document_id);
-				$pumpInfo 	 	 	= $documentObj->getData('document_data_8_pump','document_id',$document_id,false);
-				$testInfo 	 	 	= $documentObj->getData('document_data_8_test','document_id',$document_id,false);
-				$waterInfo 	 	 	= $documentObj->getData('document_data_8_water','document_id',$document_id,false);
+            case '8':
+                $documentInfo = $documentObj->getData('document_data_8_head', 'document_id', $document_id);
+                $pumpInfo = $documentObj->getData('document_data_8_pump', 'document_id', $document_id, false);
+                $testInfo = $documentObj->getData('document_data_8_test', 'document_id', $document_id, false);
+                $waterInfo = $documentObj->getData('document_data_8_water', 'document_id', $document_id, false);
 
-				$html .= '<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
+                $html .= '<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
 						  <tr valign="top">
 						   <td width="25%" align="right"><b>Customer Name:</b></td>
-						   <td width="25%" align="left">'.$documentInfo['customer_name'].'</td>
+						   <td width="25%" align="left">' . $documentInfo['customer_name'] . '</td>
 						   <td width="25%" align="right"><b>Technician:</b></td>
-						   <td width="25%" align="left">'.$documentInfo['technician'].'</td>
+						   <td width="25%" align="left">' . $documentInfo['technician'] . '</td>
 						  </tr>
 						  <tr valign="top">
 						   <td width="25%" align="right"><b>Address:</b></td>
-						   <td width="25%" align="left">'.$documentInfo['address'].'</td>
+						   <td width="25%" align="left">' . $documentInfo['address'] . '</td>
 						   <td width="25%" align="right"><b>Inspection Date:</b></td>
-						   <td width="25%" align="left">'.$documentInfo['inspection_date'].'</td>
+						   <td width="25%" align="left">' . $documentInfo['inspection_date'] . '</td>
 						  </tr>
 						  <tr valign="top">
 						   <td width="25%" align="right"><b>City:</b></td>
-						   <td width="25%" align="left">'.$documentInfo['city'].'</td>
+						   <td width="25%" align="left">' . $documentInfo['city'] . '</td>
 						   <td width="25%" width="15%" align="right"><b>Site:</b></td>
-						   <td width="25%" align="left">'.$documentInfo['site'].'</td>
+						   <td width="25%" align="left">' . $documentInfo['site'] . '</td>
 						  </tr>
 						  <tr>
 						   <td width="25%" align="right"><b>Contact:</b></td>
-						   <td colspan="75%" align="left">'.$documentInfo['contact'].'</td>
+						   <td colspan="75%" align="left">' . $documentInfo['contact'] . '</td>
 						  </tr>
 						 </table><br />
 
@@ -547,15 +529,15 @@ class blank_document extends crownfire {
 						<table style="font-size: 30px; border: 1px solid #000000;" width="100%" cellpadding="5">
 						 <tr>
 						  <td width="30%"><b>Water Supply Source:</b></td>
-						  <td width="70%">'.$pumpInfo['water_supply_source'].'</td>
+						  <td width="70%">' . $pumpInfo['water_supply_source'] . '</td>
 						 </tr>
 						 <tr>
 						  <td width="30%"><b>Fire Pump:</b></td>
-						  <td width="70%">'.$pumpInfo['fire_pump'].'</td>
+						  <td width="70%">' . $pumpInfo['fire_pump'] . '</td>
 						 </tr>
 						 <tr>
 						  <td width="30%"><b>Jockey Pump:</b></td>
-						  <td width="70%">'.$pumpInfo['jockey_pump'].'</td>
+						  <td width="70%">' . $pumpInfo['jockey_pump'] . '</td>
 						 </tr>
 						</table><br />
 
@@ -563,133 +545,133 @@ class blank_document extends crownfire {
 						<table style="font-size: 30px; border: 1px solid #000000;" width="100%" cellpadding="5">
 						 <tr>
 						  <td width="30%"><b>Location Of Highest Fire Hose Cabinet:</b></td>
-						  <td width="70%">'.$testInfo['location_cabinet'].'</td>
+						  <td width="70%">' . $testInfo['location_cabinet'] . '</td>
 						 </tr>
 						 <tr>
 						  <td width="30%"><b>Number of Floors:</b></td>
-						  <td width="70%">'.$testInfo['number_floors'].'</td>
+						  <td width="70%">' . $testInfo['number_floors'] . '</td>
 						 </tr>
 						 <tr>
 						  <td width="30%"><b>Fire Hose Length in Cabnets:</b></td>
-						  <td width="70%">'.$testInfo['fire_hose_length'].'</td>
+						  <td width="70%">' . $testInfo['fire_hose_length'] . '</td>
 						 </tr>
 						  <tr>
 						  <td width="30%"><b>Type of Control Valve:</b></td>
-						  <td width="70%">'.$testInfo['type_control_valve'].'</td>
+						  <td width="70%">' . $testInfo['type_control_valve'] . '</td>
 						 </tr>
 						</table><br />';
 
-				$html .= self::getQuestionsHTML($document_id, $typeID);
+                $html .= self::getQuestionsHTML($document_id, $typeID);
 
-				$html .= '<br /><font size="10"><b>Water Flow Data</b></font><br />';
+                $html .= '<br /><font size="10"><b>Water Flow Data</b></font><br />';
 
-				$html .= '<table style="font-size: 30px; border: 1px solid #000000;" width="100%" cellpadding="5">
+                $html .= '<table style="font-size: 30px; border: 1px solid #000000;" width="100%" cellpadding="5">
 							 <tr>
 							  <td width="30%"><b>Hose Length:</b></td>
-							  <td width="70%">'.$waterInfo['hose_length'].'</td>
+							  <td width="70%">' . $waterInfo['hose_length'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="30%"><b>Flow Location:</b></td>
-							  <td width="70%">'.$waterInfo['flow_location'].'</td>
+							  <td width="70%">' . $waterInfo['flow_location'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="30%"><b>Orifice:</b></td>
-							  <td width="70%">'.$waterInfo['orifice'].'</td>
+							  <td width="70%">' . $waterInfo['orifice'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="30%"><b># of Hoses Used:</b></td>
-							  <td width="70%">'.$waterInfo['num_hoses_used'].'</td>
+							  <td width="70%">' . $waterInfo['num_hoses_used'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="30%"><b>GPM:</b></td>
-							  <td width="70%">'.$waterInfo['gpm'].' PSI</td>
+							  <td width="70%">' . $waterInfo['gpm'] . ' PSI</td>
 							 </tr>
 							 <tr>
 							  <td width="30%"><b>Pito Tube:</b></td>
-							  <td width="70%">'.$waterInfo['pito_tube'].' PSI</td>
+							  <td width="70%">' . $waterInfo['pito_tube'] . ' PSI</td>
 							 </tr>
 							 <tr>
 							  <td width="30%"><b>Hose Rack Residual Reading:</b></td>
-							  <td width="70%">'.$waterInfo['hose_rack'].' PSI</td>
+							  <td width="70%">' . $waterInfo['hose_rack'] . ' PSI</td>
 							 </tr>
 							</table><br />
 
 							<font size="10"><b>Comments</b></font><br /><br />';
 
-							$html .= $documentInfo['comments'].'<br /><br />';
-			break;
+                $html .= $documentInfo['comments'] . '<br /><br />';
+                break;
 
-			case '9':
+            case '9':
 
-				$documentInfo 		= $documentObj->getData('document_data_9_head','document_id',$document_id);
-				$documentInfo 		= array_merge($documentInfo, $documentObj->getData('document_data_9_e_2_1','document_id',$document_id));
-				$documentInfo 		= array_merge($documentInfo, $documentObj->getData('document_data_9_e_2_3','document_id',$document_id));
-				$documentInfo 		= array_merge($documentInfo, $documentObj->getData('document_data_9_e_2_4','document_id',$document_id));
-				$documentInfo 		= array_merge($documentInfo, $documentObj->getData('document_data_9_e_2_5','document_id',$document_id));
-				$documentInfo 		= array_merge($documentInfo, $documentObj->getData('document_data_9_e_2_6','document_id',$document_id));
-				$documentInfo 		= array_merge($documentInfo, $documentObj->getData('document_data_9_e_2_7','document_id',$document_id));
-				$documentInfo 		= array_merge($documentInfo, $documentObj->getData('document_data_9_e_2_8','document_id',$document_id));
-				$documentInfo 		= array_merge($documentInfo, $documentObj->getData('document_data_9_e_2_9','document_id',$document_id));
-				$documentInfo 		= array_merge($documentInfo, $documentObj->getData('document_data_9_e_2_10','document_id',$document_id));
-				$documentInfo 		= array_merge($documentInfo, $documentObj->getData('document_data_9_e_2_11','document_id',$document_id));
-				$documentInfo 		= array_merge($documentInfo, $documentObj->getData('document_data_9_e_3_1','document_id',$document_id));
-				$formInfo 			= $documentObj->getData('document_data_9_device','document_id',$document_id, true);
+                $documentInfo = $documentObj->getData('document_data_9_head', 'document_id', $document_id);
+                $documentInfo = array_merge($documentInfo, $documentObj->getData('document_data_9_e_2_1', 'document_id', $document_id));
+                $documentInfo = array_merge($documentInfo, $documentObj->getData('document_data_9_e_2_3', 'document_id', $document_id));
+                $documentInfo = array_merge($documentInfo, $documentObj->getData('document_data_9_e_2_4', 'document_id', $document_id));
+                $documentInfo = array_merge($documentInfo, $documentObj->getData('document_data_9_e_2_5', 'document_id', $document_id));
+                $documentInfo = array_merge($documentInfo, $documentObj->getData('document_data_9_e_2_6', 'document_id', $document_id));
+                $documentInfo = array_merge($documentInfo, $documentObj->getData('document_data_9_e_2_7', 'document_id', $document_id));
+                $documentInfo = array_merge($documentInfo, $documentObj->getData('document_data_9_e_2_8', 'document_id', $document_id));
+                $documentInfo = array_merge($documentInfo, $documentObj->getData('document_data_9_e_2_9', 'document_id', $document_id));
+                $documentInfo = array_merge($documentInfo, $documentObj->getData('document_data_9_e_2_10', 'document_id', $document_id));
+                $documentInfo = array_merge($documentInfo, $documentObj->getData('document_data_9_e_2_11', 'document_id', $document_id));
+                $documentInfo = array_merge($documentInfo, $documentObj->getData('document_data_9_e_3_1', 'document_id', $document_id));
+                $formInfo = $documentObj->getData('document_data_9_device', 'document_id', $document_id, true);
 //echo '<pre>';print_r($documentInfo);echo '</pre>';exit;
-				$notes_array = array(
-				1 => 'Smoke detector sensitivity confirmation or measurement should be recorded in the remarks column',
-				2 => 'Smoke detector cleaning or replacement date should also be recorded in the remarks column',
-				3 => 'Status Change, including time delay, should be recorded in the remarks column',
-				4 => 'Duct smoke detector pressure differential should be confirmed and recorded in the remarks column',
-				5 => 'Time delay setting of water flow switch should be recorded in the remarks column',
-				6 => 'Sprinkler supervisory switches cause trouble condition to be annunciated but not an alarm condition',
-				7 => 'Upper and lower pressure setting of supervisory devices should be recorded in the remarks column',
-				8 => 'Low temperature setting should be recorded in the remarks column',
-				9 => 'Identify the specific ancillary devices in the remarks column',
-				10 => 'Identify date field device changed in the remarks column',
-				11 => 'Identify correct field device operation (e.g, alarm, trouble, supervisory, annunciation indication',
-				12 => 'Identify zone, circuit number or address',
-				13 => 'Identify conventional field device locations',
-				14 => 'Identify active field device and supporting field device, data communication link (DCL), address and location',
-				15 => 'Test and confirm conventional field device supervision of wiring',
-				16 => 'Confirm field device free of damage',
-				17 => 'Confirm field device free of foreign substance (e.g. paint)',
-				18 => 'Confirm field device mechanically supported independently of the wiring',
-				19 => 'Confirm field device protective dust shield of covers removed');
+                $notes_array = array(
+                    1 => 'Smoke detector sensitivity confirmation or measurement should be recorded in the remarks column',
+                    2 => 'Smoke detector cleaning or replacement date should also be recorded in the remarks column',
+                    3 => 'Status Change, including time delay, should be recorded in the remarks column',
+                    4 => 'Duct smoke detector pressure differential should be confirmed and recorded in the remarks column',
+                    5 => 'Time delay setting of water flow switch should be recorded in the remarks column',
+                    6 => 'Sprinkler supervisory switches cause trouble condition to be annunciated but not an alarm condition',
+                    7 => 'Upper and lower pressure setting of supervisory devices should be recorded in the remarks column',
+                    8 => 'Low temperature setting should be recorded in the remarks column',
+                    9 => 'Identify the specific ancillary devices in the remarks column',
+                    10 => 'Identify date field device changed in the remarks column',
+                    11 => 'Identify correct field device operation (e.g, alarm, trouble, supervisory, annunciation indication',
+                    12 => 'Identify zone, circuit number or address',
+                    13 => 'Identify conventional field device locations',
+                    14 => 'Identify active field device and supporting field device, data communication link (DCL), address and location',
+                    15 => 'Test and confirm conventional field device supervision of wiring',
+                    16 => 'Confirm field device free of damage',
+                    17 => 'Confirm field device free of foreign substance (e.g. paint)',
+                    18 => 'Confirm field device mechanically supported independently of the wiring',
+                    19 => 'Confirm field device protective dust shield of covers removed');
 
-				$html .= '<font size="10"><b>E1. Fire Alarm System Annual Test and Inspection Report - CAN/ULC S536-04</b></font><br /><br />';
-				$header = '<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="5" width="100%">
+                $html .= '<font size="10"><b>E1. Fire Alarm System Annual Test and Inspection Report - CAN/ULC S536-04</b></font><br /><br />';
+                $header = '<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="5" width="100%">
 						 <tr>
 						  <td width="30%"><b>Building Name:</b></td>
-						  <td width="70%">'.$documentInfo['building_name'].'</td>
+						  <td width="70%">' . $documentInfo['building_name'] . '</td>
 						 </tr>
 						 <tr>
 						  <td width="30%"><b>Address:</b></td>
-						  <td width="70%">'.$documentInfo['address'].'</td>
+						  <td width="70%">' . $documentInfo['address'] . '</td>
 						 </tr>
 						 <tr>
 						  <td width="30%"><b>Date:</b></td>
-						  <td width="70%">'.$documentInfo['date'].'</td>
+						  <td width="70%">' . $documentInfo['date'] . '</td>
 						 </tr>
 						 <tr>
 						  <td width="30%"><b>System Manufacturer:</b></td>
-						  <td width="70%">'.$documentInfo['system_manufacturer'].'</td>
+						  <td width="70%">' . $documentInfo['system_manufacturer'] . '</td>
 						 </tr>
 						 <tr>
 						  <td width="30%"><b>Model Number:</b></td>
-						  <td width="70%">'.$documentInfo['model_number'].'</td>
+						  <td width="70%">' . $documentInfo['model_number'] . '</td>
 						 </tr>
 						</table><br /><br />';
-				$html .= $header;
-				$html .= self::getQuestionsHTML($document_id, $typeID, 1, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+                $html .= $header;
+                $html .= self::getQuestionsHTML($document_id, $typeID, 1, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
 
-				$html .= '<br /><b>Comments</b>: '.$documentInfo['comments'];
+                $html .= '<br /><b>Comments</b>: ' . $documentInfo['comments'];
 
-				$html .= '<br /> <br /><table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
+                $html .= '<br /> <br /><table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
 							 <tr>
-							  <td width="35%" align="left" style="border-bottom:0.5px solid #000;">'.$documentInfo['primary_technician'].'</td>
-							  <td width="20%" align="left" style="border-bottom:0.5px solid #000;">'.$documentInfo['primary_company'].'</td>
-							  <td width="20%" align="left" style="border-bottom:0.5px solid #000;">'.$documentInfo['primary_telephone'].'</td>
-							  <td width="25%" align="left" style="border-bottom:0.5px solid #000;">'.$documentInfo['primary_identification'].'</td>
+							  <td width="35%" align="left" style="border-bottom:0.5px solid #000;">' . $documentInfo['primary_technician'] . '</td>
+							  <td width="20%" align="left" style="border-bottom:0.5px solid #000;">' . $documentInfo['primary_company'] . '</td>
+							  <td width="20%" align="left" style="border-bottom:0.5px solid #000;">' . $documentInfo['primary_telephone'] . '</td>
+							  <td width="25%" align="left" style="border-bottom:0.5px solid #000;">' . $documentInfo['primary_identification'] . '</td>
 							 </tr>
 							 <tr align="left" style="font-size: 12px;">
 							  <td width="35%">Printed Name of Primary or Supervising<br />Technition Conducting the Test and Inspection</td>
@@ -698,10 +680,10 @@ class blank_document extends crownfire {
 							  <td width="25%">CFAA Identification Number</td>
 							 </tr>
 							 <tr>
-							  <td width="35%" align="left" style="border-bottom:0.5px solid #000;">'.$documentInfo['technician'].'</td>
-							  <td width="20%" align="left" style="border-bottom:0.5px solid #000;">'.$documentInfo['company'].'</td>
-							  <td width="20%" align="left" style="border-bottom:0.5px solid #000;">'.$documentInfo['telephone'].'</td>
-							  <td width="25%" align="left" style="border-bottom:0.5px solid #000;">'.$documentInfo['identification'].'</td>
+							  <td width="35%" align="left" style="border-bottom:0.5px solid #000;">' . $documentInfo['technician'] . '</td>
+							  <td width="20%" align="left" style="border-bottom:0.5px solid #000;">' . $documentInfo['company'] . '</td>
+							  <td width="20%" align="left" style="border-bottom:0.5px solid #000;">' . $documentInfo['telephone'] . '</td>
+							  <td width="25%" align="left" style="border-bottom:0.5px solid #000;">' . $documentInfo['identification'] . '</td>
 							 </tr>
 							 <tr align="left" style="font-size: 12px;">
 							  <td width="35%">Printed Name of Primary or Supervising<br />Technition Conducting the Test and Inspection</td>
@@ -712,245 +694,245 @@ class blank_document extends crownfire {
 						  </table>
 						  <br /><br />';
 
-				$html .= '<br pagebreak="true"/>';
-				$html .= $header;
-				$html .= '<font size="10"><b>E2.1 Control Unit or Transponder Test - CAN/ULC S536-04</b></font><br /><br />
+                $html .= '<br pagebreak="true"/>';
+                $html .= $header;
+                $html .= '<font size="10"><b>E2.1 Control Unit or Transponder Test - CAN/ULC S536-04</b></font><br /><br />
 							<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="5" width="100%">
 							 <tr>
 							  <td width="40%"><b>Control unit or transponder location:</b></td>
-							  <td width="60%">'.$documentInfo['e21_transponder_location'].'</td>
+							  <td width="60%">' . $documentInfo['e21_transponder_location'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="40%"><b>Control unit or transponder identification:</b></td>
-							  <td width="60%">'.$documentInfo['e21_identification'].'</td>
+							  <td width="60%">' . $documentInfo['e21_identification'] . '</td>
 							 </tr>
 							</table>';
 
-				$html .= self::getQuestionsHTML($document_id, $typeID, 2, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+                $html .= self::getQuestionsHTML($document_id, $typeID, 2, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
 
-				$html .= '<br pagebreak="true"/>';
-				$html .= $header;
-				$html .= '<font size="10"><b>E2.2 Voice Communication Test - CAN/ULC S536-04</b></font><br />';
+                $html .= '<br pagebreak="true"/>';
+                $html .= $header;
+                $html .= '<font size="10"><b>E2.2 Voice Communication Test - CAN/ULC S536-04</b></font><br />';
 
-				$html .= self::getQuestionsHTML($document_id, $typeID, 3, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+                $html .= self::getQuestionsHTML($document_id, $typeID, 3, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
 
-				$html .= '<br pagebreak="true"/>';
-				$html .= $header;
-				$html .= '<font size="10"><b>E2.3 Control Unit or Transponder Inspection - CAN/ULC S536-04</b></font><br /><br />
+                $html .= '<br pagebreak="true"/>';
+                $html .= $header;
+                $html .= '<font size="10"><b>E2.3 Control Unit or Transponder Inspection - CAN/ULC S536-04</b></font><br /><br />
 							<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="5" width="100%">
 							 <tr>
 							  <td width="40%">Control unit or transponder location:</td>
-							  <td width="60%">'.$documentInfo['e23_transponder_location'].'</td>
+							  <td width="60%">' . $documentInfo['e23_transponder_location'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="40%">Control unit or transponder identification:</td>
-							  <td width="60%">'.$documentInfo['e23_address'].'</td>
+							  <td width="60%">' . $documentInfo['e23_address'] . '</td>
 							 </tr>
 							</table>';
 
-				$html .= self::getQuestionsHTML($document_id, $typeID, 4, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+                $html .= self::getQuestionsHTML($document_id, $typeID, 4, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
 
-				$html .= '<br pagebreak="true"/>';
-				$html .= $header;
-				$html .= '<font size="10"><b>E2.4 Power Supply Inspection - CAN/ULC S536-04</b></font><br /><br />
+                $html .= '<br pagebreak="true"/>';
+                $html .= $header;
+                $html .= '<font size="10"><b>E2.4 Power Supply Inspection - CAN/ULC S536-04</b></font><br /><br />
 							<table style="font-size: 30px; border: 1px solid #000000;" width="100%" cellpadding="5">
 							 <tr>
 							  <td width="40%">Control unit or transponder location:</td>
-							  <td width="60%">'.$documentInfo['e24_transponder_location'].'</td>
+							  <td width="60%">' . $documentInfo['e24_transponder_location'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="40%">Control unit or transponder identification:</td>
-							  <td width="60%">'.$documentInfo['e24_transponder_identification'].'</td>
+							  <td width="60%">' . $documentInfo['e24_transponder_identification'] . '</td>
 							 </tr>
 							</table>';
-				$html .= self::getQuestionsHTML($document_id, $typeID, 5, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+                $html .= self::getQuestionsHTML($document_id, $typeID, 5, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
 
-				$html .= '<br pagebreak="true"/>';
-				$html .= $header;
-				$html .= '<font size="10"><b>E2.5 Emergency Power Supply Test and Inspection - CAN/ULC S536-04</b></font><br /><br />
+                $html .= '<br pagebreak="true"/>';
+                $html .= $header;
+                $html .= '<font size="10"><b>E2.5 Emergency Power Supply Test and Inspection - CAN/ULC S536-04</b></font><br /><br />
 							<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
 							 <tr>
 							  <td width="40%">Control unit or transponder location:</td>
-							  <td width="60%">'.$documentInfo['e25_transponder_location'].'</td>
+							  <td width="60%">' . $documentInfo['e25_transponder_location'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="40%">Control unit or transponder identification:</td>
-							  <td width="60%">'.$documentInfo['e25_transponder_identification'].'</td>
+							  <td width="60%">' . $documentInfo['e25_transponder_identification'] . '</td>
 							 </tr>
 							</table>';
 
-				$html .= self::getQuestionsHTML($document_id, $typeID, 6, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
-				$html .= '<br pagebreak="true"/>';
+                $html .= self::getQuestionsHTML($document_id, $typeID, 6, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+                $html .= '<br pagebreak="true"/>';
 
-				if (!empty($documentInfo['e25_transponder_location_2'])) {
-						$html .= $header;
-						$html .= '<font size="10"><b>E2.5 (B) Emergency Power Supply Test and Inspection - CAN/ULC S536-04</b></font><br /><br />
+                if (!empty($documentInfo['e25_transponder_location_2'])) {
+                    $html .= $header;
+                    $html .= '<font size="10"><b>E2.5 (B) Emergency Power Supply Test and Inspection - CAN/ULC S536-04</b></font><br /><br />
 							<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
 							 <tr>
 							  <td width="40%">Control unit or transponder location:</td>
-							  <td width="60%">'.$documentInfo['e25_transponder_location_2'].'</td>
+							  <td width="60%">' . $documentInfo['e25_transponder_location_2'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="40%">Control unit or transponder identification:</td>
-							  <td width="60%">'.$documentInfo['e25_transponder_identification_2'].'</td>
+							  <td width="60%">' . $documentInfo['e25_transponder_identification_2'] . '</td>
 							 </tr>
 							</table>';
 
-						$html .= self::getQuestionsHTML($document_id, $typeID, 15, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
-						$html .= '<br pagebreak="true"/>';
-				}
+                    $html .= self::getQuestionsHTML($document_id, $typeID, 15, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+                    $html .= '<br pagebreak="true"/>';
+                }
 
-				if (!empty($documentInfo['e25_transponder_location_3'])) {
-						$html .= $header;
-						$html .= '<font size="10"><b>E2.5 (C) Emergency Power Supply Test and Inspection - CAN/ULC S536-04</b></font><br /><br />
+                if (!empty($documentInfo['e25_transponder_location_3'])) {
+                    $html .= $header;
+                    $html .= '<font size="10"><b>E2.5 (C) Emergency Power Supply Test and Inspection - CAN/ULC S536-04</b></font><br /><br />
 							<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
 							 <tr>
 							  <td width="40%">Control unit or transponder location:</td>
-							  <td width="60%">'.$documentInfo['e25_transponder_location_3'].'</td>
+							  <td width="60%">' . $documentInfo['e25_transponder_location_3'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="40%">Control unit or transponder identification:</td>
-							  <td width="60%">'.$documentInfo['e25_transponder_identification_3'].'</td>
+							  <td width="60%">' . $documentInfo['e25_transponder_identification_3'] . '</td>
 							 </tr>
 							</table>';
 
-						$html .= self::getQuestionsHTML($document_id, $typeID, 16, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
-						$html .= '<br pagebreak="true"/>';
-				}
+                    $html .= self::getQuestionsHTML($document_id, $typeID, 16, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+                    $html .= '<br pagebreak="true"/>';
+                }
 
-				if (!empty($documentInfo['e25_transponder_location_4'])) {
-						$html .= $header;
-						$html .= '<font size="10"><b>E2.5 (D) Emergency Power Supply Test and Inspection - CAN/ULC S536-04</b></font><br /><br />
+                if (!empty($documentInfo['e25_transponder_location_4'])) {
+                    $html .= $header;
+                    $html .= '<font size="10"><b>E2.5 (D) Emergency Power Supply Test and Inspection - CAN/ULC S536-04</b></font><br /><br />
 							<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
 							 <tr>
 							  <td width="40%">Control unit or transponder location:</td>
-							  <td width="60%">'.$documentInfo['e25_transponder_location_4'].'</td>
+							  <td width="60%">' . $documentInfo['e25_transponder_location_4'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="40%">Control unit or transponder identification:</td>
-							  <td width="60%">'.$documentInfo['e25_transponder_identification_4'].'</td>
+							  <td width="60%">' . $documentInfo['e25_transponder_identification_4'] . '</td>
 							 </tr>
 							</table>';
 
-						$html .= self::getQuestionsHTML($document_id, $typeID, 17, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
-						$html .= '<br pagebreak="true"/>';
-				}
+                    $html .= self::getQuestionsHTML($document_id, $typeID, 17, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+                    $html .= '<br pagebreak="true"/>';
+                }
 
 
-				$html .= $header;
-				$html .= '<font size="10"><b>E2.6 Annunciator and Remote Trouble Signal Unit Test and Inspection - CAN/ULC S536-04</b></font><br /><br />
-							<table style="font-size: 30px; border: 1px solid #000000;" width="100%" cellpadding="5">
-							 <tr>
-							  <td width="40%">Annunciator or remote trouble signal unit location:</td>
-							  <td width="60%">'.$documentInfo['e26_annunciator_location'].'</td>
-							 </tr>
-							 <tr>
-							  <td width="40%">Annunciator or remote trouble signal unit identification:</td>
-							  <td width="60%">'.$documentInfo['e26_annunciator_identification'].'</td>
-							 </tr>
-							</table>';
-
-				$html .= self::getQuestionsHTML($document_id, $typeID, 9, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
-
-				$html .= '<br pagebreak="true"/>';
-				$html .= $header;
-				$html .= '<font size="10"><b>E2.7 Annunciator or Sequential Displays - CAN/ULC S536-04</b></font><br /><br />
+                $html .= $header;
+                $html .= '<font size="10"><b>E2.6 Annunciator and Remote Trouble Signal Unit Test and Inspection - CAN/ULC S536-04</b></font><br /><br />
 							<table style="font-size: 30px; border: 1px solid #000000;" width="100%" cellpadding="5">
 							 <tr>
 							  <td width="40%">Annunciator or remote trouble signal unit location:</td>
-							  <td width="60%">'.$documentInfo['e27_annunciator_location'].'</td>
+							  <td width="60%">' . $documentInfo['e26_annunciator_location'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="40%">Annunciator or remote trouble signal unit identification:</td>
-							  <td width="60%">'.$documentInfo['e27_annunciator_identification'].'</td>
+							  <td width="60%">' . $documentInfo['e26_annunciator_identification'] . '</td>
 							 </tr>
 							</table>';
 
-				$html .= self::getQuestionsHTML($document_id, $typeID, 9, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+                $html .= self::getQuestionsHTML($document_id, $typeID, 9, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
 
-				$html .= '<br pagebreak="true"/>';
-				$html .= $header;
-				$html .= '<font size="10"><b>E2.8 Remote Trouble Signal Unit Test and Inspection - CAN/ULC S536-04</b></font><br /><br />
+                $html .= '<br pagebreak="true"/>';
+                $html .= $header;
+                $html .= '<font size="10"><b>E2.7 Annunciator or Sequential Displays - CAN/ULC S536-04</b></font><br /><br />
+							<table style="font-size: 30px; border: 1px solid #000000;" width="100%" cellpadding="5">
+							 <tr>
+							  <td width="40%">Annunciator or remote trouble signal unit location:</td>
+							  <td width="60%">' . $documentInfo['e27_annunciator_location'] . '</td>
+							 </tr>
+							 <tr>
+							  <td width="40%">Annunciator or remote trouble signal unit identification:</td>
+							  <td width="60%">' . $documentInfo['e27_annunciator_identification'] . '</td>
+							 </tr>
+							</table>';
+
+                $html .= self::getQuestionsHTML($document_id, $typeID, 9, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+
+                $html .= '<br pagebreak="true"/>';
+                $html .= $header;
+                $html .= '<font size="10"><b>E2.8 Remote Trouble Signal Unit Test and Inspection - CAN/ULC S536-04</b></font><br /><br />
 							<table style="font-size: 30px; border: 1px solid #000000;" width="100%" cellpadding="5">
 							 <tr>
 							  <td width="40%">Remote trouble signal unit location:</td>
-							  <td width="60%">'.$documentInfo['e28_remote_location'].'</td>
+							  <td width="60%">' . $documentInfo['e28_remote_location'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="40%">Remote trouble signal unit identification:</td>
-							  <td width="60%">'.$documentInfo['e28_remote_identification'].'</td>
+							  <td width="60%">' . $documentInfo['e28_remote_identification'] . '</td>
 							 </tr>
 							</table>';
 
-				$html .= self::getQuestionsHTML($document_id, $typeID, 11, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+                $html .= self::getQuestionsHTML($document_id, $typeID, 11, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
 
-				$html .= '<br pagebreak="true"/>';
-				$html .= $header;
-				$html .= '<font size="10"><b>E2.9 Printer Test - CAN/ULC S536-04</b></font><br /><br />
+                $html .= '<br pagebreak="true"/>';
+                $html .= $header;
+                $html .= '<font size="10"><b>E2.9 Printer Test - CAN/ULC S536-04</b></font><br /><br />
 							<table style="font-size: 30px; border: 1px solid #000000;" width="100%" cellpadding="5">
 							 <tr>
 							  <td width="40%">Printer location:</td>
-							  <td width="60%">'.$documentInfo['e29_printer_location'].'</td>
+							  <td width="60%">' . $documentInfo['e29_printer_location'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="40%">Printer identification:</td>
-							  <td width="60%">'.$documentInfo['e29_printer_identification'].'</td>
+							  <td width="60%">' . $documentInfo['e29_printer_identification'] . '</td>
 							 </tr>
 							</table>';
 
-				$html .= self::getQuestionsHTML($document_id, $typeID, 12, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+                $html .= self::getQuestionsHTML($document_id, $typeID, 12, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
 
-				$html .= '<br pagebreak="true"/>';
-				$html .= $header;
-				$html .= '<font size="10"><b>E2.10 Communication Link Test - CAN/ULC S536-04</b></font><br /><br />
+                $html .= '<br pagebreak="true"/>';
+                $html .= $header;
+                $html .= '<font size="10"><b>E2.10 Communication Link Test - CAN/ULC S536-04</b></font><br /><br />
 							<table style="font-size: 30px; border: 1px solid #000000;" width="100%" cellpadding="5">
 							 <tr>
 							  <td width="40%">Control unit or transponder location:</td>
-							  <td width="60%">'.$documentInfo['e210_transponder_location'].'</td>
+							  <td width="60%">' . $documentInfo['e210_transponder_location'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="40%">Control unit or transponder identification:</td>
-							  <td width="60%">'.$documentInfo['e210_transponder_identification'].'</td>
+							  <td width="60%">' . $documentInfo['e210_transponder_identification'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="40%">Data communication link identification:</td>
-							  <td width="60%">'.$documentInfo['e210_data_identification'].'</td>
+							  <td width="60%">' . $documentInfo['e210_data_identification'] . '</td>
 							 </tr>
 							</table>';
-				$html .= self::getQuestionsHTML($document_id, $typeID, 13, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
+                $html .= self::getQuestionsHTML($document_id, $typeID, 13, array(1 => 'Yes', 0 => 'No', 'N/A' => 'N/A'), false);
 
-				$html .= '<br pagebreak="true"/>';
-				$html .= $header;
-				$html .= '<font size="10"><b>E2.11 Ancillary Device Circuit Test - CAN/ULC S536-04</b></font><br /><br />
+                $html .= '<br pagebreak="true"/>';
+                $html .= $header;
+                $html .= '<font size="10"><b>E2.11 Ancillary Device Circuit Test - CAN/ULC S536-04</b></font><br /><br />
 							<table style="font-size: 25px; border: 1px solid #000;" cellpadding="3" cellspacing="0" width="100%" border="1">
 							 <tr bgcolor="#000000">
 							  <td colspan="2" style="color: #ffffff;">Record Specific Type of Ancillary Circuit</td>
 							 </tr>
 							 <tr>
-							  <td>'.$documentInfo['record_1'].'</td>
-							  <td>'.$documentInfo['record_1_option'].'</td>
+							  <td>' . $documentInfo['record_1'] . '</td>
+							  <td>' . $documentInfo['record_1_option'] . '</td>
 							 </tr>
 							 <tr>
-							  <td>'.$documentInfo['record_2'].'</td>
-							  <td>'.$documentInfo['record_2_option'].'</td>
+							  <td>' . $documentInfo['record_2'] . '</td>
+							  <td>' . $documentInfo['record_2_option'] . '</td>
 							 </tr>
 							 <tr>
-							  <td>'.$documentInfo['record_3'].'</td>
-							  <td>'.$documentInfo['record_3_option'].'</td>
+							  <td>' . $documentInfo['record_3'] . '</td>
+							  <td>' . $documentInfo['record_3_option'] . '</td>
 							 </tr>
 							</table>
 							<br />
 							<font size="5">Note: The tests reported on this Form do not include the actual operational test of acillary devices</font>';
 
-				$html .= '<br pagebreak="true"/>';
-				$html .= $header;
-				$html .= '<font size="10"><b>E2.12 Remarks - CAN/ULC S536-04</b></font><br /><br />';
+                $html .= '<br pagebreak="true"/>';
+                $html .= $header;
+                $html .= '<font size="10"><b>E2.12 Remarks - CAN/ULC S536-04</b></font><br /><br />';
 
-				$html .= $documentInfo['remarks_e12'];
+                $html .= $documentInfo['remarks_e12'];
 
-				$html .= '<br pagebreak="true"/>';
-				$html .= $header;
-				$html .= '<font size="10"><b>E3.1 Field Device Testing - Legend and Notes - CAN/ULC S536-04</b></font><br /><br />
+                $html .= '<br pagebreak="true"/>';
+                $html .= $header;
+                $html .= '<font size="10"><b>E3.1 Field Device Testing - Legend and Notes - CAN/ULC S536-04</b></font><br /><br />
 							<table style="font-size: 25px; border: 1px solid #000;" cellpadding="3" cellspacing="0" width="100%" border="1">
 							 <tr bgcolor="#000000" style="font-weight: bold; color: #ffffff;" align="center">
 							  <td width="10%">Device</td>
@@ -961,20 +943,20 @@ class blank_document extends crownfire {
 							 <tr>
 							  <td width="10%">M</td>
 							  <td width="30%">Manual Pull Station</td>
-							  <td width="30%" align="center">'.$documentInfo['type_1'].'</td>
-							  <td width="30%" align="center">'.$documentInfo['model_1'].'</td>
+							  <td width="30%" align="center">' . $documentInfo['type_1'] . '</td>
+							  <td width="30%" align="center">' . $documentInfo['model_1'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="10%">RHT</td>
 							  <td width="30%">Heat Detector, Restorable</td>
-							  <td width="30%" align="center">'.$documentInfo['type_2'].'</td>
-							  <td width="30%" align="center">'.$documentInfo['model_2'].'</td>
+							  <td width="30%" align="center">' . $documentInfo['type_2'] . '</td>
+							  <td width="30%" align="center">' . $documentInfo['model_2'] . '</td>
 							 </tr>
 							  <tr>
 							  <td width="10%">HT</td>
 							  <td width="30%" align="center">Heat Detector, Non-restoreable</td>
-							  <td width="30%" align="center">'.$documentInfo['type_19'].'</td>
-							  <td width="30%" align="center">'.$documentInfo['model_19'].'</td>
+							  <td width="30%" align="center">' . $documentInfo['type_19'] . '</td>
+							  <td width="30%" align="center">' . $documentInfo['model_19'] . '</td>
 							 </tr>
 							 <tr valign="top">
 							  <td>S</td>
@@ -982,126 +964,126 @@ class blank_document extends crownfire {
 							  	Smoke Detector
 							  	<br /><br />
 							  	Sensitivity test method or test equiptment:<br />
-							  	Model/Method: '.$documentInfo['model_method'].'
+							  	Model/Method: ' . $documentInfo['model_method'] . '
 							  	<br /><br />
 							  	Manufacturer Sensitivity Range:<br />
-							  	Sensitivity Range: '.$documentInfo['range_2'].'
+							  	Sensitivity Range: ' . $documentInfo['range_2'] . '
 							  </td>
-							  <td width="30%" align="center">N/A<br />'.$documentInfo['na_value1'].'</td>
-							  <td width="30%" align="center">N/A<br />'.$documentInfo['na_value2'].'</td>
+							  <td width="30%" align="center">N/A<br />' . $documentInfo['na_value1'] . '</td>
+							  <td width="30%" align="center">N/A<br />' . $documentInfo['na_value2'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="10%">RI</td>
 							  <td width="30%">Remote Indicator Unit</td>
-							  <td width="30%" align="center">'.$documentInfo['type_4'].'</td>
-							  <td width="30%" align="center">'.$documentInfo['model_4'].'</td>
+							  <td width="30%" align="center">' . $documentInfo['type_4'] . '</td>
+							  <td width="30%" align="center">' . $documentInfo['model_4'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="10%">DS</td>
 							  <td width="30%">Duct Smoke Detector</td>
-							  <td width="30%" align="center">'.$documentInfo['type_5'].'</td>
-							  <td width="30%" align="center">'.$documentInfo['model_5'].'</td>
+							  <td width="30%" align="center">' . $documentInfo['type_5'] . '</td>
+							  <td width="30%" align="center">' . $documentInfo['model_5'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="10%">--</td>
 							  <td width="30%">Other type of Detector</td>
-							  <td width="30%" align="center">'.$documentInfo['type_6'].'</td>
-							  <td width="30%" align="center">'.$documentInfo['model_6'].'</td>
+							  <td width="30%" align="center">' . $documentInfo['type_6'] . '</td>
+							  <td width="30%" align="center">' . $documentInfo['model_6'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="10%">SFD</td>
 							  <td width="30%">Supporting Field Device</td>
-							  <td width="30%" align="center">'.$documentInfo['type_7'].'</td>
-							  <td width="30%" align="center">'.$documentInfo['model_7'].'</td>
+							  <td width="30%" align="center">' . $documentInfo['type_7'] . '</td>
+							  <td width="30%" align="center">' . $documentInfo['model_7'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="10%">FS</td>
 							  <td width="30%">Sprinkler Flow Switch</td>
-							  <td width="30%" align="center">'.$documentInfo['type_20'].'</td>
-							  <td width="30%" align="center">'.$documentInfo['model_20'].'</td>
+							  <td width="30%" align="center">' . $documentInfo['type_20'] . '</td>
+							  <td width="30%" align="center">' . $documentInfo['model_20'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="10%">SS</td>
 							  <td>Sprinkler Supervisory Device</td>
-							  <td width="30%" align="center">'.$documentInfo['type_8'].'</td>
-							  <td width="30%" align="center">'.$documentInfo['model_8'].'</td>
+							  <td width="30%" align="center">' . $documentInfo['type_8'] . '</td>
+							  <td width="30%" align="center">' . $documentInfo['model_8'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="10%">--</td>
 							  <td width="30%">Other Supervisory Devices (low pressure, low water,low temp,power loss etc.)</td>
-							  <td width="30%" align="center">'.$documentInfo['type_9'].'</td>
-							  <td width="30%" align="center">'.$documentInfo['model_9'].'</td>
+							  <td width="30%" align="center">' . $documentInfo['type_9'] . '</td>
+							  <td width="30%" align="center">' . $documentInfo['model_9'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="10%">EM</td>
 							  <td width="30%">Fault Isolation Module</td>
-							  <td width="30%" align="center">'.$documentInfo['type_10'].'</td>
-							  <td width="30%" align="center">'.$documentInfo['model_10'].'</td>
+							  <td width="30%" align="center">' . $documentInfo['type_10'] . '</td>
+							  <td width="30%" align="center">' . $documentInfo['model_10'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="10%">B</td>
 							  <td width="30%">Bell</td>
-							  <td width="30%" align="center">'.$documentInfo['type_11'].'</td>
-							  <td width="30%" align="center">'.$documentInfo['model_11'].'</td>
+							  <td width="30%" align="center">' . $documentInfo['type_11'] . '</td>
+							  <td width="30%" align="center">' . $documentInfo['model_11'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="10%">H</td>
 							  <td width="30%">Horn</td>
-							  <td width="30%" align="center">'.$documentInfo['type_12'].'</td>
-							  <td width="30%" align="center">'.$documentInfo['model_12'].'</td>
+							  <td width="30%" align="center">' . $documentInfo['type_12'] . '</td>
+							  <td width="30%" align="center">' . $documentInfo['model_12'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="10%">V</td>
 							  <td width="30%">Visible Signal Device</td>
-							  <td width="30%" align="center">'.$documentInfo['type_13'].'</td>
-							  <td width="30%" align="center">'.$documentInfo['model_13'].'</td>
+							  <td width="30%" align="center">' . $documentInfo['type_13'] . '</td>
+							  <td width="30%" align="center">' . $documentInfo['model_13'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="10%">SP</td>
 							  <td width="30%">Cone Type Speaker</td>
-							  <td width="30%" align="center">'.$documentInfo['type_14'].'</td>
-							  <td width="30%" align="center">'.$documentInfo['model_14'].'</td>
+							  <td width="30%" align="center">' . $documentInfo['type_14'] . '</td>
+							  <td width="30%" align="center">' . $documentInfo['model_14'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="10%">HSP</td>
 							  <td width="30%">Horn Type Speaker</td>
-							  <td width="30%" align="center">'.$documentInfo['type_15'].'</td>
-							  <td width="30%" align="center">'.$documentInfo['model_15'].'</td>
+							  <td width="30%" align="center">' . $documentInfo['type_15'] . '</td>
+							  <td width="30%" align="center">' . $documentInfo['model_15'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="10%">AD</td>
 							  <td width="30%">Ancillary Device</td>
-							  <td width="30%" align="center">'.$documentInfo['type_16'].'</td>
-							  <td width="30%" align="center">'.$documentInfo['model_16'].'</td>
+							  <td width="30%" align="center">' . $documentInfo['type_16'] . '</td>
+							  <td width="30%" align="center">' . $documentInfo['model_16'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="10%">ET</td>
 							  <td width="30%">Emergency Telephone</td>
-							  <td width="30%" align="center">'.$documentInfo['type_17'].'</td>
-							  <td width="30%" align="center">'.$documentInfo['model_17'].'</td>
+							  <td width="30%" align="center">' . $documentInfo['type_17'] . '</td>
+							  <td width="30%" align="center">' . $documentInfo['model_17'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="10%">EOL</td>
 							  <td width="30%">End of Line Resistor</td>
-							  <td width="30%" align="center">'.$documentInfo['type_18'].'</td>
-							  <td width="30%" align="center">'.$documentInfo['model_18'].'</td>
+							  <td width="30%" align="center">' . $documentInfo['type_18'] . '</td>
+							  <td width="30%" align="center">' . $documentInfo['model_18'] . '</td>
 							 </tr>
 							</table><br />
 
 							<font size="7"><b>The following notes apply to Appendix E3.2, Individual Device Record:</b></font><br />
 							<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%" border="0">';
-							foreach($notes_array as $num => $note) {
-								$html .= '<tr>
-										   <td width="11%"><b>Note '.$num.'.</b></td>
-										   <td width="91%">'.$note.'</td>
+                foreach ($notes_array as $num => $note) {
+                    $html .= '<tr>
+										   <td width="11%"><b>Note ' . $num . '.</b></td>
+										   <td width="91%">' . $note . '</td>
 										  </tr>';
-							}
+                }
 
-							$html .= '</table>';
-				$html .= '<br pagebreak="true"/>';
-				$html .= $header;
-				if (is_array($formInfo)) {
-					$html .= '<h3>E3.2 Device Record - CAN/ULC S536-04</h3>
+                $html .= '</table>';
+                $html .= '<br pagebreak="true"/>';
+                $html .= $header;
+                if (is_array($formInfo)) {
+                    $html .= '<h3>E3.2 Device Record - CAN/ULC S536-04</h3>
 								<table style="font-size: 25px; border: 1px solid #000;" cellpadding="3" cellspacing="0" width="100%" border="1">
 								 <tr bgcolor="#000000" style="font-weight: bold; color: #ffffff;" align="center">
 								  <td width="20%">Location</td>
@@ -1114,53 +1096,53 @@ class blank_document extends crownfire {
                                                                   <td width="10%">Smoke Sensitivity</td>
 								  <td width="10%">Remarks</td>
 								 </tr>';
-					$printed = 0;
-					$page = 1;
-					foreach($formInfo as $form) {
-						$printed++;
-						$html .= '<tr align="center">
-								  <td width="10%">'.$form['location'].'</td>
-								  <td width="10%">'.$form['device'].'</td>';
-						$html .= '<td width="10%">';
-						if (strtoupper($form['correctly_installed']) == 'YES') {
-							$html .= '<img src="'.$cfg['site_url'].'/images/red_checkmark.gif" width="8" height="8" />';
-						} else {
-							$html .= ' &nbsp; ';
-						}
-						$html .= '</td>';
-						$html .= '<td width="10%">';
-						if (strtoupper($form['requires_service']) == 'YES') {
-							$html .= '<img src="'.$cfg['site_url'].'/images/red_checkmark.gif" width="8" height="8" />';
-						} else {
-							$html .= ' &nbsp; ';
-						}
-						$html .= '</td>';
-						$html .= '<td width="15%">';
-						if (strtoupper($form['alarm']) == 'YES') {
-							$html .= '<img src="'.$cfg['site_url'].'/images/red_checkmark.gif" width="8" height="8" />';
-						} else {
-							$html .= ' &nbsp; ';
-						}
-						$html .= '</td>';
-						$html .= '<td width="15%">';
-						if (strtoupper($form['confirmed']) == 'YES') {
-							$html .= '<img src="'.$cfg['site_url'].'/images/red_checkmark.gif" width="8" height="8" />';
-						} else {
-							$html .= ' &nbsp; ';
-						}
-                                                $form['remarks'] = (!empty($form['remarks'])) ? $form['remarks'] : '&nbsp;';
-						$html .= '</td>
-								  <td width="10%">'.$form['zone_address'].'</td>
-                                                                  <td width="10%">'.$form['smoke_sensitivity'].'</td>
-								  <td width="10%">'.$form['remarks'].'</td>
+                    $printed = 0;
+                    $page = 1;
+                    foreach ($formInfo as $form) {
+                        $printed++;
+                        $html .= '<tr align="center">
+								  <td width="10%">' . $form['location'] . '</td>
+								  <td width="10%">' . $form['device'] . '</td>';
+                        $html .= '<td width="10%">';
+                        if (strtoupper($form['correctly_installed']) == 'YES') {
+                            $html .= '<img src="' . $cfg['site_url'] . '/images/red_checkmark.gif" width="8" height="8" />';
+                        } else {
+                            $html .= ' &nbsp; ';
+                        }
+                        $html .= '</td>';
+                        $html .= '<td width="10%">';
+                        if (strtoupper($form['requires_service']) == 'YES') {
+                            $html .= '<img src="' . $cfg['site_url'] . '/images/red_checkmark.gif" width="8" height="8" />';
+                        } else {
+                            $html .= ' &nbsp; ';
+                        }
+                        $html .= '</td>';
+                        $html .= '<td width="15%">';
+                        if (strtoupper($form['alarm']) == 'YES') {
+                            $html .= '<img src="' . $cfg['site_url'] . '/images/red_checkmark.gif" width="8" height="8" />';
+                        } else {
+                            $html .= ' &nbsp; ';
+                        }
+                        $html .= '</td>';
+                        $html .= '<td width="15%">';
+                        if (strtoupper($form['confirmed']) == 'YES') {
+                            $html .= '<img src="' . $cfg['site_url'] . '/images/red_checkmark.gif" width="8" height="8" />';
+                        } else {
+                            $html .= ' &nbsp; ';
+                        }
+                        $form['remarks'] = (!empty($form['remarks'])) ? $form['remarks'] : '&nbsp;';
+                        $html .= '</td>
+								  <td width="10%">' . $form['zone_address'] . '</td>
+                                                                  <td width="10%">' . $form['smoke_sensitivity'] . '</td>
+								  <td width="10%">' . $form['remarks'] . '</td>
 								  </tr>';
-						if (25 == $printed) {
-							$printed = 0;
-							$page++;
-							$html .= '</table>';
-							$html .= '<br pagebreak="true"/>';
-							$html .= $header;
-							$html .= ' <br /> <h3>E3.2 Device Record - CAN/ULC S536-04 (Page '.$page.')</h3>
+                        if (25 == $printed) {
+                            $printed = 0;
+                            $page++;
+                            $html .= '</table>';
+                            $html .= '<br pagebreak="true"/>';
+                            $html .= $header;
+                            $html .= ' <br /> <h3>E3.2 Device Record - CAN/ULC S536-04 (Page ' . $page . ')</h3>
 								<table style="font-size: 25px; border: 1px solid #000;" cellpadding="3" cellspacing="0" width="100%" border="1">
 								 <tr bgcolor="#000000" style="font-weight: bold; color: #ffffff;" align="center">
 								  <td width="20%">Location</td>
@@ -1173,34 +1155,34 @@ class blank_document extends crownfire {
                                                                   <td width="10%">Smoke Sensitivity</td>
 								  <td width="10%">Remarks</td>
 								 </tr>';
-						}
-					}
-					$html .= '</table>';
-				}
-			break;
+                        }
+                    }
+                    $html .= '</table>';
+                }
+                break;
 
-			case '10':
-				$documentInfo 		= $documentObj->getData('document_data_10_head','document_id',$document_id);
-				$documentInfo 		= array_merge($documentInfo, $documentObj->getData('document_data_10_pump','document_id',$document_id));
-				$documentInfo 		= array_merge($documentInfo, $documentObj->getData('document_data_10_test','document_id',$document_id));
-				$documentInfo 		= array_merge($documentInfo, $documentObj->getData('document_data_10_piping','document_id',$document_id));
+            case '10':
+                $documentInfo = $documentObj->getData('document_data_10_head', 'document_id', $document_id);
+                $documentInfo = array_merge($documentInfo, $documentObj->getData('document_data_10_pump', 'document_id', $document_id));
+                $documentInfo = array_merge($documentInfo, $documentObj->getData('document_data_10_test', 'document_id', $document_id));
+                $documentInfo = array_merge($documentInfo, $documentObj->getData('document_data_10_piping', 'document_id', $document_id));
 
-				$html .= '<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
+                $html .= '<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
 							 <tr>
 							  <td width="30%"><b>Location:</b></td>
-							  <td>'.$documentInfo['location'].'</td>
+							  <td>' . $documentInfo['location'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="30%"><b>Date:</b></td>
-							  <td>'.$documentInfo['date'].'</td>
+							  <td>' . $documentInfo['date'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="30%"><b>Owner:</b></td>
-							  <td>'.$documentInfo['owner'].'</td>
+							  <td>' . $documentInfo['owner'] . '</td>
 							 </tr>
 							 <tr>
 							  <td><b>Description of Equiptment:</b></td>
-							  <td>'.$documentInfo['description'].'</td>
+							  <td>' . $documentInfo['description'] . '</td>
 							 </tr>
 							</table>
 							<br />
@@ -1214,57 +1196,57 @@ class blank_document extends crownfire {
 							 </tr>
 							 <tr>
 							  <td width="25%"><b>Horsepower:</b></td>
-							  <td width="25%">'.$documentInfo['horsepower'].'</td>
+							  <td width="25%">' . $documentInfo['horsepower'] . '</td>
 							  <td width="25%"><b>Manufacturer:</b></td>
-							  <td width="25%">'.$documentInfo['manufacturer'].'</td>
+							  <td width="25%">' . $documentInfo['manufacturer'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="25%"><b>Manufacturer:</b></td>
-							  <td width="25%">'.$documentInfo['manufacturer_2'].'</td>
+							  <td width="25%">' . $documentInfo['manufacturer_2'] . '</td>
 							  <td width="25%"><b>Sunction:</b></td>
-							  <td width="25%">'.$documentInfo['sunction'].'</td>
+							  <td width="25%">' . $documentInfo['sunction'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="25%"><b>Voltage:</b></td>
-							  <td width="25%">'.$documentInfo['voltage'].'</td>
+							  <td width="25%">' . $documentInfo['voltage'] . '</td>
 							  <td width="25%"><b>Discharge:</b></td>
-							  <td width="25%">'.$documentInfo['discharge'].'</td>
+							  <td width="25%">' . $documentInfo['discharge'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="25%"><b>Rated RPM (Synch):</b></td>
-							  <td width="25%">'.$documentInfo['rated'].'</td>
+							  <td width="25%">' . $documentInfo['rated'] . '</td>
 							  <td width="25%"><b>Head Dia:</b></td>
-							  <td width="25%">'.$documentInfo['head_dia'].'</td>
+							  <td width="25%">' . $documentInfo['head_dia'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="25%"><b>Full Load Amperage:</b></td>
-							  <td width="25%">'.$documentInfo['amperage'].'</td>
+							  <td width="25%">' . $documentInfo['amperage'] . '</td>
 							  <td width="25%"><b>RPM:</b></td>
-							  <td width="25%">'.$documentInfo['rpm'].'</td>
+							  <td width="25%">' . $documentInfo['rpm'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="25%"><b>Continuous Amperage:</b></td>
-							  <td width="25%">'.$documentInfo['continuous_amperage'].'</td>
+							  <td width="25%">' . $documentInfo['continuous_amperage'] . '</td>
 							  <td width="25%"><b>GPM:</b></td>
-							  <td width="25%">'.$documentInfo['gpm'].'</td>
+							  <td width="25%">' . $documentInfo['gpm'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="25%"><b>Model:</b></td>
-							  <td width="25%">'.$documentInfo['model'].'</td>
+							  <td width="25%">' . $documentInfo['model'] . '</td>
 							  <td width="25%"><b>Head:</b></td>
-							  <td width="25%">'.$documentInfo['head'].'</td>
+							  <td width="25%">' . $documentInfo['head'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="25%"><b>Serial Number:</b></td>
-							  <td width="25%">'.$documentInfo['serial_number'].'</td>
+							  <td width="25%">' . $documentInfo['serial_number'] . '</td>
 							  <td width="25%"><b>Model:</b></td>
-							  <td width="25%">'.$documentInfo['model2'].'</td>
+							  <td width="25%">' . $documentInfo['model2'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="25%">&nbsp; </td>
 							  <td width="25%">&nbsp; </td>
 							  <td width="25%"><b>Serial Number:</b></td>
-							  <td width="25%">'.$documentInfo['serial_number_2'].'</td>
+							  <td width="25%">' . $documentInfo['serial_number_2'] . '</td>
 							 </tr>
 							</table>
 							<br />
@@ -1274,27 +1256,27 @@ class blank_document extends crownfire {
 							<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="0" cellspacing="5" width="100%">
 							 <tr>
 							  <td width="25%"><b>Suction Piping:</b></td>
-							  <td width="25%">'.$documentInfo['suction_piping'].'</td>
+							  <td width="25%">' . $documentInfo['suction_piping'] . '</td>
 							  <td width="25%"><b>Control Valve:</b></td>
-							  <td width="25%">'.$documentInfo['control_valve'].'</td>
+							  <td width="25%">' . $documentInfo['control_valve'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="25%"><b>Discharge Piping:</b></td>
-							  <td width="25%">'.$documentInfo['discharge_piping'].'</td>
+							  <td width="25%">' . $documentInfo['discharge_piping'] . '</td>
 							  <td width="25%"><b>Control Valve:</b></td>
-							  <td width="25%">'.$documentInfo['control_valve_2'].'</td>
+							  <td width="25%">' . $documentInfo['control_valve_2'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="25%"><b>Sunction Check Valve:</b></td>
-							  <td width="25%">'.$documentInfo['sunction_check_valve'].'</td>
+							  <td width="25%">' . $documentInfo['sunction_check_valve'] . '</td>
 							  <td width="25%"><b>Discharge Check Valve:</b></td>
-							  <td width="25%">'.$documentInfo['discharge_check_valve'].'</td>
+							  <td width="25%">' . $documentInfo['discharge_check_valve'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="25%"><b>Pressure Relief Valve:</b></td>
-							  <td width="25%">'.$documentInfo['pressure_relief'].'</td>
+							  <td width="25%">' . $documentInfo['pressure_relief'] . '</td>
 							  <td width="25%"><b>Set For:</b></td>
-							  <td width="25%">'.$documentInfo['set_for'].'</td>
+							  <td width="25%">' . $documentInfo['set_for'] . '</td>
 							 </tr>
 							</table><br />
 
@@ -1303,120 +1285,120 @@ class blank_document extends crownfire {
 							<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="0" cellspacing="5" width="100%">
 							 <tr>
 							  <td width="40%"><b>Time of Test</b></td>
-							  <td colspan="3" align="left">'.$documentInfo['time_of_test'].'</td>
+							  <td colspan="3" align="left">' . $documentInfo['time_of_test'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="40%"><b>Static Pressure Before Test Sunction:</b></td>
-							  <td>'.$documentInfo['static_before_suction'].'</td>
+							  <td>' . $documentInfo['static_before_suction'] . '</td>
 							  <td width="20%"><b>Discharge:</b></td>
-							  <td>'.$documentInfo['test_discharge'].'</td>
+							  <td>' . $documentInfo['test_discharge'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="40%"><b>Cut in Pressure:</b></td>
-							  <td>'.$documentInfo['cut_in_pressure'].'</td>
+							  <td>' . $documentInfo['cut_in_pressure'] . '</td>
 							  <td><b>Cut Out Pressure:</b></td>
-							  <td>'.$documentInfo['cut_out_pressure'].'</td>
+							  <td>' . $documentInfo['cut_out_pressure'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="40%"><b>Static Pressure After Test: Suction:</b></td>
-							  <td>'.$documentInfo['static_after_test'].'</td>
+							  <td>' . $documentInfo['static_after_test'] . '</td>
 							  <td><b>Discharge:</b></td>
-							  <td>'.$documentInfo['after_discharge'].'</td>
+							  <td>' . $documentInfo['after_discharge'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="40%"><b>Outlet Used for Testing:</b></td>
-							  <td colspan="3">'.$documentInfo['outlet_used'].'</td>
+							  <td colspan="3">' . $documentInfo['outlet_used'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="40%"><b>Supervisory Valves Checked:</b></td>
-							  <td colspan="3">'.ucFirst($documentInfo['supervisory_checked']).'</td>
+							  <td colspan="3">' . ucFirst($documentInfo['supervisory_checked']) . '</td>
 							 </tr>
 							 <tr>
 							  <td width="40%"><b>Packings:</b></td>
-							  <td>'.$documentInfo['packings'].'</td>
+							  <td>' . $documentInfo['packings'] . '</td>
 							  <td><b>RPM Measured:</b></td>
-							  <td>'.$documentInfo['rpm_measured'].'</td>
+							  <td>' . $documentInfo['rpm_measured'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="40%"><b>Full Load Amperage Meassured:</b></td>
-							  <td colspan="3">'.$documentInfo['full_load'].'</td>
+							  <td colspan="3">' . $documentInfo['full_load'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="40%"><b>Voltage Drop Across Motor Leads:</b></td>
-							  <td colspan="3">'.$documentInfo['voltage_drop'].'</td>
+							  <td colspan="3">' . $documentInfo['voltage_drop'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="40%"><b>Vacuum Clean Motor Inside:</b></td>
-							  <td colspan="3">'.$documentInfo['vacuum_inside'].'</td>
+							  <td colspan="3">' . $documentInfo['vacuum_inside'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="40%"><b>Check Angular Coupling Alignment:</b></td>
-							  <td colspan="3">'.$documentInfo['angular_alignment'].'</td>
+							  <td colspan="3">' . $documentInfo['angular_alignment'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="40%"><b>Check Parallel Coupling Alignment:</b></td>
-							  <td colspan="3">'.$documentInfo['parallel_alignment'].'</td>
+							  <td colspan="3">' . $documentInfo['parallel_alignment'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="40%"><b>Pump Level:</b></td>
-							  <td>'.$documentInfo['pump_level'].'</td>
+							  <td>' . $documentInfo['pump_level'] . '</td>
 							  <td><b>Base Firm:</b></td>
-							  <td>'.$documentInfo['base_firm'].'</td>
+							  <td>' . $documentInfo['base_firm'] . '</td>
 							 </tr>
 							 <tr>
 							  <td width="40%"><b>Comments:</b></td>
-							  <td colspan="3">'.$documentInfo['comments'].'</td>
+							  <td colspan="3">' . $documentInfo['comments'] . '</td>
 							 </tr>
 							</table>
 							<br />
 							<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
 							 <tr>
 							  <td><b>Lead Technicion:</b></td>
-							  <td>'.$documentInfo['primary_technician'].'</td>
+							  <td>' . $documentInfo['primary_technician'] . '</td>
 							 </tr>
 							</table><br /><br />';
-			break;
+                break;
 
-			case '12':
-				$documentInfo 		= $documentObj->getData('document_data_12_head','document_id',$document_id);
-				$documentInfo 		= array_merge($documentInfo, $documentObj->getData('document_data_12_data','document_id', $document_id));
-				$documentInfo 		= array_merge($documentInfo, $documentObj->getData('document_data_12_location','document_id', $document_id));
+            case '12':
+                $documentInfo = $documentObj->getData('document_data_12_head', 'document_id', $document_id);
+                $documentInfo = array_merge($documentInfo, $documentObj->getData('document_data_12_data', 'document_id', $document_id));
+                $documentInfo = array_merge($documentInfo, $documentObj->getData('document_data_12_location', 'document_id', $document_id));
 
-				$html .= '<table style="font-size: 25px; border: 1px solid #000000;" cellpadding="0" cellspacing="5" width="99%">
+                $html .= '<table style="font-size: 25px; border: 1px solid #000000;" cellpadding="0" cellspacing="5" width="99%">
 							 <tr valign="top">
 							  <td width="40%">
 								<table width="100%" cellpadding="5">
 								 <tr>
 								  <td width="40%"><b>Name:</b></td>
-								  <td width="60%">'.$documentInfo['customer_name'].'</td>
+								  <td width="60%">' . $documentInfo['customer_name'] . '</td>
 								 </tr>
 								 <tr>
 								  <td width="40%"><b>Address:</b></td>
-								  <td width="60%">'.$documentInfo['address'].'</td>
+								  <td width="60%">' . $documentInfo['address'] . '</td>
 								 </tr>
 								 <tr>
 								  <td width="40%"><b>City:</b></td>
-								  <td width="60%">'.$documentInfo['city'].'</td>
+								  <td width="60%">' . $documentInfo['city'] . '</td>
 								 </tr>
 								 <tr>
 								  <td width="40%"><b>State:</b></td>
-								  <td width="60%">'.$documentInfo['state'].'</td>
+								  <td width="60%">' . $documentInfo['state'] . '</td>
 								 </tr>
 								  <tr>
 								  <td width="40%"><b>Zip:</b></td>
-								  <td width="60%">'.$documentInfo['zip'].'</td>
+								  <td width="60%">' . $documentInfo['zip'] . '</td>
 								 </tr>
 								 <tr>
 								  <td width="40%"><b>Telephone:</b></td>
-								  <td width="60%">'.$documentInfo['telephone'].'</td>
+								  <td width="60%">' . $documentInfo['telephone'] . '</td>
 								 </tr>
 								 <tr>
 								  <td width="40%"><b>Store No.:</b></td>
-								  <td width="60%">'.$documentInfo['store'].'</td>
+								  <td width="60%">' . $documentInfo['store'] . '</td>
 								 </tr>
 								 <tr>
 								  <td width="40%"><b>Owner or Manager:</b></td>
-								  <td width="60%">'.$documentInfo['owner'].'</td>
+								  <td width="60%">' . $documentInfo['owner'] . '</td>
 								 </tr>
 								</table>
 							  </td>
@@ -1429,10 +1411,10 @@ class blank_document extends crownfire {
 								  <td>P.M.</td>
 								 </tr>
 								 <tr>
-								  <td colspan="2">'.$documentInfo['date_service'].'</td>
-								  <td>'.$documentInfo['time_service'].'</td>
-								  <td>'.$documentInfo['am'].'</td>
-								  <td>'.$documentInfo['pm'].'</td>
+								  <td colspan="2">' . $documentInfo['date_service'] . '</td>
+								  <td>' . $documentInfo['time_service'] . '</td>
+								  <td>' . $documentInfo['am'] . '</td>
+								  <td>' . $documentInfo['pm'] . '</td>
 								 </tr>
 								 <tr bgcolor="#000000" style="color: #ffffff;">
 								  <td>Annual</td>
@@ -1442,19 +1424,19 @@ class blank_document extends crownfire {
 								  <td>Renovation</td>
 								 </tr>
 								 <tr>
-								  <td>'.$documentInfo['annual'].'</td>
-								  <td>'.$documentInfo['semi_annual'].'</td>
-								  <td>'.$documentInfo['recharge'].'</td>
-								  <td>'.$documentInfo['installation'].'</td>
-								  <td>'.$documentInfo['renovation'].'</td>
+								  <td>' . $documentInfo['annual'] . '</td>
+								  <td>' . $documentInfo['semi_annual'] . '</td>
+								  <td>' . $documentInfo['recharge'] . '</td>
+								  <td>' . $documentInfo['installation'] . '</td>
+								  <td>' . $documentInfo['renovation'] . '</td>
 								 </tr>
 								 <tr bgcolor="#000000" style="color: #ffffff;">
 								  <td colspan="4">Location of System Cynlinders</td>
 								  <td>UL 300</td>
 								 </tr>
 								 <tr>
-								  <td colspan="4">'.$documentInfo['loc_cynlinders'].'</td>
-								  <td>'.$documentInfo['ul_300'].'</td>
+								  <td colspan="4">' . $documentInfo['loc_cynlinders'] . '</td>
+								  <td>' . $documentInfo['ul_300'] . '</td>
 								 </tr>
 								 <tr bgcolor="#000000" style="color: #ffffff;">
 								  <td colspan="2">Manufacturer</td>
@@ -1463,10 +1445,10 @@ class blank_document extends crownfire {
 								  <td>Dry Chemical</td>
 								 </tr>
 								 <tr>
-								  <td colspan="2">'.$documentInfo['manufacturer'].'</td>
-								  <td>'.$documentInfo['model_number'].'</td>
-								  <td>'.$documentInfo['wet'].'</td>
-								  <td>'.$documentInfo['dry_chemical'].'</td>
+								  <td colspan="2">' . $documentInfo['manufacturer'] . '</td>
+								  <td>' . $documentInfo['model_number'] . '</td>
+								  <td>' . $documentInfo['wet'] . '</td>
+								  <td>' . $documentInfo['dry_chemical'] . '</td>
 								 </tr>
 								 <tr bgcolor="#000000" style="color: #ffffff;" align="center">
 								  <td colspan="2">Cylinder Size Master</td>
@@ -1474,9 +1456,9 @@ class blank_document extends crownfire {
 								  <td colspan="2">Cylinder Size Slave</td>
 								 </tr>
 								 <tr align="center">
-								  <td colspan="2">'.$documentInfo['cylinder_master'].'</td>
-								  <td>'.$documentInfo['cylinder_slave'].'</td>
-								  <td colspan="2">'.$documentInfo['cylinder_slave_2'].'</td>
+								  <td colspan="2">' . $documentInfo['cylinder_master'] . '</td>
+								  <td>' . $documentInfo['cylinder_slave'] . '</td>
+								  <td colspan="2">' . $documentInfo['cylinder_slave_2'] . '</td>
 								 </tr>
 								 <tr bgcolor="#000000" style="color: #ffffff;">
 								  <td colspan="2">Fuel Shut-Off</td>
@@ -1485,10 +1467,10 @@ class blank_document extends crownfire {
 								  <td>Size</td>
 								 </tr>
 								 <tr>
-								  <td colspan="2">'.$documentInfo['fuel'].'</td>
-								  <td>'.$documentInfo['electric'].'</td>
-								  <td>'.$documentInfo['gas'].'</td>
-								  <td>'.$documentInfo['size'].'</td>
+								  <td colspan="2">' . $documentInfo['fuel'] . '</td>
+								  <td>' . $documentInfo['electric'] . '</td>
+								  <td>' . $documentInfo['gas'] . '</td>
+								  <td>' . $documentInfo['size'] . '</td>
 								 </tr>
 								 <tr bgcolor="#000000" style="color: #ffffff;" align="center">
 								  <td colspan="2">Serial Number</td>
@@ -1496,17 +1478,17 @@ class blank_document extends crownfire {
 								  <td colspan="2">Last Recharge Date</td>
 								 </tr>
 								 <tr align="center">
-								  <td colspan="2">'.$documentInfo['serial_number'].'</td>
-								  <td>'.$documentInfo['last_hydro'].'</td>
-								  <td colspan="2">'.$documentInfo['last_recharge'].'</td>
+								  <td colspan="2">' . $documentInfo['serial_number'] . '</td>
+								  <td>' . $documentInfo['last_hydro'] . '</td>
+								  <td colspan="2">' . $documentInfo['last_recharge'] . '</td>
 								 </tr>
 								 <tr bgcolor="#000000" style="color: #ffffff;">
 								  <td colspan="5">Manufacturer\'s Manual Reference</td>
 								 </tr>
 								 <tr>
-								  <td width="33%" colspan="2">Page No.: '.$documentInfo['page_number'].'</td>
-								  <td width="33%">Drawing No.: '.$documentInfo['drawing_number'].'</td>
-								  <td width="33%" colspan="2">Date: '.$documentInfo['final_date'].'</td>
+								  <td width="33%" colspan="2">Page No.: ' . $documentInfo['page_number'] . '</td>
+								  <td width="33%">Drawing No.: ' . $documentInfo['drawing_number'] . '</td>
+								  <td width="33%" colspan="2">Date: ' . $documentInfo['final_date'] . '</td>
 								 </tr>
 								</table>
 							  </td>
@@ -1516,23 +1498,23 @@ class blank_document extends crownfire {
 							<h3>Cooking Appliance Locations: Left to Right</h3>
 							<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="5" cellspacing="0" width="99%" border="1">
 							 <tr align="center">
-							  <td width="25%">'.$documentInfo['appliance1'].'</td>
-							  <td width="25%">'.$documentInfo['appliance2'].'</td>
-							  <td width="25%">'.$documentInfo['appliance3'].'</td>
-							  <td width="25%">'.$documentInfo['appliance4'].'</td>
+							  <td width="25%">' . $documentInfo['appliance1'] . '</td>
+							  <td width="25%">' . $documentInfo['appliance2'] . '</td>
+							  <td width="25%">' . $documentInfo['appliance3'] . '</td>
+							  <td width="25%">' . $documentInfo['appliance4'] . '</td>
 							 </tr>
 							  <tr align="center">
-							  <td width="25%">'.$documentInfo['appliance5'].'</td>
-							  <td width="25%">'.$documentInfo['appliance6'].'</td>
-							  <td width="25%">'.$documentInfo['appliance7'].'</td>
-							  <td width="25%">'.$documentInfo['appliance8'].'</td>
+							  <td width="25%">' . $documentInfo['appliance5'] . '</td>
+							  <td width="25%">' . $documentInfo['appliance6'] . '</td>
+							  <td width="25%">' . $documentInfo['appliance7'] . '</td>
+							  <td width="25%">' . $documentInfo['appliance8'] . '</td>
 							 </tr>
 							</table>&nbsp; <br />';
 
-							$html .= self::getQuestionsHTML($document_id, $typeID, null, array(1 => 'Yes'), false, 'numbers');
+                $html .= self::getQuestionsHTML($document_id, $typeID, null, array(1 => 'Yes'), false, 'numbers');
 
-							$html .= '<h3>Comments</h3>
-							<font size="10">'.$documentInfo['comments'].'</font>
+                $html .= '<h3>Comments</h3>
+							<font size="10">' . $documentInfo['comments'] . '</font>
 
 							<br /><br />
 							<font size="5">On this date, this range hood fire supporession system was inspected and operationally tested in accoredance with the fire suppression system reaquirements of NFPA17 or 17A, 96
@@ -1541,13 +1523,13 @@ class blank_document extends crownfire {
 
 							<table border="1" style="font-size: 30px; border: 1px solid #000000;" cellpadding="3" cellspacing="0" width="99%">
 							 <tr>
-							  <td align="left">'.$documentInfo['technician'].'</td>
-							  <td>'.$documentInfo['permit_no'].'</td>
-							  <td>'.$documentInfo['date_2'].'</td>
-							  <td>'.$documentInfo['time_2'].'</td>
-							  <td>'.$documentInfo['am_2'].'</td>
-							  <td>'.$documentInfo['pm_2'].'</td>
-							  <td>'.$documentInfo['agent'].'</td>
+							  <td align="left">' . $documentInfo['technician'] . '</td>
+							  <td>' . $documentInfo['permit_no'] . '</td>
+							  <td>' . $documentInfo['date_2'] . '</td>
+							  <td>' . $documentInfo['time_2'] . '</td>
+							  <td>' . $documentInfo['am_2'] . '</td>
+							  <td>' . $documentInfo['pm_2'] . '</td>
+							  <td>' . $documentInfo['agent'] . '</td>
 							 </tr>
 							 <tr bgcolor="#000000" style="color: #ffffff;">
 							  <td align="left">Service Technician</td>
@@ -1559,182 +1541,183 @@ class blank_document extends crownfire {
 							  <td>Customer\'s Authorized Agent</td>
 							 </tr>
 							</table>';
-			break;
+                break;
 
-			case 13:
-				// This one is a bit different.  I got lazy.
-				$fields = array();
-				$fields = array('building_address' 		=> 'Building Address',
-								'information_date'		=> 'Date of Information',
-								'manufacturer_name'		=> 'C1. MANUFACTURER NAME AND MODEL NUMBER',
-								'system_operation'		=> 'C2. SYSTEM OPERATION (zoned, non zoned, single or two stage) - supervised circuits',
-								'location_control'		=> 'C3. LOCATION OF CONTROL UNIT OR TRANSPONDERS, DISPLAY AND CONTROL CENTERS,ANNUNCIATORS, AND REMOTE TROUBLE SIGNAL UNITS.',
-								'description'			=> 'C4. DESCRIPTION OF DEGRADED MODE CAPABILITY OPERATION, IF APPLICABLE',
-								'sequence'				=> 'C5. SEQUENCE OF OPERATION, INCLUDING, BUT NOT LIMITED TO THE FOLLOWING BRIEFLY DESCRIBED',
-								'general_description'	=> 'C6. GENERAL DESCRIPTION OF LOCATION OF DEVICES CONNECTED TO CONTROL UNIT OR TRANSPONDER.',
-								'voice_communication'	=> 'C7. VOICE COMMUNICATION SYSTEM AND OPERATION.',
-								'emergency_telephone'	=> 'C8. EMERGENCY TELEPHONE EQUIPMENT AND OPERATION.',
-								'emergency_power'		=> 'C9. EMERGENCY POWER SUPPLY (IE. BATTERIES IN ONE CENTRAL LOCATION OR DISTRIBUTED IN CONTROL UNITS OR TRANSPONDERS, EMERGENCY GENERATOR OR A COMBINATION OF BOTH) - DISTRIBUTION OF BATTERY TYPE, CHARGING PROCEDURE AND MAINTENANCE.',
-								'system_battery'		=> 'C10. SYSTEM BATTERY LOAD CALCULATIONS');
+            case 13:
+                // This one is a bit different.  I got lazy.
+                $fields = array();
+                $fields = array('building_address' => 'Building Address',
+                    'information_date' => 'Date of Information',
+                    'manufacturer_name' => 'C1. MANUFACTURER NAME AND MODEL NUMBER',
+                    'system_operation' => 'C2. SYSTEM OPERATION (zoned, non zoned, single or two stage) - supervised circuits',
+                    'location_control' => 'C3. LOCATION OF CONTROL UNIT OR TRANSPONDERS, DISPLAY AND CONTROL CENTERS,ANNUNCIATORS, AND REMOTE TROUBLE SIGNAL UNITS.',
+                    'description' => 'C4. DESCRIPTION OF DEGRADED MODE CAPABILITY OPERATION, IF APPLICABLE',
+                    'sequence' => 'C5. SEQUENCE OF OPERATION, INCLUDING, BUT NOT LIMITED TO THE FOLLOWING BRIEFLY DESCRIBED',
+                    'general_description' => 'C6. GENERAL DESCRIPTION OF LOCATION OF DEVICES CONNECTED TO CONTROL UNIT OR TRANSPONDER.',
+                    'voice_communication' => 'C7. VOICE COMMUNICATION SYSTEM AND OPERATION.',
+                    'emergency_telephone' => 'C8. EMERGENCY TELEPHONE EQUIPMENT AND OPERATION.',
+                    'emergency_power' => 'C9. EMERGENCY POWER SUPPLY (IE. BATTERIES IN ONE CENTRAL LOCATION OR DISTRIBUTED IN CONTROL UNITS OR TRANSPONDERS, EMERGENCY GENERATOR OR A COMBINATION OF BOTH) - DISTRIBUTION OF BATTERY TYPE, CHARGING PROCEDURE AND MAINTENANCE.',
+                    'system_battery' => 'C10. SYSTEM BATTERY LOAD CALCULATIONS');
 
-				$questions = array('sequence' 		 	=> array(1, false),
-							  	   'general_description'=> array(2, false),
-							   	   'system_battery' 	=> array(3, true));
-				$documentInfo = $documentObj->getData('document_data_13_data','document_id',$document_id);
-				foreach($fields as $field_name => $title) {
-					$html .= '<font size="8"><u><b>'.$title.'</b></u></font><br />';
-					$html .= '<font size="6">'.$documentInfo[$field_name].'</font><br /><br />';
-					if (!empty($questions[$field_name][0])) {
-						$html .= self::getQuestionsHTML($document_id, $typeID, $questions[$field_name][0], array(1 => 'Yes', 0 => 'No', 'n/a' => 'N/A'), false, 'letters', $questions[$field_name][1]);
-						$html .= '<br />';
-					}
-				}
-			break;
-		}
-		return $html;
-	}
-
-        public static function getYears($property_id) {
-            global $cfg;
-            
-            $db = new database();
-            $query = "SELECT distinct(year) as document_year FROM documents WHERE property_id = $property_id AND state_id = 1";
-            $results = $db->dbQuery($query);
-
-            $return = array();
-            while ($myrow = $db->row($results)) {
-                    $return[] = $myrow['document_year'];
-            }
-            return $return;
-        }
-        
-	public static function getQuestionsHTML($document_id, $type_id, $section=null, $options_array = array(1 => 'Yes', 0 => 'No'), $add_question = false, $iterate = 'letters', $skip_html = false) {
-		global $cfg;
-		// Process our questions
-		$questions = document::getDocumentQuestionsByTypeId($type_id, $section);
-		$answers = document::getDocumentAnswers($document_id);
-		$custom_answers = document::getCustomDocumentAnswers($document_id);
-                $html = '';
-		if (is_array($questions)) {
-			$nums = 1;
-			$letters = 'A';
-			$html .= '<br /> <table border="1" style="font-size: 30px; border: 1px solid #000000;border: 1px solid red;" cellpadding="5" width="100%">';
-
-			$html .= '<tr bgcolor="#000000" align="center">';
-			if (!is_null($iterate)) {
-				$html .= '<td width="5.9%">&nbsp; </td>';
-			}
-			$html .= '<td width="40%">&nbsp; </td>';
-			foreach($options_array as $key => $value) {
-				$html .= '<td width="18%" align="center" style="color: #ffffff;">';
-				if (!$skip_html) {
-					$html .= $value;
-				} else {
-					$html .= ' &nbsp; ';
-				}
-				$html .= '</td>';
-			}
-			$html .= '</tr>';
-			foreach($questions as $questionArray) {
-				$html .= '<tr valign="middle">';
-				if ($iterate == 'numbers') {
-					$html .= '<td width="5.9%">'.$nums.'.</td>';
-				} elseif ($iterate == 'letters') {
-					$html .= '<td width="5.9%">'.strtoupper($letters).'.</td>';
-				}
-				$html .= '<td width="40%">'.$questionArray['question'];
-				$html .= ($add_question) ? '?' : '';
-				$html .= '</td>';
-				if ($option_name_array = document::getCustomOption($questionArray['id'])) {
-					$html .= '<td colspan="'.(count($option_name_array)+2).'">';
-					$html .= '<table cellpadding="2" border="0" width="100%">';
-					foreach($option_name_array as $key => $row) {
-						if (!empty($row['optionname_before']) && !empty($row['optionname_after'])) {
-							$width = '33';
-						} else {
-							$width = '50';
-						}
-                                                $width = '18';
-						if (!empty($row['optionname_before']) && !empty($row['optionname_after'])) {
-							$align = 'center';
-						} elseif (!empty($row['optionname_before'])) {
-							$align = "left";
-						} else {
-							$align = "right";
-						}
-						$html .= '<tr>';
-						 if (!empty($row['optionname_before'])) {
-						 	$html .= '<td width="'.$width.'%" align="right">'.$row['optionname_before'].':</td>';
-						 }
-						 $html .= '<td width="'.$width.'%" align="'.$align.'">'.$custom_answers[$row['id']].'</td>';
-						 if (!empty($row['optionname_after'])) {
-						 	$html .= '<td width="'.$width.'%" align="left">'.$row['optionname_after'].'</td>';
-						 }
-						$html .= '</tr>';
-					}
-					$html .= '</table></td>';
-				} else {
-					foreach($options_array as $key => $value) {
-						$html .= '<td width="18%" align="center" valign="middle">';
-						if (!empty($answers[$questionArray['id']]) && $answers[$questionArray['id']] == $value) {
-							//$html .= $value;
-							$html .= '<img src="'.$cfg['site_url'].'/images/red_checkmark.gif" width="8" height="8" />';
-						}
-						$html .= '</td>';
-					}
-				}
-				$html .= '</tr>';
-				$nums++;
-				$letters = self::iterate($letters);
-			}
-			$html .= '</table>';
-		}
-		return $html;
-	}
-
-	/////////////////////////////////////////////////////////////////////
-
-	public static function iterate($letter) {
-		$letters_array = array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
-							   'AA','BB','CC','DD','EE','FF','GG','HH','II','JJ','KK','LL','MM','NN','OO','PP','QQ','RR','SS','TT','UU','VV','WW','XX','YY','ZZ');
-		if (($key = array_search($letter, $letters_array)) === false) {
-			return 'A';
-		} else {
-			return $letters_array[$key+1];
-		}
-	}
-
-	public static function getDocumentImage($document_id) {
-		global $cfg;
-		$db = new database();
-		$query = "SELECT * FROM document_images WHERE document_id = $document_id";
-		$results = $db->dbQuery($query);
-		if ($db->num_rows($results) != 0) {
-			return $cfg['image_save_url'].'/'.$db->result($results,0,'image');
-		} else {
-			return null;
-		}
-	}
-        
-        public static function copyDevices($devices, $temp_id) {
-            global $cfg;
-            $db = new database();
-            
-            if (is_array($devices) && count($devices) > 0) {
-                $document = new document();
-                foreach($devices as $d) {
-                    $save_array = array('temp_id'               => $temp_id,
-                                        'location'              => $d['location'],
-                                        'device'                => $d['device'],
-                                        'correctly_installed'   => $d['correctly_installed'],
-                                        'requires_service'      => $d['requires_service'],
-                                        'alarm'                 => $d['alarm'],
-                                        'confirmed'             => $d['confirmed'],
-                                        'zone_address'          => $d['zone_address'],
-                                        'smoke_sensitivity'     => $d['smoke_sensitivity'],
-                                        'remarks'               => $d['remarks']);
-                    $document->saveData('document_data_9_device', $save_array);	
+                $questions = array('sequence' => array(1, false),
+                    'general_description' => array(2, false),
+                    'system_battery' => array(3, true));
+                $documentInfo = $documentObj->getData('document_data_13_data', 'document_id', $document_id);
+                foreach ($fields as $field_name => $title) {
+                    $html .= '<font size="8"><u><b>' . $title . '</b></u></font><br />';
+                    $html .= '<font size="6">' . $documentInfo[$field_name] . '</font><br /><br />';
+                    if (!empty($questions[$field_name][0])) {
+                        $html .= self::getQuestionsHTML($document_id, $typeID, $questions[$field_name][0], array(1 => 'Yes', 0 => 'No', 'n/a' => 'N/A'), false, 'letters', $questions[$field_name][1]);
+                        $html .= '<br />';
+                    }
                 }
+                break;
+        }
+        return $html;
+    }
+
+    public static function getYears($property_id) {
+        global $cfg;
+
+        $db = new database();
+        $query = "SELECT distinct(year) as document_year FROM documents WHERE property_id = $property_id AND state_id = 1";
+        $results = $db->dbQuery($query);
+
+        $return = array();
+        while ($myrow = $db->row($results)) {
+            $return[] = $myrow['document_year'];
+        }
+        return $return;
+    }
+
+    public static function getQuestionsHTML($document_id, $type_id, $section = null, $options_array = array(1 => 'Yes', 0 => 'No'), $add_question = false, $iterate = 'letters', $skip_html = false) {
+        global $cfg;
+        // Process our questions
+        $questions = document::getDocumentQuestionsByTypeId($type_id, $section);
+        $answers = document::getDocumentAnswers($document_id);
+        $custom_answers = document::getCustomDocumentAnswers($document_id);
+        $html = '';
+        if (is_array($questions)) {
+            $nums = 1;
+            $letters = 'A';
+            $html .= '<br /> <table border="1" style="font-size: 30px; border: 1px solid #000000;border: 1px solid red;" cellpadding="5" width="100%">';
+
+            $html .= '<tr bgcolor="#000000" align="center">';
+            if (!is_null($iterate)) {
+                $html .= '<td width="5.9%">&nbsp; </td>';
+            }
+            $html .= '<td width="40%">&nbsp; </td>';
+            foreach ($options_array as $key => $value) {
+                $html .= '<td width="18%" align="center" style="color: #ffffff;">';
+                if (!$skip_html) {
+                    $html .= $value;
+                } else {
+                    $html .= ' &nbsp; ';
+                }
+                $html .= '</td>';
+            }
+            $html .= '</tr>';
+            foreach ($questions as $questionArray) {
+                $html .= '<tr valign="middle">';
+                if ($iterate == 'numbers') {
+                    $html .= '<td width="5.9%">' . $nums . '.</td>';
+                } elseif ($iterate == 'letters') {
+                    $html .= '<td width="5.9%">' . strtoupper($letters) . '.</td>';
+                }
+                $html .= '<td width="40%">' . $questionArray['question'];
+                $html .= ($add_question) ? '?' : '';
+                $html .= '</td>';
+                if ($option_name_array = document::getCustomOption($questionArray['id'])) {
+                    $html .= '<td colspan="' . (count($option_name_array) + 2) . '">';
+                    $html .= '<table cellpadding="2" border="0" width="100%">';
+                    foreach ($option_name_array as $key => $row) {
+                        if (!empty($row['optionname_before']) && !empty($row['optionname_after'])) {
+                            $width = '33';
+                        } else {
+                            $width = '50';
+                        }
+                        $width = '18';
+                        if (!empty($row['optionname_before']) && !empty($row['optionname_after'])) {
+                            $align = 'center';
+                        } elseif (!empty($row['optionname_before'])) {
+                            $align = "left";
+                        } else {
+                            $align = "right";
+                        }
+                        $html .= '<tr>';
+                        if (!empty($row['optionname_before'])) {
+                            $html .= '<td width="' . $width . '%" align="right">' . $row['optionname_before'] . ':</td>';
+                        }
+                        $html .= '<td width="' . $width . '%" align="' . $align . '">' . $custom_answers[$row['id']] . '</td>';
+                        if (!empty($row['optionname_after'])) {
+                            $html .= '<td width="' . $width . '%" align="left">' . $row['optionname_after'] . '</td>';
+                        }
+                        $html .= '</tr>';
+                    }
+                    $html .= '</table></td>';
+                } else {
+                    foreach ($options_array as $key => $value) {
+                        $html .= '<td width="18%" align="center" valign="middle">';
+                        if (!empty($answers[$questionArray['id']]) && $answers[$questionArray['id']] == $value) {
+                            //$html .= $value;
+                            $html .= '<img src="' . $cfg['site_url'] . '/images/red_checkmark.gif" width="8" height="8" />';
+                        }
+                        $html .= '</td>';
+                    }
+                }
+                $html .= '</tr>';
+                $nums++;
+                $letters = self::iterate($letters);
+            }
+            $html .= '</table>';
+        }
+        return $html;
+    }
+
+    /////////////////////////////////////////////////////////////////////
+
+    public static function iterate($letter) {
+        $letters_array = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+            'AA', 'BB', 'CC', 'DD', 'EE', 'FF', 'GG', 'HH', 'II', 'JJ', 'KK', 'LL', 'MM', 'NN', 'OO', 'PP', 'QQ', 'RR', 'SS', 'TT', 'UU', 'VV', 'WW', 'XX', 'YY', 'ZZ');
+        if (($key = array_search($letter, $letters_array)) === false) {
+            return 'A';
+        } else {
+            return $letters_array[$key + 1];
+        }
+    }
+
+    public static function getDocumentImage($document_id) {
+        global $cfg;
+        $db = new database();
+        $query = "SELECT * FROM document_images WHERE document_id = $document_id";
+        $results = $db->dbQuery($query);
+        if ($db->num_rows($results) != 0) {
+            return $cfg['image_save_url'] . '/' . $db->result($results, 0, 'image');
+        } else {
+            return null;
+        }
+    }
+
+    public static function copyDevices($devices, $temp_id) {
+        global $cfg;
+        $db = new database();
+
+        if (is_array($devices) && count($devices) > 0) {
+            $document = new document();
+            foreach ($devices as $d) {
+                $save_array = array('temp_id' => $temp_id,
+                    'location' => $d['location'],
+                    'device' => $d['device'],
+                    'correctly_installed' => $d['correctly_installed'],
+                    'requires_service' => $d['requires_service'],
+                    'alarm' => $d['alarm'],
+                    'confirmed' => $d['confirmed'],
+                    'zone_address' => $d['zone_address'],
+                    'smoke_sensitivity' => $d['smoke_sensitivity'],
+                    'remarks' => $d['remarks']);
+                $document->saveData('document_data_9_device', $save_array);
             }
         }
+    }
+
 }
