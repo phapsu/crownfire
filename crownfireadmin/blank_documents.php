@@ -11,7 +11,7 @@ $document_list = $document->getBlankDocumentsByUserId($_SESSION['user_id']);
 ?>
 <?=$display->userInfoWindow($user_data)?>
 <br />
-<ul class="tools">
+<ul class="tools" style="display: none">
     <li><a href="add_blank_document.php?user_id=<?=$_REQUEST['user_id']?>&redirect=<?php echo urlencode('blank_documents.php?user_id='.$_SESSION['admin_id']);?>" class="addproperty">Add Document</a></li>	
 </ul>
 <br />

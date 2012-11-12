@@ -198,6 +198,8 @@ class document_12 extends blank_document {
         
         $html .= '</table><br />'; 
         
+        $html .= '<br pagebreak="true"/>';
+        
         $html .= '<table border="0" style="font-size: 30px; width: 100%;" cellpadding="0">';
         $html .= '<tr valign="bottom"><td><b>Comments</b></td></tr>';
         $html .= '<tr valign="top"><td> '.self::dottedLine(7).'</td></tr>';
