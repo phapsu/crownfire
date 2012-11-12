@@ -1,59 +1,113 @@
 <?php
 //include('../blank_document.class.php');
-class document_1 extends blank_document {
+class document_13 extends blank_document {
  
     public function show($customerInfo){
-        $html = parent::tableDottedHeader($customerInfo['name']);
+        $html = '<table border="0" style="font-size: 30px; width: 100%;" cellpadding="0">';
 
-        $html .= '<font size="10"><b>Alarm Panel Information</b></font><br /><br />';
-        $html .= '<table border="1" style="font-size: 25px; width: 100%;" cellpadding="5">';
-        $html .= '<tr bgcolor="#000000" style="color: #FFFFFF;">
-                                                                                <td colspan="4" width="50%">&nbsp; </td>
-                                                                                <td width="25%">Alarm Circuit</td>
-                                                                                <td width="25%">Supervisory Circuit</td>
-                                                                          </tr>';
-        for ($i = 0; $i < 20; $i++) {
-            $html .= '<tr>
-                                                                                   <td width="15%">Zone Name:</td>
-                                                                                   <td width="15%"></td>
-                                                                                   <td width="10%">Zone #:</td>
-                                                                                   <td width="10%"></td>
-                                                                                   <td width="25%"></td>
-                                                                                   <td width="25%"></td>
-                                                                                  </tr>';
-        }
-        $html .= '</table>';
-
-        $html .= '<br /><br />';    
+        $html .= '<tr valign="bottom"><td><b>Building Address</b></td></tr>';
+        $html .= '<tr valign="top"><td> '.self::dottedLine(7).'</td></tr>';
+        $html .= '<tr><td>&nbsp;</td></tr>';
+        
+        $html .= '<tr valign="bottom"><td><b>Date of Information</b></td></tr>';
+        $html .= '<tr valign="top"><td> '.self::dottedLine(7).'</td></tr>';
+        $html .= '<tr><td>&nbsp;</td></tr>';
+        
+        $html .= '<tr valign="bottom"><td><b>C1. MANUFACTURER NAME AND MODEL NUMBER</b></td></tr>';
+        $html .= '<tr valign="top"><td> '.self::dottedLine(7).'</td></tr>';
+        $html .= '<tr><td>&nbsp;</td></tr>';
+        
+        $html .= '<tr valign="bottom"><td><b>C2. SYSTEM OPERATION (zoned, non zoned, single or two stage) - supervised circuits</b></td></tr>';
+        $html .= '<tr valign="top"><td> '.self::dottedLine(7).'</td></tr>';
+        $html .= '<tr><td>&nbsp;</td></tr>';
+        
+        $html .= '<tr valign="bottom"><td><b>C3. LOCATION OF CONTROL UNIT OR TRANSPONDERS, DISPLAY AND CONTROL CENTERS,ANNUNCIATORS, AND REMOTE TROUBLE SIGNAL UNITS.</b></td></tr>';
+        $html .= '<tr valign="top"><td> '.self::dottedLine(7).'</td></tr>';
+        $html .= '<tr><td>&nbsp;</td></tr>';
+      
+        $html .= '<tr valign="bottom"><td><b>C4. DESCRIPTION OF DEGRADED MODE CAPABILITY OPERATION, IF APPLICABLE</b></td></tr>';
+        $html .= '<tr valign="top"><td> '.self::dottedLine(7).'</td></tr>';
+        $html .= '<tr><td>&nbsp;</td></tr>';
+        
+        $html .= '<tr valign="bottom"><td><b>C5. SEQUENCE OF OPERATION, INCLUDING, BUT NOT LIMITED TO THE FOLLOWING BRIEFLY DESCRIBED</b></td></tr>';
+        $html .= '<tr valign="top"><td> '.self::dottedLine(7).'</td></tr>';
+        $html .= '<tr><td>&nbsp;</td></tr>';
+        
+        $html .= '<tr valign="bottom"><td><b>C5. SEQUENCE OF OPERATION, INCLUDING, BUT NOT LIMITED TO THE FOLLOWING BRIEFLY DESCRIBED</b></td></tr>';
+        $html .= '<tr valign="top"><td> '.self::dottedLine(7).'</td></tr>';
+        $html .= '<tr><td>&nbsp;</td></tr>';       
+      
+        $html .= '</table><br />'; 
+        
+        $html .= '<table width="100%" cellpadding="5" border="1" style="font-size: 30px; border: 1px solid #000000;border: 1px solid red;">';
+        $html .= '<tr bgcolor="#000000" align="center"><td width="70%">&nbsp; </td><td width="10%" align="center" style="color: #ffffff;">Yes</td><td width="10%" align="center" style="color: #ffffff;">No</td><td width="10%" align="center" style="color: #ffffff;">N/A</td></tr>';
+        $html .= '<tr><td>A. Alert signal and alarm signal sequence</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
+        $html .= '<tr><td>B. Procedure for resetting alarm system, silencing alarm signals and acknowledging trouble conditions</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
+        $html .= '<tr><td>C. Identifying function of each operable switch or push button on the control unit or transponder</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
+        $html .= '<tr><td>D. Smoke control system or fan shutdown connections present</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
+        $html .= '<tr><td>E. Elevator homing activated by fire alarm</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';  
+        $html .= '<tr><td>F. Magnetic door lock release activated by fire alarm</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
+        $html .= '<tr><td>G. Door holder release activated by fire alarm </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
+        $html .= '<tr><td>H. Extinguishing system activated by fire alarm</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
+        $html .= '<tr><td>I. Transmission of signals to remote monitoring connection </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
+        
+        $html .= '</table><br />'; 
+        
+        
+        $html .= '<table border="0" style="font-size: 30px; width: 100%;" cellpadding="0">'; 
+        
+        $html .= '<tr valign="bottom"><td><b>C6. GENERAL DESCRIPTION OF LOCATION OF DEVICES CONNECTED TO CONTROL UNIT OR TRANSPONDER.</b></td></tr>';
+        $html .= '<tr valign="top"><td> '.self::dottedLine(7).'</td></tr>';
+        $html .= '<tr><td>&nbsp;</td></tr>';
+      
+        $html .= '</table><br />';
+        
+        $html .= '<table width="100%" cellpadding="5" border="1" style="font-size: 30px; border: 1px solid #000000;border: 1px solid red;">';
+        $html .= '<tr bgcolor="#000000" align="center"><td width="70%">&nbsp; </td><td width="10%" align="center" style="color: #ffffff;">Yes</td><td width="10%" align="center" style="color: #ffffff;">No</td><td width="10%" align="center" style="color: #ffffff;">N/A</td></tr>';
+        $html .= '<tr><td>A. Sprinkler flow and valve supervisory switches on a floor-by-floor basis</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
+        $html .= '<tr><td>B. Manual pull stations at exits </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
+        $html .= '<tr><td>C. Smoke detectors in stairwells and corridors </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
+        $html .= '<tr><td>D. Heat detectors at the top of elevator shafts and in service and storage </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
+        $html .= '<tr><td>E. Duct type smoke detectors in air handling systems </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';  
+        $html .= '<tr><td>F. Ancillary systems (kitchen extinguishing) </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
+        $html .= '<tr><td>G. Bells, horns or speakers throughout </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
+        $html .= '<tr><td>H. Emergency telephones at exits and </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
+        $html .= '<tr><td>I. Visible signal devices in public areas</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
+        
+        $html .= '</table><br />';      
+        
+        $html .= '<table border="0" style="font-size: 30px; width: 100%;" cellpadding="0">'; 
+          
+        $html .= '<tr valign="bottom"><td><b>C7. VOICE COMMUNICATION SYSTEM AND OPERATION.</b></td></tr>';
+        $html .= '<tr valign="top"><td> '.self::dottedLine(7).'</td></tr>';
+        $html .= '<tr><td>&nbsp;</td></tr>';
+        
+        $html .= '<tr valign="bottom"><td><b>C8. EMERGENCY TELEPHONE EQUIPMENT AND OPERATION.</b></td></tr>';
+        $html .= '<tr valign="top"><td> '.self::dottedLine(7).'</td></tr>';
+        $html .= '<tr><td>&nbsp;</td></tr>';
+        
+        $html .= '<tr valign="bottom"><td><b>C9. EMERGENCY POWER SUPPLY (IE. BATTERIES IN ONE CENTRAL LOCATION OR DISTRIBUTED IN CONTROL UNITS OR TRANSPONDERS, EMERGENCY GENERATOR OR A COMBINATION OF BOTH) - DISTRIBUTION OF BATTERY TYPE, CHARGING PROCEDURE AND MAINTENANCE.</b></td></tr>';
+        $html .= '<tr valign="top"><td> '.self::dottedLine(7).'</td></tr>';
+        $html .= '<tr><td>&nbsp;</td></tr>';
+        
+        $html .= '<tr valign="bottom"><td><b>C10. SYSTEM BATTERY LOAD CALCULATIONS</b></td></tr>';
+        $html .= '<tr valign="top"><td> '.self::dottedLine(7).'</td></tr>';
+        $html .= '<tr><td>&nbsp;</td></tr>';
+        $html .= '</table><br />';          
+        
+        $html .= '<table width="100%" cellpadding="5" border="1" style="font-size: 30px; border: 1px solid #000000;border: 1px solid red;">';
+        
+        $html .= '<tr><td width="55%">A. Sprinkler flow and valve supervisory switches on a floor-by-floor basis</td><td width="40%">'.self::dottedLine(3).'</td><td width="5%">&nbsp;</td></tr>';
+        $html .= '<tr><td>B. Supervisory current</td><td>'.self::dottedLine(3).'</td><td>A</td></tr>';
+        $html .= '<tr><td>C. Full load alarm current </td><td>'.self::dottedLine(3).'</td><td>A</td></tr>';
+        $html .= '<tr><td>D. 24 x SV Current </td><td>'.self::dottedLine(3).'</td><td>Ah</td></tr>';
+        $html .= '<tr><td>E. 30 min. of alarm = 0.5 x Full Load = </td><td>'.self::dottedLine(3).'</td><td>Ah</td></tr>';
+        $html .= '<tr><td>F. Total Ah = #4 + #5 = </td><td>'.self::dottedLine(3).'</td><td>Ah</td></tr>';
+        
+        $html .= '</table><br />'; 
+        
         
         return $html;
     }
 }
 ?>
- // This one is a bit different.  I got lazy.
-                $fields = array();
-                $fields = array('building_address' => 'Building Address',
-                    'information_date' => 'Date of Information',
-                    'manufacturer_name' => 'C1. MANUFACTURER NAME AND MODEL NUMBER',
-                    'system_operation' => 'C2. SYSTEM OPERATION (zoned, non zoned, single or two stage) - supervised circuits',
-                    'location_control' => 'C3. LOCATION OF CONTROL UNIT OR TRANSPONDERS, DISPLAY AND CONTROL CENTERS,ANNUNCIATORS, AND REMOTE TROUBLE SIGNAL UNITS.',
-                    'description' => 'C4. DESCRIPTION OF DEGRADED MODE CAPABILITY OPERATION, IF APPLICABLE',
-                    'sequence' => 'C5. SEQUENCE OF OPERATION, INCLUDING, BUT NOT LIMITED TO THE FOLLOWING BRIEFLY DESCRIBED',
-                    'general_description' => 'C6. GENERAL DESCRIPTION OF LOCATION OF DEVICES CONNECTED TO CONTROL UNIT OR TRANSPONDER.',
-                    'voice_communication' => 'C7. VOICE COMMUNICATION SYSTEM AND OPERATION.',
-                    'emergency_telephone' => 'C8. EMERGENCY TELEPHONE EQUIPMENT AND OPERATION.',
-                    'emergency_power' => 'C9. EMERGENCY POWER SUPPLY (IE. BATTERIES IN ONE CENTRAL LOCATION OR DISTRIBUTED IN CONTROL UNITS OR TRANSPONDERS, EMERGENCY GENERATOR OR A COMBINATION OF BOTH) - DISTRIBUTION OF BATTERY TYPE, CHARGING PROCEDURE AND MAINTENANCE.',
-                    'system_battery' => 'C10. SYSTEM BATTERY LOAD CALCULATIONS');
-
-                $questions = array('sequence' => array(1, false),
-                    'general_description' => array(2, false),
-                    'system_battery' => array(3, true));
-                $documentInfo = $documentObj->getData('document_data_13_data', 'document_id', $document_id);
-                foreach ($fields as $field_name => $title) {
-                    $html .= '<font size="8"><u><b>' . $title . '</b></u></font><br />';
-                    $html .= '<font size="6">' . $documentInfo[$field_name] . '</font><br /><br />';
-                    if (!empty($questions[$field_name][0])) {
-                        $html .= self::getQuestionsHTML($document_id, $typeID, $questions[$field_name][0], array(1 => 'Yes', 0 => 'No', 'n/a' => 'N/A'), false, 'letters', $questions[$field_name][1]);
-                        $html .= '<br />';
-                    }
-                }
