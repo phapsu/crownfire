@@ -6,17 +6,18 @@ class document_10 extends blank_document {
         //$html = parent::tableDottedHeader($customerInfo['name']);
         
                 
-                $html = '<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
+                $html = '<table style="font-size: 25px;" cellpadding="0" cellspacing="0" width="100%">
+                                                        <tr valign="top"><td colspan="2"><br></td></tr>
 							 <tr>
 							  <td width="30%"><b>Location:</b></td>
-							  <td>' .self::dottedLine(1). '</td>
+							  <td width="70%">' .self::dottedLine(1). '</td>
 							 </tr>
 							 <tr>
-							  <td width="30%"><b>Date:</b></td>
+							  <td><b>Date:</b></td>
 							  <td>' .self::dottedLine(1).'</td>
 							 </tr>
 							 <tr>
-							  <td width="30%"><b>Owner:</b></td>
+							  <td><b>Owner:</b></td>
 							  <td>'.self::dottedLine(1). '</td>
 							 </tr>
 							 <tr>
@@ -28,7 +29,7 @@ class document_10 extends blank_document {
 
 							<font size="10"><b>Fire Pump Info</b></font><br /><br />
 
-							<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="0" cellspacing="5" width="100%">
+							<table style="font-size: 25px; border: 1px solid #000000;" cellpadding="0" cellspacing="5" width="100%">
 							 <tr bgcolor="#EEEEEE" align="center">
 							  <td colspan="2" width="50%"><b>Driver</b></td>
 							  <td colspan="2" width="50%"><b>Pump</b></td>
@@ -92,7 +93,7 @@ class document_10 extends blank_document {
 
 							<font size="10"><b>Associated Piping</b></font><br /><br />
 
-							<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="0" cellspacing="5" width="100%">
+							<table style="font-size: 25px; border: 1px solid #000000;" cellpadding="0" cellspacing="5" width="100%">
 							 <tr>
 							  <td width="25%"><b>Suction Piping:</b></td>
 							  <td width="25%">' .self::dottedLine(1). '</td>
@@ -118,10 +119,12 @@ class document_10 extends blank_document {
 							  <td width="25%">' .self::dottedLine(1). '</td>
 							 </tr>
 							</table><br /><br />
+                                                        
+                                                        <br pagebreak="true"/>    
 
                                                         <font size="10"><b>Test Data</b></font><br /><br />
 
-							<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="0" cellspacing="5" width="100%">
+							<table style="font-size: 25px; border: 1px solid #000000;" cellpadding="0" cellspacing="5" width="100%">
 							 <tr>
 							  <td><b>Time of Test</b></td>
 							  <td colspan="3" align="left">' .self::dottedLine(1). '</td>
@@ -190,7 +193,7 @@ class document_10 extends blank_document {
 							 </tr>
 							</table>
 							<br /><br />
-							<table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
+							<table style="font-size: 25px;" cellpadding="0" cellspacing="5" width="100%">
 							 <tr>
 							  <td width="20%"><b>Lead Technicion:</b></td>
 							  <td colspan="3">' .self::dottedLine(1). '</td>

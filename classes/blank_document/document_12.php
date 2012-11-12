@@ -5,39 +5,39 @@ class document_12 extends blank_document {
     public function show($customerInfo){
         //$html = parent::tableDottedHeader($customerInfo['name']);
 
-        $html = '<table style="font-size: 25px; border: 1px solid #000000;" cellpadding="0" cellspacing="5" width="100%">
+        $html = '<table style="font-size: 25px;" cellpadding="0" cellspacing="0" width="100%">
 							 <tr valign="top">
 							  <td width="40%">
-								<table width="100%" cellpadding="5">
-								 <tr>
+								<table width="100%" cellpadding="15" cellpadding="0">
+								 <tr valign="top">
 								  <td width="40%"><b>Name:</b></td>
 								  <td width="60%">'.self::dottedLine(1).'</td>
 								 </tr>
-								 <tr>
+								 <tr valign="top">
 								  <td width="40%"><b>Address:</b></td>
 								  <td width="60%">' . self::dottedLine(1) . '</td>
 								 </tr>
-								 <tr>
+								 <tr valign="top">
 								  <td width="40%"><b>City:</b></td>
 								  <td width="60%">' . self::dottedLine(1) . '</td>
 								 </tr>
-								 <tr>
+								 <tr valign="top">
 								  <td width="40%"><b>State:</b></td>
 								  <td width="60%">' . self::dottedLine(1) . '</td>
 								 </tr>
-								  <tr>
+								 <tr valign="top">
 								  <td width="40%"><b>Zip:</b></td>
 								  <td width="60%">' . self::dottedLine(1) . '</td>
 								 </tr>
-								 <tr>
+								 <tr valign="top">
 								  <td width="40%"><b>Telephone:</b></td>
 								  <td width="60%">' . self::dottedLine(1) . '</td>
 								 </tr>
-								 <tr>
+								 <tr valign="top">
 								  <td width="40%"><b>Store No.:</b></td>
 								  <td width="60%">' . self::dottedLine(1) . '</td>
 								 </tr>
-								 <tr>
+								 <tr valign="top">
 								  <td width="40%"><b>Owner or Manager:</b></td>
 								  <td width="60%">' . self::dottedLine(1) . '</td>
 								 </tr>
@@ -52,10 +52,10 @@ class document_12 extends blank_document {
 								  <td>P.M.</td>
 								 </tr>
 								 <tr>
-								  <td colspan="2">' . self::dottedLine(1) . '</td>
-								  <td>' . self::dottedLine(1) . '</td>
-								  <td>' . self::dottedLine(1) . '</td>
-								  <td>' . self::dottedLine(1) . '</td>
+								  <td colspan="2"></td>
+								  <td></td>
+								  <td></td>
+								  <td></td>
 								 </tr>
 								 <tr bgcolor="#000000" style="color: #ffffff;">
 								  <td>Annual</td>
@@ -65,19 +65,19 @@ class document_12 extends blank_document {
 								  <td>Renovation</td>
 								 </tr>
 								 <tr>
-								  <td>' . self::dottedLine(1) . '</td>
-								  <td>' . self::dottedLine(1) . '</td>
-								  <td>' . self::dottedLine(1) . '</td>
-								  <td>' . self::dottedLine(1) . '</td>
-								  <td>' . self::dottedLine(1) . '</td>
+								  <td></td>
+								  <td></td>
+								  <td></td>
+								  <td></td>
+								  <td></td>
 								 </tr>
 								 <tr bgcolor="#000000" style="color: #ffffff;">
 								  <td colspan="4">Location of System Cynlinders</td>
 								  <td>UL 300</td>
 								 </tr>
 								 <tr>
-								  <td colspan="4">' . self::dottedLine(1) . '</td>
-								  <td>' . self::dottedLine(1) . '</td>
+								  <td colspan="4"></td>
+								  <td></td>
 								 </tr>
 								 <tr bgcolor="#000000" style="color: #ffffff;">
 								  <td colspan="2">Manufacturer</td>
@@ -86,10 +86,10 @@ class document_12 extends blank_document {
 								  <td>Dry Chemical</td>
 								 </tr>
 								 <tr>
-								  <td colspan="2">' . self::dottedLine(1) . '</td>
-								  <td>' . self::dottedLine(1) . '</td>
-								  <td>' . self::dottedLine(1) . '</td>
-								  <td>' . self::dottedLine(1) . '</td>
+								  <td colspan="2"></td>
+								  <td></td>
+								  <td></td>
+								  <td></td>
 								 </tr>
 								 <tr bgcolor="#000000" style="color: #ffffff;" align="center">
 								  <td colspan="2">Cylinder Size Master</td>
@@ -97,9 +97,9 @@ class document_12 extends blank_document {
 								  <td colspan="2">Cylinder Size Slave</td>
 								 </tr>
 								 <tr align="center">
-								  <td colspan="2">' . self::dottedLine(1) . '</td>
-								  <td>' . self::dottedLine(1) . '</td>
-								  <td colspan="2">' . self::dottedLine(1) . '</td>
+								  <td colspan="2"></td>
+								  <td></td>
+								  <td colspan="2"></td>
 								 </tr>
 								 <tr bgcolor="#000000" style="color: #ffffff;">
 								  <td colspan="2">Fuel Shut-Off</td>
@@ -108,10 +108,10 @@ class document_12 extends blank_document {
 								  <td>Size</td>
 								 </tr>
 								 <tr>
-								  <td colspan="2">' . self::dottedLine(1) . '</td>
-								  <td>' . self::dottedLine(1) . '</td>
-								  <td>' . self::dottedLine(1) . '</td>
-								  <td>' . self::dottedLine(1) . '</td>
+								  <td colspan="2"></td>
+								  <td></td>
+								  <td></td>
+								  <td></td>
 								 </tr>
 								 <tr bgcolor="#000000" style="color: #ffffff;" align="center">
 								  <td colspan="2">Serial Number</td>
@@ -119,17 +119,17 @@ class document_12 extends blank_document {
 								  <td colspan="2">Last Recharge Date</td>
 								 </tr>
 								 <tr align="center">
-								  <td colspan="2">' . self::dottedLine(1) . '</td>
-								  <td>' . self::dottedLine(1) . '</td>
-								  <td colspan="2">' . self::dottedLine(1) . '</td>
+								  <td colspan="2"></td>
+								  <td></td>
+								  <td colspan="2"></td>
 								 </tr>
 								 <tr bgcolor="#000000" style="color: #ffffff;">
 								  <td colspan="5">Manufacturer\'s Manual Reference</td>
 								 </tr>
 								 <tr>
-								  <td width="33%" colspan="2">Page No.: ' . self::dottedLine(1) . '</td>
-								  <td width="33%">Drawing No.: ' . self::dottedLine(1) . '</td>
-								  <td width="33%" colspan="2">Date: ' . self::dottedLine(1) . '</td>
+								  <td width="33%" colspan="2">Page No.: </td>
+								  <td width="33%">Drawing No.: </td>
+								  <td width="34%" colspan="2">Date: </td>
 								 </tr>
 								</table>
 							  </td>
@@ -137,24 +137,24 @@ class document_12 extends blank_document {
 							</table>
 
 							<h3>Cooking Appliance Locations: Left to Right</h3>
-							<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="5" cellspacing="0" width="100%" border="1">
+							<table style="font-size: 25px; border: 1px solid #000000;" cellpadding="5" cellspacing="0" width="100%" border="1">
 							 <tr align="center">
-							  <td width="25%">' . self::dottedLine(1) . '</td>
-							  <td width="25%">' . self::dottedLine(1) . '</td>
-							  <td width="25%">' . self::dottedLine(1) . '</td>
-							  <td width="25%">' . self::dottedLine(1) . '</td>
+							  <td width="25%"></td>
+							  <td width="25%"></td>
+                                                          <td width="25%"></td>
+                                                          <td width="25%"></td>
 							 </tr>
 							  <tr align="center">
-							  <td width="25%">' . self::dottedLine(1) . '</td>
-							  <td width="25%">' . self::dottedLine(1) . '</td>
-							  <td width="25%">' . self::dottedLine(1) . '</td>
-							  <td width="25%">' . self::dottedLine(1) . '</td>
+							  <td width="25%"></td>
+							  <td width="25%"></td>
+                                                          <td width="25%"></td>
+                                                          <td width="25%"></td>
 							 </tr>
 							</table>&nbsp; <br />';
         
         
         
-        $html .= '<table width="100%" cellpadding="5" border="1" style="font-size: 30px; border: 1px solid #000000;border: 1px solid #000000;">';
+        $html .= '<table width="100%" cellpadding="5" border="1" style="font-size: 25px; border: 1px solid #000000;border: 1px solid #000000;">';
         $html .= '<tr bgcolor="#000000" align="center"><td width="80%">&nbsp; </td><td width="10%" align="center" style="color: #ffffff;">Yes</td><td width="10%" align="center" style="color: #ffffff;">N/A</td></tr>';
         $html .= '<tr><td>1. All appliances properly covered w/correct nozzles</td><td>&nbsp;</td><td>&nbsp;</td></tr>';    
         $html .= '<tr><td>2. Duct and plenum covered w/correct nozzles </td><td>&nbsp;</td><td>&nbsp;</td></tr>';
@@ -197,10 +197,8 @@ class document_12 extends blank_document {
         
         
         $html .= '</table><br />'; 
-        
-		$html .= '<br pagebreak="true"/>';
 		
-        $html .= '<table border="0" style="font-size: 30px; width: 100%;" cellpadding="0">';
+        $html .= '<table border="0" style="font-size: 25px; width: 100%;" cellpadding="0">';
         $html .= '<tr valign="bottom"><td><b>Comments</b></td></tr>';
         $html .= '<tr valign="top"><td> '.self::dottedLine(7).'</td></tr>';
         $html .= '<tr><td>&nbsp;</td></tr>';
