@@ -17,7 +17,7 @@ class document_7 extends blank_document {
         $html .= parent::getQuestionsHTML(null, $typeID);
 
         $html .= '<br /><font size="10"><b>Valve Info</b></font><br />
-						<table style="font-size: 30px;" cellpadding="0" width="100%">
+						<table style="font-size: 30px;" cellpadding="0" width="100%" border="1" >
 						 <tr align="center" bgcolor="#000000" style="color: #fff; font-weight: bold;">
 						  <td width="16%">Type of Valve</td>
 						  <td width="16%">Make of Valve</td>
@@ -27,12 +27,12 @@ class document_7 extends blank_document {
 						  <td width="16%">Serial Number</td>
 						 </tr>
 						 <tr align="center">
-						  <td>&nbsp;</td>
-						  <td>&nbsp;</td>
-						  <td>&nbsp;</td>
-						  <td>&nbsp;</td>
-						  <td>&nbsp;</td>
-						  <td>&nbsp;</td>
+						  <td>&nbsp;<br/></td>
+						  <td>&nbsp;<br/></td>
+						  <td>&nbsp;<br/></td>
+						  <td>&nbsp;<br/></td>
+						  <td>&nbsp;<br/></td>
+						  <td>&nbsp;<br/></td>
 						 </tr>
 						</table>';
 
