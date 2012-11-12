@@ -137,7 +137,7 @@ class document_12 extends blank_document {
 							</table>
 
 							<h3>Cooking Appliance Locations: Left to Right</h3>
-							<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="5" cellspacing="0" width="99%" border="1">
+							<table style="font-size: 30px; border: 1px solid #000000;" cellpadding="5" cellspacing="0" width="100%" border="1">
 							 <tr align="center">
 							  <td width="25%">' . self::dottedLine(1) . '</td>
 							  <td width="25%">' . self::dottedLine(1) . '</td>
@@ -154,7 +154,7 @@ class document_12 extends blank_document {
         
         
         
-        $html .= '<table width="100%" cellpadding="5" border="1" style="font-size: 30px; border: 1px solid #000000;border: 1px solid red;">';
+        $html .= '<table width="100%" cellpadding="5" border="1" style="font-size: 30px; border: 1px solid #000000;border: 1px solid #000000;">';
         $html .= '<tr bgcolor="#000000" align="center"><td width="80%">&nbsp; </td><td width="10%" align="center" style="color: #ffffff;">Yes</td><td width="10%" align="center" style="color: #ffffff;">N/A</td></tr>';
         $html .= '<tr><td>1. All appliances properly covered w/correct nozzles</td><td>&nbsp;</td><td>&nbsp;</td></tr>';    
         $html .= '<tr><td>2. Duct and plenum covered w/correct nozzles </td><td>&nbsp;</td><td>&nbsp;</td></tr>';
@@ -198,8 +198,8 @@ class document_12 extends blank_document {
         
         $html .= '</table><br />'; 
         
-        $html .= '<br pagebreak="true"/>';
-        
+		$html .= '<br pagebreak="true"/>';
+		
         $html .= '<table border="0" style="font-size: 30px; width: 100%;" cellpadding="0">';
         $html .= '<tr valign="bottom"><td><b>Comments</b></td></tr>';
         $html .= '<tr valign="top"><td> '.self::dottedLine(7).'</td></tr>';
