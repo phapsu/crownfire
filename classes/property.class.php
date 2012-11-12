@@ -55,6 +55,12 @@ class property extends crownfire {
 		}
 		return json_encode($return);
 	}
+        
+	public function getPropertyById($id) {
+		$query = "SELECT * FROM properties WHERE id = '".$this->db->escape_string($id)."'";
+                $results = $this->db->dbQuery($query);
+		return $this->db->row($results);
+	}
 	
 	// Setters
 	public function setPropertyId($id) { 

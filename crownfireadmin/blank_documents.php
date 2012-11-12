@@ -18,11 +18,8 @@ $document_list = $document->getBlankDocumentsByUserId($_SESSION['user_id']);
 
 <table class="listTable highlight" cellspacing="0" cellpadding="0" border="0">
 <tr class="tableRowHeader">
-<th width="5%">ID</th>
-<th width="5%">Year</th>
-<th width="15%">Type</th>
-<th width="5%">&nbsp; </th>
-<th width="5%">&nbsp; </th>
+<th width="10%">&nbsp; </th>
+<th>Type</th>
 </tr>
 <?php
 foreach($document_list as $document_obj) {
@@ -36,22 +33,10 @@ foreach($document_list as $document_obj) {
         $typeName = document::getDocumentTypeById($document_obj->getTypeId());
         $created = $document_obj->getDateAdded();
 	?>
-	<tr align="center">
-	 <td><?=$document_obj->getDocumentId();?></td>
-         <td><?=$document_obj->getYear()?></td>
-	 <td><?=$typeName;?></td>	
-	 <td><a href="delete_document_do.php?id=<?=$document_obj->getDocumentId();?>&user_id=<?=$document_obj->getUserId();?>&property_id=<?=$document_obj->getPropertyId();?>" onclick="return confirm('Are you sure you want to delete this document? \n\n ALL DATA WILL BE LOST');"><img border="0" src="images/icons/delete.png" /></a></td>
-	 <?php
-	 if($document_obj->getTypeId() == 11) {
-	 	?>
-	 	<td><a href="<?=$cfg['site_url']?>/members/view_cert.php?property_id=<?=$document_obj->getPropertyId();?>&name=<?php echo urlencode($document_obj->getName());?>&type=<?php echo urlencode($typeName);?>&created=<?php echo $created;?>&blank=true"><img border="0" src="images/icons/view.png" /></a></td>
-	 	<?php
-	 } else {
-	 	?>
-                <td><a href="blank_document_select_property.php?id=<?=$document_obj->getDocumentId();?>&name=<?php echo urlencode($document_obj->getName());?>&type=<?php echo urlencode($typeName);?>&typeId=<?php echo urlencode($document_obj->getTypeId());?>&created=<?php echo $created;?>&blank=true"><img border="0" src="images/icons/view.png" /></a></td>
-	 	<?php
-	 }
-	 ?>
+	<tr> 
+            <td align="center"><a href="blank_document_select_property.php?id=<?=$document_obj->getDocumentId();?>&name=<?php echo urlencode($document_obj->getName());?>&type=<?php echo urlencode($typeName);?>&typeId=<?php echo urlencode($document_obj->getTypeId());?>&created=<?php echo $created;?>&blank=true"><img border="0" src="images/icons/view.png" /></a></td>
+	 
+            <td><?=$typeName;?></td>
 	</tr>
 <?php
 }

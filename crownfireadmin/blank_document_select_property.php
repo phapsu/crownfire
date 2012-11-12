@@ -30,7 +30,7 @@ $url = 'view_blank_document.php?id='.$_REQUEST['id'].'&name='.$_REQUEST['name'].
             </tr>
             <tr>
                 <td>&nbsp; </td>
-                <td> <button class="continue" type="submit" name="submit_n" value="Save Property">Continue</button>&nbsp; &nbsp; &nbsp; <button class="cancel" type="button" onClick="location.href='documents.php?user_id=<?= $_REQUEST['user_id'] ?>&property_id=<?= $_REQUEST['property_id'] ?>'">Cancel</button></td>
+                <td> <button class="continue" type="submit" name="submit_n" value="Save Property">Continue</button>&nbsp; &nbsp; &nbsp; <button class="cancel" type="button" onClick="location.href='blank_documents.php?user_id=<?= $_SESSION['user_id'] ?>'">Cancel</button></td>
             </tr>
 
         </form>

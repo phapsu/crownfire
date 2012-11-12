@@ -10,16 +10,18 @@ $created = (isset($_REQUEST['created']) && !empty($_REQUEST['created'])) ? date(
 $document_name = (isset($_REQUEST['type']) && !empty($_REQUEST['type'])) ? '['.urldecode($_REQUEST['type']).']'.$document_name.'_'.$created.'.pdf' : 'Document #'.$document_id.'.pdf';
 $blank_document = (isset($_REQUEST['blank'])) ? $_REQUEST['blank'] : false;
 
-//print_r($_POST);
+//print_r($_POST);exit;
 
 $users = new users();
 $cusInfo = $users->getMemberById($_POST['customer_id']);
+$property = new property();
+$propertyInfo = $property->getPropertyById($_POST['property_id']);
 //echo '<pre>';
-//print_r($cusInfo);
-//echo '</pre>';
+//print_r($propertyInfo);
+//echo '</pre>';exit;
 
 $typeID = $_GET['typeId'];
-//$html = blank_document::getDocumentHTML($typeID, $cusInfo);
+//$html = blank_document::getDocumentHTML($typeID, $cusInfo, $propertyInfo);
 //echo $html;exit;
 
 $cache = new JG_Cache($cfg['cache_directory']);
@@ -73,7 +75,7 @@ $pdf->SetFont('dejavusans', '', 10);
 $pdf->AddPage();
 
 // create some HTML content
-$html = blank_document::getDocumentHTML($typeID, $cusInfo);
+$html = blank_document::getDocumentHTML($typeID, $cusInfo, $propertyInfo);
 
 // output the HTML content
 $pdf->writeHTML($html, true, false, true, false, '');

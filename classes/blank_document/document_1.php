@@ -3,7 +3,13 @@
 class document_1 extends blank_document {
  
     public function show($customerInfo){
-        $html = parent::tableDottedHeader($customerInfo['name']);
+        $headerTable = array(
+                        array('Customer Name',$customerInfo['name'], 'Technician 1','&nbsp;'),
+                        array('Address','&nbsp;', 'Technician 2','&nbsp;'),
+                        array('Inspection Date','&nbsp;'),
+                        array('Manufacturer Name & Model Number','&nbsp;')
+                );
+        $html = parent::tableHeader($headerTable);
 
         $html .= '<font size="10"><b>Alarm Panel Information</b></font><br /><br />';
         $html .= '<table border="1" style="font-size: 25px; width: 100%;" cellpadding="5">';
