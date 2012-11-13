@@ -1794,7 +1794,7 @@ outlined in the Annual Fire and Life Safety Report.
 					foreach($formInfo as $form) {
 						$printed++;
 						$html .= '<tr align="center">
-								  <td width="10%">'.$form['location'].'</td>
+								  <td width="20%">'.$form['location'].'</td>
 								  <td width="10%">'.$form['device'].'</td>';
 						$html .= '<td width="10%">';
 						if (strtoupper($form['correctly_installed']) == 'YES') {
@@ -1810,14 +1810,14 @@ outlined in the Annual Fire and Life Safety Report.
 							$html .= ' &nbsp; ';
 						}
 						$html .= '</td>';
-						$html .= '<td width="15%">';
+						$html .= '<td width="10%">';
 						if (strtoupper($form['alarm']) == 'YES') {
 							$html .= '<img src="'.$cfg['site_url'].'/images/red_checkmark.gif" width="8" height="8" />';
 						} else {
 							$html .= ' &nbsp; ';
 						}
 						$html .= '</td>';
-						$html .= '<td width="15%">';
+						$html .= '<td width="10%">';
 						if (strtoupper($form['confirmed']) == 'YES') {
 							$html .= '<img src="'.$cfg['site_url'].'/images/red_checkmark.gif" width="8" height="8" />';
 						} else {
