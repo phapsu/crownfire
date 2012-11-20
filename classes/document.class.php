@@ -187,7 +187,16 @@ class document extends crownfire {
         
 	///////////////////////////////////////////////////////////////////////
 
-	public function getAllDocumentsByPropertyId($property_id, $state = null) {
+	public function getListDocumentTypeIdByPropertyId($property_id) {
+		$query = "SELECT id, type_id FROM documents WHERE property_id = '".$this->db->escape_string($property_id)."'";		
+		$results = $this->db->dbQuery($query);
+		$return = array();
+		while($myrow = $this->db->row($results)) {
+			$return[] = $myrow['type_id'];
+		}
+		return $return;
+	}
+	public function getAllDocumentsByPropertyId($property_id, $state = null) {echo $property_id;
 		$query = "SELECT id FROM documents WHERE property_id = '".$this->db->escape_string($property_id)."'";
 		if(!is_null($state)) {
 			$query .= " AND state_id = '".$this->db->escape_string($state)."'";
