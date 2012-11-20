@@ -5,10 +5,10 @@ class document_3 extends blank_document {
     public function show($customerInfo){
        $typeID = $_REQUEST['typeId'];
        $headerTable = array(
-                        array('Customer Name',$customerInfo['name'], 'Technician 1','&nbsp;'),
-                        array('Address','&nbsp;', 'Technician 2','&nbsp;'),
+                        array('Customer Name',@$_POST['customer_name'], 'Technician 1',@$_POST['technician_1']),
+                        array('Address',@$_POST['address'], 'Technician 2',@$_POST['technician_2']),
                         array('Inspection Date','&nbsp;'),
-                        array('Manufacturer Name & Model Number','&nbsp;')
+                        array('City',@$_POST['city'])
                 );
         $html = parent::tableHeader($headerTable);
 

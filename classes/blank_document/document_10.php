@@ -10,7 +10,7 @@ class document_10 extends blank_document {
                                                         <tr valign="top"><td colspan="2"><br></td></tr>
 							 <tr>
 							  <td width="30%"><b>Location:</b></td>
-							  <td width="70%">' .self::dottedLine(1). '</td>
+							  <td width="70%">' .@$_POST['location'].self::dottedLine(1). '</td>
 							 </tr>
 							 <tr>
 							  <td><b>Date:</b></td>
@@ -18,11 +18,11 @@ class document_10 extends blank_document {
 							 </tr>
 							 <tr>
 							  <td><b>Owner:</b></td>
-							  <td>'.self::dottedLine(1). '</td>
+							  <td>'.@$_POST['owner'].self::dottedLine(1). '</td>
 							 </tr>
 							 <tr>
 							  <td><b>Description of Equiptment:</b></td>
-							  <td>' .self::dottedLine(1). '</td>
+							  <td>' .@$_POST['description'].self::dottedLine(1). '</td>
 							 </tr>
 							</table>
 							<br /><br />

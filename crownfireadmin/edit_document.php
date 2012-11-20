@@ -20,12 +20,14 @@ $documentTypeName = document::getDocumentTypeById($_REQUEST['type_id']);
     <input type="hidden" name="property_id" value="<?= $_REQUEST['property_id'] ?>" />
     <fieldset style="width: 900px;">
         <legend>Document - <?= $documentTypeName ?></legend>
+        <input name="document_name" type="hidden" value="<?= $documentTypeName ?>">
         <table width="100%">
             <tr>
                 <td width="20%">Document Year:</td>
                 <td><input type="text" name="document_year" class="required" value="<?php echo $document->getYear(); ?>" /></td>
             </tr>
         </table>
+        <button value="Blank Document" id="blank_document" name="blank_document" type="button" style="float: right; margin-top: -30px; position: relative;">Blank Document</button>
         <hr color="Red" />
         <?php
         include('includes/document_' . $_REQUEST['type_id'] . '.inc');
@@ -80,5 +82,12 @@ include('templates/footer.inc.php');
 <script>
   $(document).ready(function(){	
     $("#edit_document_2_do").validate();
+    
+    $("#blank_document").click(function(){
+        
+        $('#edit_document_2_do').removeAttr('action');
+        $('#edit_document_2_do').attr('action', 'blank_document_2_do.php');  
+        $('#edit_document_2_do')[0].submit();
+    });
   });
   </script>

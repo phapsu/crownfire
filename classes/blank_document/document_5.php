@@ -6,10 +6,10 @@ class document_5 extends blank_document {
     public function show($customerInfo) {
         
         $headerTable = array(
-            array('Customer Name', $customerInfo['name'], 'Technician', '&nbsp;'),
-            array('Address', '&nbsp;', 'Inspection Date', '&nbsp;'),
-            array('City', '&nbsp;', 'Site', '&nbsp;'),
-            array('Contact', '&nbsp;')
+            array('Customer Name', @$_POST['customer_name'], 'Technician', @$_POST['technician']),
+            array('Address', @$_POST['address'], 'Inspection Date', '&nbsp;'),
+            array('City', @$_POST['city'], 'Site', '&nbsp;'),
+            array('Contact', @$_POST['contact'])
         );
         $html = parent::tableHeader($headerTable);        
         $html .= '<table width="100%" style="border: 1px solid #000; font-size: 22px;" cellpadding="4">

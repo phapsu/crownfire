@@ -31,11 +31,11 @@ class document_9 extends blank_document {
             19 => 'Confirm field device protective dust shield of covers removed');
 
         $headerTable = array(
-            array('Building Name', $buildingName),
-            array('Address', $buildingAdd),
+            array('Building Name', @$_POST['building_name']),
+            array('Address',@$_POST['address']),
             array('Date', '&nbsp;'),
-            array('System Manufacturer', '&nbsp;'),
-            array('Model Number', '&nbsp;'),
+            array('System Manufacturer', @$_POST['system_manufacturer']),
+            array('Model Number', @$_POST['model_number']),
         );
         $header = parent::tableHeader($headerTable);  
         

@@ -11,35 +11,35 @@ class document_12 extends blank_document {
 								<table width="100%" cellpadding="15" cellpadding="0">
 								 <tr valign="top">
 								  <td width="40%"><b>Name:</b></td>
-								  <td width="60%">'.self::dottedLine(1).'</td>
+								  <td width="60%">'.@$_POST['customer_name'].self::dottedLine(1).'</td>
 								 </tr>
 								 <tr valign="top">
 								  <td width="40%"><b>Address:</b></td>
-								  <td width="60%">' . self::dottedLine(1) . '</td>
+								  <td width="60%">' .@$_POST['address']. self::dottedLine(1) . '</td>
 								 </tr>
 								 <tr valign="top">
 								  <td width="40%"><b>City:</b></td>
-								  <td width="60%">' . self::dottedLine(1) . '</td>
+								  <td width="60%">' .@$_POST['city']. self::dottedLine(1) . '</td>
 								 </tr>
 								 <tr valign="top">
 								  <td width="40%"><b>State:</b></td>
-								  <td width="60%">' . self::dottedLine(1) . '</td>
+								  <td width="60%">' . @$_POST['state'].self::dottedLine(1) . '</td>
 								 </tr>
 								 <tr valign="top">
 								  <td width="40%"><b>Zip:</b></td>
-								  <td width="60%">' . self::dottedLine(1) . '</td>
+								  <td width="60%">' . @$_POST['zip'].self::dottedLine(1) . '</td>
 								 </tr>
 								 <tr valign="top">
 								  <td width="40%"><b>Telephone:</b></td>
-								  <td width="60%">' . self::dottedLine(1) . '</td>
+								  <td width="60%">' . @$_POST['telephone'].self::dottedLine(1) . '</td>
 								 </tr>
 								 <tr valign="top">
 								  <td width="40%"><b>Store No.:</b></td>
-								  <td width="60%">' . self::dottedLine(1) . '</td>
+								  <td width="60%">' . @$_POST['store'].self::dottedLine(1) . '</td>
 								 </tr>
 								 <tr valign="top">
 								  <td width="40%"><b>Owner or Manager:</b></td>
-								  <td width="60%">' . self::dottedLine(1) . '</td>
+								  <td width="60%">' .@$_POST['owner']. self::dottedLine(1) . '</td>
 								 </tr>
 								</table>
 							  </td>

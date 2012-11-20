@@ -7,9 +7,9 @@ class document_7 extends blank_document {
         $typeID = $_REQUEST['typeId'];
 
         $headerTable = array(
-            array('Inspection Date', '&nbsp;', 'Technician', '&nbsp;'),
-            array('Job Name', '&nbsp;', 'Job Address', '&nbsp;'),
-            array('Site Contact', '&nbsp;'),
+            array('Inspection Date', '&nbsp;', 'Technician', @$_POST['technician']),
+            array('Job Name', @$_POST['job_name'], 'Job Address', @$_POST['job_address']),
+            array('Site Contact', @$_POST['site_contact']),
         );
         $html = parent::tableHeader($headerTable);
 

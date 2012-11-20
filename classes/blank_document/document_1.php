@@ -4,10 +4,10 @@ class document_1 extends blank_document {
  
     public function show($customerInfo){
         $headerTable = array(
-                        array('Customer Name',$customerInfo['name'], 'Technician 1','&nbsp;'),
-                        array('Address','&nbsp;', 'Technician 2','&nbsp;'),
+                        array('Customer Name',@$_POST['customer_name'], 'Technician',@$_POST['technician']),
+                        array('Address',@$_POST['address']),
                         array('Inspection Date','&nbsp;'),
-                        array('Manufacturer Name & Model Number','&nbsp;')
+                        array('Manufacturer Name & Model Number',@$_POST['man_name_model'])
                 );
         $html = parent::tableHeader($headerTable);
 
