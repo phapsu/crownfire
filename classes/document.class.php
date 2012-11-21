@@ -138,7 +138,8 @@ class document extends crownfire {
 			$query .= " GROUP BY documents.type_id";
 		}
 
-		$query .= ' ORDER BY document_types.type ASC, documents.date_added DESC';
+		//$query .= ' ORDER BY document_types.type ASC, documents.date_added DESC';
+                $query .= ' ORDER BY document_types.print_order ASC, documents.date_added DESC';                
                 
 		$results = $this->db->dbQuery($query);
 		$return = array();
