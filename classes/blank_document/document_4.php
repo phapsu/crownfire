@@ -4,10 +4,17 @@
 class document_4 extends blank_document {
 
     public function show($customerInfo) {
+        if (!empty($customerInfo)) {
+            $document_id = $customerInfo;
+            // Report Info
+            $document = new document($document_id);
+            $reportInfo = $document->getData('document_data_4_report', 'document_id', $document_id, true, null, true);
+        }
+
         $headerTable = array(
             array('Customer Name', @$_POST['customer_name'], 'Technician', @$_POST['technician']),
             array('Address', @$_POST['address'], 'Inspection Date', '&nbsp;'),
-            array('City',@$_POST['city'], 'Site', @$_POST['site']),
+            array('City', @$_POST['city'], 'Site', @$_POST['site']),
             array('Contact', @$_POST['contact'])
         );
         $html = parent::tableHeader($headerTable);
@@ -56,8 +63,28 @@ class document_4 extends blank_document {
 								  <td width="10%">Next 6 Year</td>
 								  <td width="15%">Remarks</td>
 								 </tr>';
-        for ($i = 0; $i < 10; $i++) {
-            $html .= '<tr align="center">
+        if (!empty($customerInfo)) {
+            $i = 0;
+            $max = 0;
+            if (is_array($reportInfo) && count($reportInfo) > 0) {
+                foreach ($reportInfo as $key => $report) {
+                    $html .= '<tr align="center">'
+                            .'<td>'. stripslashes($report['report_num']).'</td>'
+                            .'<td>&nbsp;</td>'
+                            .'<td>&nbsp;</td>'
+                            .'<td>'. stripslashes($report["manufacture"]).'</td>'
+                            .'<td>'. stripslashes($report["serial"]).'</td>'
+                            .'<td>'. stripslashes($report["manufacture_date"]).'</td>'
+                            .'<td>'. stripslashes($report["last_h_test"]).'</td>'
+                            .'<td>'. stripslashes($report["next_h_test"]).'</td>'
+                            .'<td>'. stripslashes($report["next_six_year"]).'</td>'
+                            .'<td>&nbsp;</td>'
+                          .'</tr>';
+                }
+            }
+        } else {
+            for ($i = 0; $i < 10; $i++) {
+                $html .= '<tr align="center">
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
@@ -69,6 +96,7 @@ class document_4 extends blank_document {
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                       </tr>';
+            }
         }
         $html .= '</table>';
 

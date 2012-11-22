@@ -8,6 +8,7 @@ $err = 0;
 $redirect = (isset($_GET['redirect']) && !empty($_GET['redirect']))  ? urldecode($_GET['redirect']) : '';
 $user_id = $_POST['user_id'];
 $property_id = $_POST['property_id'];
+
 $state_id = $_POST['state_id'];
 $deficiency = $_POST['deficiency'];
 
@@ -23,7 +24,7 @@ set_time_limit(0);
 ini_set("memory_limit","500M");         
 
 $typeID = $_POST['type_id'];   
-$cusInfo="";
+$cusInfo=$document_id;
 $propertyInfo="";
 
 //$html = blank_document::getDocumentHTML($typeID, $cusInfo, $propertyInfo);
