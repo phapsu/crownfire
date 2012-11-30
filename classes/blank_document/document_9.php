@@ -41,10 +41,10 @@ class document_9 extends blank_document {
 
         //begin report
 
-        $html = '<font size="10"><b>E1. Fire Alarm System Annual Test and Inspection Report - CAN/ULC S536-04</b></font><br /><br />';
-
-        $html .= $header;
-
+        $html = $header;
+            
+        $html .= '<font size="10"><b>E1. Fire Alarm System Annual Test and Inspection Report - CAN/ULC S536-04</b></font><br /><br />';
+        
         $html .= '<table width="100%" cellpadding="5" border="1" style="font-size: 25px; border: 1px solid #000000;">
                     <tr bgcolor="#000000" align="center">
                         <td width="5%">&nbsp; </td>

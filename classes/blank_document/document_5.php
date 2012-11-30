@@ -7,7 +7,7 @@ class document_5 extends blank_document {
         
         $headerTable = array(
             array('Customer Name', @$_POST['customer_name'], 'Technician', @$_POST['technician']),
-            array('Address', @$_POST['address'], 'Inspection Date', '&nbsp;'),
+            array('Address', @$_POST['address'], 'Inspection Date', @$_POST['inspection_date']),
             array('City', @$_POST['city'], 'Site', '&nbsp;'),
             array('Contact', @$_POST['contact'])
         );
@@ -62,23 +62,35 @@ class document_5 extends blank_document {
                                 <td width="10%"># Of Batteries</td>
                                 <td width="20%">Size Of Batteries</td>
                         </tr>';
-            for ($i=0; $i<10; $i++) {
-                $html .= '<tr align="center">
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
+            
+            $document = new document($_REQUEST['id']);
+            $formInfo = $document->getData('document_data_5_form','document_id',$_REQUEST['id'],true);
+            
+            if (is_array($formInfo) && count($formInfo) > 0) {
+		foreach($formInfo as $key => $form) {
+                    $unit_voltage = (!empty($form['unit_voltage']) ? $form['unit_voltage'] : '&nbsp;');
+                    $unit_watts = (!empty($form['unit_watts']) ? $form['unit_watts'] : '&nbsp;');
+                    $num_batteries = (!empty($form['num_batteries']) ? $form['num_batteries'] : '&nbsp;');
+                    $size_batteries = (!empty($form['size_batteries']) ? $form['size_batteries'] : '&nbsp;');
+                    
+                   $html.=  '<tr align="center">
+                              <td width="10%">'.$form['unit_type'].'</td>
+                              <td width="25%">'.$form['location'].'</td>
+                              <td width="10%">&nbsp;</td>
+                              <td width="10%">&nbsp;</td>
+                              <td width="10%">'.$unit_voltage.'</td>
+                              <td width="10%">'.$unit_watts.'</td>
+                              <td width="5%">'.$num_batteries.'</td>
+                              <td width="5%">'.$size_batteries.'</td>			  
                             </tr>';
-            }
+                }
+            }            
+           
             $html .= '</table><br /><br />';
         
 
         $html .= '<font size="10"><b>Remarks</b></font><br />
-						' . parent::dottedLine(30) . '<br /><br />';
+                    ' . parent::dottedLine(30) . '<br /><br />';
 
         $html .= '<table width="100%"><tr><td align="center"><font size="10">Records Must Be Available Upon Fire Departments Request for Min 2 Years</font></td></tr></table>';
 

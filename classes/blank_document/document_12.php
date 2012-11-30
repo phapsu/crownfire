@@ -6,151 +6,151 @@ class document_12 extends blank_document {
         //$html = parent::tableDottedHeader($customerInfo['name']);
 
         $html = '<table style="font-size: 25px;" cellpadding="0" cellspacing="0" width="100%">
-							 <tr valign="top">
-							  <td width="40%">
-								<table width="100%" cellpadding="15" cellpadding="0">
-								 <tr valign="top">
-								  <td width="40%"><b>Name:</b></td>
-								  <td width="60%">'.@$_POST['customer_name'].self::dottedLine(1).'</td>
-								 </tr>
-								 <tr valign="top">
-								  <td width="40%"><b>Address:</b></td>
-								  <td width="60%">' .@$_POST['address']. self::dottedLine(1) . '</td>
-								 </tr>
-								 <tr valign="top">
-								  <td width="40%"><b>City:</b></td>
-								  <td width="60%">' .@$_POST['city']. self::dottedLine(1) . '</td>
-								 </tr>
-								 <tr valign="top">
-								  <td width="40%"><b>State:</b></td>
-								  <td width="60%">' . @$_POST['state'].self::dottedLine(1) . '</td>
-								 </tr>
-								 <tr valign="top">
-								  <td width="40%"><b>Zip:</b></td>
-								  <td width="60%">' . @$_POST['zip'].self::dottedLine(1) . '</td>
-								 </tr>
-								 <tr valign="top">
-								  <td width="40%"><b>Telephone:</b></td>
-								  <td width="60%">' . @$_POST['telephone'].self::dottedLine(1) . '</td>
-								 </tr>
-								 <tr valign="top">
-								  <td width="40%"><b>Store No.:</b></td>
-								  <td width="60%">' . @$_POST['store'].self::dottedLine(1) . '</td>
-								 </tr>
-								 <tr valign="top">
-								  <td width="40%"><b>Owner or Manager:</b></td>
-								  <td width="60%">' .@$_POST['owner']. self::dottedLine(1) . '</td>
-								 </tr>
-								</table>
-							  </td>
-							  <td width="60%">
-								<table width="100%" border="1" cellpadding="5">
-								 <tr bgcolor="#000000" style="color: #ffffff;">
-								  <td colspan="2">Date of Service</td>
-								  <td>Time</td>
-								  <td>A.M.</td>
-								  <td>P.M.</td>
-								 </tr>
-								 <tr>
-								  <td colspan="2"></td>
-								  <td></td>
-								  <td></td>
-								  <td></td>
-								 </tr>
-								 <tr bgcolor="#000000" style="color: #ffffff;">
-								  <td>Annual</td>
-								  <td>Semi-Annual</td>
-								  <td>Recharge</td>
-								  <td>Installation</td>
-								  <td>Renovation</td>
-								 </tr>
-								 <tr>
-								  <td></td>
-								  <td></td>
-								  <td></td>
-								  <td></td>
-								  <td></td>
-								 </tr>
-								 <tr bgcolor="#000000" style="color: #ffffff;">
-								  <td colspan="4">Location of System Cynlinders</td>
-								  <td>UL 300</td>
-								 </tr>
-								 <tr>
-								  <td colspan="4"></td>
-								  <td></td>
-								 </tr>
-								 <tr bgcolor="#000000" style="color: #ffffff;">
-								  <td colspan="2">Manufacturer</td>
-								  <td>Model #</td>
-								  <td>Wet</td>
-								  <td>Dry Chemical</td>
-								 </tr>
-								 <tr>
-								  <td colspan="2"></td>
-								  <td></td>
-								  <td></td>
-								  <td></td>
-								 </tr>
-								 <tr bgcolor="#000000" style="color: #ffffff;" align="center">
-								  <td colspan="2">Cylinder Size Master</td>
-								  <td>Cylinder Size Slave</td>
-								  <td colspan="2">Cylinder Size Slave</td>
-								 </tr>
-								 <tr align="center">
-								  <td colspan="2"></td>
-								  <td></td>
-								  <td colspan="2"></td>
-								 </tr>
-								 <tr bgcolor="#000000" style="color: #ffffff;">
-								  <td colspan="2">Fuel Shut-Off</td>
-								  <td>Electric</td>
-								  <td>Gas</td>
-								  <td>Size</td>
-								 </tr>
-								 <tr>
-								  <td colspan="2"></td>
-								  <td></td>
-								  <td></td>
-								  <td></td>
-								 </tr>
-								 <tr bgcolor="#000000" style="color: #ffffff;" align="center">
-								  <td colspan="2">Serial Number</td>
-								  <td>Last Hydro Test Date</td>
-								  <td colspan="2">Last Recharge Date</td>
-								 </tr>
-								 <tr align="center">
-								  <td colspan="2"></td>
-								  <td></td>
-								  <td colspan="2"></td>
-								 </tr>
-								 <tr bgcolor="#000000" style="color: #ffffff;">
-								  <td colspan="5">Manufacturer\'s Manual Reference</td>
-								 </tr>
-								 <tr>
-								  <td width="33%" colspan="2">Page No.: </td>
-								  <td width="33%">Drawing No.: </td>
-								  <td width="34%" colspan="2">Date: </td>
-								 </tr>
-								</table>
-							  </td>
-							 </tr>
-							</table>
+                 <tr valign="top">
+                  <td width="40%">
+                        <table width="100%" cellpadding="15" cellpadding="0">
+                         <tr valign="top">
+                          <td width="40%"><b>Name:</b></td>
+                          <td width="60%">'.@$_POST['customer_name'].self::dottedLine(1).'</td>
+                         </tr>
+                         <tr valign="top">
+                          <td width="40%"><b>Address:</b></td>
+                          <td width="60%">' .@$_POST['address']. self::dottedLine(1) . '</td>
+                         </tr>
+                         <tr valign="top">
+                          <td width="40%"><b>City:</b></td>
+                          <td width="60%">' .@$_POST['city']. self::dottedLine(1) . '</td>
+                         </tr>
+                         <tr valign="top">
+                          <td width="40%"><b>State:</b></td>
+                          <td width="60%">' . @$_POST['state'].self::dottedLine(1) . '</td>
+                         </tr>
+                         <tr valign="top">
+                          <td width="40%"><b>Zip:</b></td>
+                          <td width="60%">' . @$_POST['zip'].self::dottedLine(1) . '</td>
+                         </tr>
+                         <tr valign="top">
+                          <td width="40%"><b>Telephone:</b></td>
+                          <td width="60%">' . @$_POST['telephone'].self::dottedLine(1) . '</td>
+                         </tr>
+                         <tr valign="top">
+                          <td width="40%"><b>Store No.:</b></td>
+                          <td width="60%">' . @$_POST['store'].self::dottedLine(1) . '</td>
+                         </tr>
+                         <tr valign="top">
+                          <td width="40%"><b>Owner or Manager:</b></td>
+                          <td width="60%">' .@$_POST['owner']. self::dottedLine(1) . '</td>
+                         </tr>
+                        </table>
+                  </td>
+                  <td width="60%">
+                        <table width="100%" border="1" cellpadding="5">
+                         <tr bgcolor="#000000" style="color: #ffffff;">
+                          <td colspan="2">Date of Service</td>
+                          <td>Time</td>
+                          <td>A.M.</td>
+                          <td>P.M.</td>
+                         </tr>
+                         <tr>
+                          <td colspan="2"></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                         </tr>
+                         <tr bgcolor="#000000" style="color: #ffffff;">
+                          <td>Annual</td>
+                          <td>Semi-Annual</td>
+                          <td>Recharge</td>
+                          <td>Installation</td>
+                          <td>Renovation</td>
+                         </tr>
+                         <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                         </tr>
+                         <tr bgcolor="#000000" style="color: #ffffff;">
+                          <td colspan="4">Location of System Cynlinders</td>
+                          <td>UL 300</td>
+                         </tr>
+                         <tr>
+                          <td colspan="4"></td>
+                          <td></td>
+                         </tr>
+                         <tr bgcolor="#000000" style="color: #ffffff;">
+                          <td colspan="2">Manufacturer</td>
+                          <td>Model #</td>
+                          <td>Wet</td>
+                          <td>Dry Chemical</td>
+                         </tr>
+                         <tr>
+                          <td colspan="2"></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                         </tr>
+                         <tr bgcolor="#000000" style="color: #ffffff;" align="center">
+                          <td colspan="2">Cylinder Size Master</td>
+                          <td>Cylinder Size Slave</td>
+                          <td colspan="2">Cylinder Size Slave</td>
+                         </tr>
+                         <tr align="center">
+                          <td colspan="2"></td>
+                          <td></td>
+                          <td colspan="2"></td>
+                         </tr>
+                         <tr bgcolor="#000000" style="color: #ffffff;">
+                          <td colspan="2">Fuel Shut-Off</td>
+                          <td>Electric</td>
+                          <td>Gas</td>
+                          <td>Size</td>
+                         </tr>
+                         <tr>
+                          <td colspan="2"></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                         </tr>
+                         <tr bgcolor="#000000" style="color: #ffffff;" align="center">
+                          <td colspan="2">Serial Number</td>
+                          <td>Last Hydro Test Date</td>
+                          <td colspan="2">Last Recharge Date</td>
+                         </tr>
+                         <tr align="center">
+                          <td colspan="2"></td>
+                          <td></td>
+                          <td colspan="2"></td>
+                         </tr>
+                         <tr bgcolor="#000000" style="color: #ffffff;">
+                          <td colspan="5">Manufacturer\'s Manual Reference</td>
+                         </tr>
+                         <tr>
+                          <td width="33%" colspan="2">Page No.: </td>
+                          <td width="33%">Drawing No.: </td>
+                          <td width="34%" colspan="2">Date: </td>
+                         </tr>
+                        </table>
+                  </td>
+                 </tr>
+                </table>
 
-							<h3>Cooking Appliance Locations: Left to Right</h3>
-							<table style="font-size: 25px; border: 1px solid #000000;" cellpadding="5" cellspacing="0" width="100%" border="1">
-							 <tr align="center">
-							  <td width="25%"></td>
-							  <td width="25%"></td>
-                                                          <td width="25%"></td>
-                                                          <td width="25%"></td>
-							 </tr>
-							  <tr align="center">
-							  <td width="25%"></td>
-							  <td width="25%"></td>
-                                                          <td width="25%"></td>
-                                                          <td width="25%"></td>
-							 </tr>
-							</table>&nbsp; <br />';
+                <h3>Cooking Appliance Locations: Left to Right</h3>
+                <table style="font-size: 25px; border: 1px solid #000000;" cellpadding="5" cellspacing="0" width="100%" border="1">
+                 <tr align="center">
+                  <td width="25%"></td>
+                  <td width="25%"></td>
+                  <td width="25%"></td>
+                  <td width="25%"></td>
+                 </tr>
+                  <tr align="center">
+                  <td width="25%"></td>
+                  <td width="25%"></td>
+                  <td width="25%"></td>
+                  <td width="25%"></td>
+                 </tr>
+                </table>&nbsp; <br />';
         
         
         
