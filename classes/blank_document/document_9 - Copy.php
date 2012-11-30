@@ -40,11 +40,11 @@ class document_9 extends blank_document {
         $header = parent::tableHeader($headerTable);
 
         //begin report
-
+        
         $html = '<font size="10"><b>E1. Fire Alarm System Annual Test and Inspection Report - CAN/ULC S536-04</b></font><br /><br />';
 
         $html .= $header;
-
+        
         $html .= '<table width="100%" cellpadding="5" border="1" style="font-size: 25px; border: 1px solid #000000;">
                     <tr bgcolor="#000000" align="center">
                         <td width="5%">&nbsp; </td>
@@ -97,19 +97,19 @@ class document_9 extends blank_document {
                     </tr>
                     <tr>
                         <td>G.</td>
-                        <td>A copy of this report will be given to the following, who is owner or ' . "owner's" . ' representative for this building </td>
+                        <td>A copy of this report will be given to the following, who is owner or '."owner's".' representative for this building </td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>
-                </table><br/><br/>';
-
-
-
+                </table><br/><br/>'; 
+        
+        
+        
         $html .= '<br /><b>Comments</b>: ' . parent::dottedLine(7);
 
-        $html .= '<br /><br /><br />This is to certify that the information contained in this Fire Alarm SYstems Annual Test and Inspection Report is correct and complete. ';
-
+        $html .= '<br />This is to certify that the information contained in this Fire Alarm SYstems Annual Test and Inspection Report is correct and complete. ';
+        
         $html .= '<br /> <br /><table style="font-size: 30px;" cellpadding="0" cellspacing="5" width="100%">
                                  <tr>
                                   <td width="35%" align="left" style="border-bottom:0.5px solid #000;">&nbsp;</td>
@@ -163,7 +163,7 @@ class document_9 extends blank_document {
                     </tr>
                     <tr>
                         <td>A.</td>
-                        <td>Power ' . "'ON'" . ' visual indicator operators </td>
+                        <td>Power '."'ON'".' visual indicator operators </td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
@@ -397,12 +397,12 @@ class document_9 extends blank_document {
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>
-                </table><br/><br/>';
-
-
+                </table><br/><br/>';         
+        
+        
         $html .= '<br pagebreak="true"/>';
         $html .= $header;
-
+        
         $html .= '<font size="10"><b>E2.2 Voice Communication Test - CAN/ULC S536-04</b></font><br />';
 
         $html .= '<table width="100%" cellpadding="5" border="1" style="font-size: 25px; border: 1px solid #000000;">
@@ -415,7 +415,7 @@ class document_9 extends blank_document {
                     </tr>
                     <tr>
                         <td>A.</td>
-                        <td>Power ' . "'ON'" . ' visual indicator operators </td>
+                        <td>Power '."'ON'".' visual indicator operators </td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
@@ -519,8 +519,8 @@ class document_9 extends blank_document {
                         <td>&nbsp;</td>
                     </tr>
                  </table>';
-
-
+        
+        
         $html .= '<br pagebreak="true"/>';
         $html .= $header;
         $html .= '<font size="10"><b>E2.3 Control Unit or Transponder Inspection - CAN/ULC S536-04</b></font><br /><br />
@@ -592,7 +592,7 @@ class document_9 extends blank_document {
                     </tr>
                     <tr>
                         <td>H.</td>
-                        <td>Fuses in accordance with manufacturer' . "'s" . ' specification </td>
+                        <td>Fuses in accordance with manufacturer'."'s".' specification </td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
@@ -626,8 +626,8 @@ class document_9 extends blank_document {
 							  <td width="60%">&nbsp;</td>
 							 </tr>
 							</table>';
-
-
+        
+        
         $html .= '<table width="100%" cellpadding="5" border="1" style="font-size: 25px; border: 1px solid #000000;">
                     <tr bgcolor="#000000" align="center">
                         <td width="5%">&nbsp; </td>
@@ -638,7 +638,7 @@ class document_9 extends blank_document {
                     </tr>
                     <tr>
                         <td>A.</td>
-                        <td>Fused in accordance with the manufacturer' . "'s" . ' marked rating of the system </td>
+                        <td>Fused in accordance with the manufacturer'."'s".' marked rating of the system </td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
@@ -651,7 +651,7 @@ class document_9 extends blank_document {
                         <td>&nbsp;</td>
                     </tr>                                  
                  </table>';
-
+        
 
         $html .= '<br pagebreak="true"/>';
         $html .= $header;
@@ -667,8 +667,8 @@ class document_9 extends blank_document {
 							 </tr>
 							</table>';
 
-
-
+        
+        
         $html .= '<table width="100%" cellpadding="5" border="1" style="font-size: 25px; border: 1px solid #000000;">
                     <tr bgcolor="#000000" align="center">
                         <td width="5%">&nbsp; </td>
@@ -693,13 +693,13 @@ class document_9 extends blank_document {
                     </tr>
                     <tr>
                         <td>C.</td>
-                        <td>Battery voltage with main power supply ' . "'ON'" . ' </td>
+                        <td>Battery voltage with main power supply '."'ON'".' </td>
                         <td colspan="2">&nbsp;</td>                        
                         <td>V dc</td>
                     </tr>
                     <tr>
                         <td rowspan="2">D.</td>
-                        <td rowspan="2">Battery voltage and current with main power supply ' . "'OFF'" . ' and fire alarm system in supervisory condition </td>
+                        <td rowspan="2">Battery voltage and current with main power supply '."'OFF'".' and fire alarm system in supervisory condition </td>
                         <td>Voltage</td>
                         <td>&nbsp;</td>
                         <td>V dc</td>
@@ -711,7 +711,7 @@ class document_9 extends blank_document {
                     </tr>
                     <tr>
                         <td rowspan="2">E.</td>
-                        <td rowspan="2">Battery voltage and current with main power supply ' . "'OFF'" . ' and fire alarm system in full load alarm condition </td>
+                        <td rowspan="2">Battery voltage and current with main power supply '."'OFF'".' and fire alarm system in full load alarm condition </td>
                         <td>Voltage</td>
                         <td>&nbsp;</td>
                         <td>V dc</td>
@@ -758,7 +758,7 @@ class document_9 extends blank_document {
                     </tr>
                     <tr>
                         <td>K.</td>
-                        <td>Specific gravity of electrolyte is within manufacturer' . "'s" . ' specification </td>
+                        <td>Specific gravity of electrolyte is within manufacturer'."'s".' specification </td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
@@ -779,7 +779,7 @@ class document_9 extends blank_document {
                     </tr>
                     <tr>
                         <td>N.</td>
-                        <td>Battery manufacturer' . "'s" . ' date code or in-service date </td>
+                        <td>Battery manufacturer'."'s".' date code or in-service date </td>
                         <td>Date</td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
@@ -861,8 +861,8 @@ class document_9 extends blank_document {
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>
-                </table>';
-
+                </table>';            
+        
         $html .= '<br pagebreak="true"/>';
 
 
@@ -879,7 +879,7 @@ class document_9 extends blank_document {
                                                      </tr>
                                                     </table>';
 
-
+        
         $html .= '<table width="100%" cellpadding="5" border="1" style="font-size: 25px; border: 1px solid #000000;">
                     <tr bgcolor="#000000" align="center">
                         <td width="5%">&nbsp; </td>
@@ -904,13 +904,13 @@ class document_9 extends blank_document {
                     </tr>
                     <tr>
                         <td>C.</td>
-                        <td>Battery voltage with main power supply ' . "'ON'" . ' </td>
+                        <td>Battery voltage with main power supply '."'ON'".' </td>
                         <td colspan="2">&nbsp;</td>                        
                         <td>V dc</td>
                     </tr>
                     <tr>
                         <td rowspan="2">D.</td>
-                        <td rowspan="2">Battery voltage and current with main power supply ' . "'OFF'" . ' and fire alarm system in supervisory condition </td>
+                        <td rowspan="2">Battery voltage and current with main power supply '."'OFF'".' and fire alarm system in supervisory condition </td>
                         <td>Voltage</td>
                         <td>&nbsp;</td>
                         <td>V dc</td>
@@ -922,7 +922,7 @@ class document_9 extends blank_document {
                     </tr>
                     <tr>
                         <td rowspan="2">E.</td>
-                        <td rowspan="2">Battery voltage and current with main power supply ' . "'OFF'" . ' and fire alarm system in full load alarm condition </td>
+                        <td rowspan="2">Battery voltage and current with main power supply '."'OFF'".' and fire alarm system in full load alarm condition </td>
                         <td>Voltage</td>
                         <td>&nbsp;</td>
                         <td>V dc</td>
@@ -969,7 +969,7 @@ class document_9 extends blank_document {
                     </tr>
                     <tr>
                         <td>K.</td>
-                        <td>Specific gravity of electrolyte is within manufacturer' . "'s" . ' specification </td>
+                        <td>Specific gravity of electrolyte is within manufacturer'."'s".' specification </td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
@@ -990,7 +990,7 @@ class document_9 extends blank_document {
                     </tr>
                     <tr>
                         <td>N.</td>
-                        <td>Battery manufacturer' . "'s" . ' date code or in-service date </td>
+                        <td>Battery manufacturer'."'s".' date code or in-service date </td>
                         <td>Date</td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
@@ -1072,9 +1072,9 @@ class document_9 extends blank_document {
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>
-                </table>';
-
-
+                </table>';   
+        
+        
         $html .= '<br pagebreak="true"/>';
 
 
@@ -1091,8 +1091,8 @@ class document_9 extends blank_document {
                                                      </tr>
                                                     </table>';
 
-
-
+        
+        
         $html .= '<table width="100%" cellpadding="5" border="1" style="font-size: 25px; border: 1px solid #000000;">
                     <tr bgcolor="#000000" align="center">
                         <td width="5%">&nbsp; </td>
@@ -1117,13 +1117,13 @@ class document_9 extends blank_document {
                     </tr>
                     <tr>
                         <td>C.</td>
-                        <td>Battery voltage with main power supply ' . "'ON'" . ' </td>
+                        <td>Battery voltage with main power supply '."'ON'".' </td>
                         <td colspan="2">&nbsp;</td>                        
                         <td>V dc</td>
                     </tr>
                     <tr>
                         <td rowspan="2">D.</td>
-                        <td rowspan="2">Battery voltage and current with main power supply ' . "'OFF'" . ' and fire alarm system in supervisory condition </td>
+                        <td rowspan="2">Battery voltage and current with main power supply '."'OFF'".' and fire alarm system in supervisory condition </td>
                         <td>Voltage</td>
                         <td>&nbsp;</td>
                         <td>V dc</td>
@@ -1135,7 +1135,7 @@ class document_9 extends blank_document {
                     </tr>
                     <tr>
                         <td rowspan="2">E.</td>
-                        <td rowspan="2">Battery voltage and current with main power supply ' . "'OFF'" . ' and fire alarm system in full load alarm condition </td>
+                        <td rowspan="2">Battery voltage and current with main power supply '."'OFF'".' and fire alarm system in full load alarm condition </td>
                         <td>Voltage</td>
                         <td>&nbsp;</td>
                         <td>V dc</td>
@@ -1182,7 +1182,7 @@ class document_9 extends blank_document {
                     </tr>
                     <tr>
                         <td>K.</td>
-                        <td>Specific gravity of electrolyte is within manufacturer' . "'s" . ' specification </td>
+                        <td>Specific gravity of electrolyte is within manufacturer'."'s".' specification </td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
@@ -1203,7 +1203,7 @@ class document_9 extends blank_document {
                     </tr>
                     <tr>
                         <td>N.</td>
-                        <td>Battery manufacturer' . "'s" . ' date code or in-service date </td>
+                        <td>Battery manufacturer'."'s".' date code or in-service date </td>
                         <td>Date</td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
@@ -1285,9 +1285,9 @@ class document_9 extends blank_document {
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>
-                </table>';
-
-
+                </table>';   
+        
+        
         $html .= '<br pagebreak="true"/>';
 
 
@@ -1304,7 +1304,7 @@ class document_9 extends blank_document {
                                                      </tr>
                                                     </table>';
 
-
+        
         $html .= '<table width="100%" cellpadding="5" border="1" style="font-size: 25px; border: 1px solid #000000;">
                     <tr bgcolor="#000000" align="center">
                         <td width="5%">&nbsp; </td>
@@ -1329,13 +1329,13 @@ class document_9 extends blank_document {
                     </tr>
                     <tr>
                         <td>C.</td>
-                        <td>Battery voltage with main power supply ' . "'ON'" . ' </td>
+                        <td>Battery voltage with main power supply '."'ON'".' </td>
                         <td colspan="2">&nbsp;</td>                        
                         <td>V dc</td>
                     </tr>
                     <tr>
                         <td rowspan="2">D.</td>
-                        <td rowspan="2">Battery voltage and current with main power supply ' . "'OFF'" . ' and fire alarm system in supervisory condition </td>
+                        <td rowspan="2">Battery voltage and current with main power supply '."'OFF'".' and fire alarm system in supervisory condition </td>
                         <td>Voltage</td>
                         <td>&nbsp;</td>
                         <td>V dc</td>
@@ -1347,7 +1347,7 @@ class document_9 extends blank_document {
                     </tr>
                     <tr>
                         <td rowspan="2">E.</td>
-                        <td rowspan="2">Battery voltage and current with main power supply ' . "'OFF'" . ' and fire alarm system in full load alarm condition </td>
+                        <td rowspan="2">Battery voltage and current with main power supply '."'OFF'".' and fire alarm system in full load alarm condition </td>
                         <td>Voltage</td>
                         <td>&nbsp;</td>
                         <td>V dc</td>
@@ -1394,7 +1394,7 @@ class document_9 extends blank_document {
                     </tr>
                     <tr>
                         <td>K.</td>
-                        <td>Specific gravity of electrolyte is within manufacturer' . "'s" . ' specification </td>
+                        <td>Specific gravity of electrolyte is within manufacturer'."'s".' specification </td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
@@ -1415,7 +1415,7 @@ class document_9 extends blank_document {
                     </tr>
                     <tr>
                         <td>N.</td>
-                        <td>Battery manufacturer' . "'s" . ' date code or in-service date </td>
+                        <td>Battery manufacturer'."'s".' date code or in-service date </td>
                         <td>Date</td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
@@ -1497,10 +1497,10 @@ class document_9 extends blank_document {
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>
-                </table>';
-
-
-
+                </table>';   
+        
+        
+        
         $html .= '<br pagebreak="true"/>';
 
 
@@ -1517,7 +1517,7 @@ class document_9 extends blank_document {
                      </tr>
                     </table>';
 
-
+        
         $html .= '<table width="100%" cellpadding="5" border="1" style="font-size: 25px; border: 1px solid #000000;">
                     <tr bgcolor="#000000" align="center">
                         <td width="5%">&nbsp; </td>
@@ -1528,7 +1528,7 @@ class document_9 extends blank_document {
                     </tr>
                     <tr>
                         <td>A.</td>
-                        <td>Power ' . "'ON'" . ' indicator operates </td>
+                        <td>Power '."'ON'".' indicator operates </td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
@@ -1610,7 +1610,7 @@ class document_9 extends blank_document {
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>
-                </table>';
+                </table>';    
 
         $html .= '<br pagebreak="true"/>';
         $html .= $header;
@@ -1626,7 +1626,7 @@ class document_9 extends blank_document {
 							 </tr>
 							</table>';
 
-
+    
         $html .= '<table width="100%" cellpadding="5" border="1" style="font-size: 25px; border: 1px solid #000000;">
                     <tr bgcolor="#000000" align="center">
                         <td width="5%">&nbsp; </td>
@@ -1637,7 +1637,7 @@ class document_9 extends blank_document {
                     </tr>
                     <tr>
                         <td>A.</td>
-                        <td>Power ' . "'ON'" . ' indicator operates </td>
+                        <td>Power '."'ON'".' indicator operates </td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
@@ -1731,9 +1731,9 @@ class document_9 extends blank_document {
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>
-                </table>';
-
-
+                </table>';    
+        
+        
         $html .= '<br pagebreak="true"/>';
         $html .= $header;
         $html .= '<font size="10"><b>E2.8 Remote Trouble Signal Unit Test and Inspection - CAN/ULC S536-04</b></font><br /><br />
@@ -1748,7 +1748,7 @@ class document_9 extends blank_document {
 							 </tr>
 							</table>';
 
-
+        
         $html .= '<table width="100%" cellpadding="5" border="1" style="font-size: 25px; border: 1px solid #000000;">
                     <tr bgcolor="#000000" align="center">
                         <td width="5%">&nbsp; </td>
@@ -1785,8 +1785,8 @@ class document_9 extends blank_document {
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>
-                 </table>';
-
+                 </table>';   
+        
 
         $html .= '<br pagebreak="true"/>';
         $html .= $header;
@@ -1831,7 +1831,7 @@ class document_9 extends blank_document {
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>                    
-                 </table>';
+                 </table>';   
 
         $html .= '<br pagebreak="true"/>';
         $html .= $header;
@@ -1850,8 +1850,8 @@ class document_9 extends blank_document {
 							  <td width="60%">&nbsp;</td>
 							 </tr>
 							</table>';
-
-
+        
+        
         $html .= '<table width="100%" cellpadding="5" border="1" style="font-size: 25px; border: 1px solid #000000;">
                     <tr bgcolor="#000000" align="center">
                         <td width="5%">&nbsp; </td>
@@ -1895,8 +1895,8 @@ class document_9 extends blank_document {
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>    
-                 </table>';
-
+                 </table>';   
+        
 
         $html .= '<br pagebreak="true"/>';
         $html .= $header;
@@ -2079,58 +2079,25 @@ class document_9 extends blank_document {
 
 
         $html .= '<br pagebreak="true"/>';
-
         $html .= $header;
 
-        $html .= '<font size="10"><b>E3.2 Device Record - CAN/ULC S536-04 (Page 1)</b></font><br /><br />';
-
-        $html .= '<table style="font-size: 25px; border: 1px solid #000;" cellpadding="3" cellspacing="0" width="100%" border="1">
-                    <tr bgcolor="#000000" style="font-weight: bold; color: #ffffff;" align="center">
-                      <td width="20%">Location</td>
-                      <td width="10%">Device Type</td>
-                      <td width="10%">Correctly Installed</td>
-                      <td width="10%">Requires Service</td>
-                      <td width="10%">Alarm Operation Confirmed</td>
-                      <td width="10%">Annunciator Indication Confirmed</td>
-                      <td width="10%">Zone Address</td>
-                      <td width="10%">Smoke Sensitivity</td>
-                      <td width="10%">Remarks</td>
-                    </tr>';
-
-        $document = new document($_REQUEST['id']);
-        if ($_REQUEST['id']) {
-            $formInfo = $document->getData('document_data_9_device', 'document_id', $_REQUEST['id'], true, null, true);
-        } else {
-            $formInfo = $document->getData('document_data_9_device', 'temp_id', $_REQUEST['temp_id'], true);
-        }
-
-        if (is_array($formInfo)) {
-            $j=1;            
-            foreach ($formInfo as $i => $form) {
-                if (($i>0)&($i % 20 == 0)) {
-                    $j++;
-                    $html.= '</table>';
-                    $html .= '<br pagebreak="true"/>';
-
-                    $html .= $header;
-
-                    $html .= '<font size="10"><b>E3.2 Device Record - CAN/ULC S536-04 (Page '.($j).')</b></font><br /><br />';
-
-                    $html .= '<table style="font-size: 25px; border: 1px solid #000;" cellpadding="3" cellspacing="0" width="100%" border="1">
-                    <tr bgcolor="#000000" style="font-weight: bold; color: #ffffff;" align="center">
-                      <td width="20%">Location</td>
-                      <td width="10%">Device Type</td>
-                      <td width="10%">Correctly Installed</td>
-                      <td width="10%">Requires Service</td>
-                      <td width="10%">Alarm Operation Confirmed</td>
-                      <td width="10%">Annunciator Indication Confirmed</td>
-                      <td width="10%">Zone Address</td>
-                      <td width="10%">Smoke Sensitivity</td>
-                      <td width="10%">Remarks</td>
-                    </tr>';
-                    $html .= '<tr>
-                        <td>' . stripslashes($form['location']) . '</td>
-                        <td>' . stripslashes($form['device']) . '</td>
+        $html .= '<h3>E3.2 Device Record - CAN/ULC S536-04</h3>
+                        <table style="font-size: 25px; border: 1px solid #000;" cellpadding="3" cellspacing="0" width="100%" border="1">
+                         <tr bgcolor="#000000" style="font-weight: bold; color: #ffffff;" align="center">
+                          <td width="20%">Location</td>
+                          <td width="10%">Device Type</td>
+                          <td width="10%">Correctly Installed</td>
+                          <td width="10%">Requires Service</td>
+                          <td width="10%">Alarm Operation Confirmed</td>
+                          <td width="10%">Annunciator Indication Confirmed</td>
+                          <td width="10%">Zone Address</td>
+                          <td width="10%">Smoke Sensitivity</td>
+                          <td width="10%">Remarks</td>
+                         </tr>';
+        for ($i = 0; $i < 10; $i++) {
+            $html .= '<tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
@@ -2139,22 +2106,9 @@ class document_9 extends blank_document {
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>';
-                } else {
-                    $html .= '<tr>
-                        <td>' . stripslashes($form['location']) . '</td>
-                        <td>' . stripslashes($form['device']) . '</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                    </tr>';
-                }
-            }
         }
         $html .= '</table>';
+        
 
         return $html;
     }

@@ -27,10 +27,6 @@ $typeID = $_POST['type_id'];
 $cusInfo=$document_id;
 $propertyInfo="";
 
-
-
-
-
 //$html = blank_document::getDocumentHTML($typeID, $cusInfo, $propertyInfo);
 //echo $html;exit;            
 
