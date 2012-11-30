@@ -6,7 +6,7 @@ class document_1 extends blank_document {
         $headerTable = array(
                         array('Customer Name',@$_POST['customer_name'], 'Technician',@$_POST['technician']),
                         array('Address',@$_POST['address']),
-                        array('Inspection Date','&nbsp;'),
+                        array('Inspection Date', @$_POST['inspection_date']),
                         array('Manufacturer Name & Model Number',@$_POST['man_name_model'])
                 );
         $html = parent::tableHeader($headerTable);

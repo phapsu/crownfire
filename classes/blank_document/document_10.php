@@ -14,7 +14,7 @@ class document_10 extends blank_document {
 							 </tr>
 							 <tr>
 							  <td><b>Date:</b></td>
-							  <td>' .self::dottedLine(1).'</td>
+							  <td>' . @$_POST['date'].self::dottedLine(1).'</td>
 							 </tr>
 							 <tr>
 							  <td><b>Owner:</b></td>

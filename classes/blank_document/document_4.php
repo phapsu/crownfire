@@ -13,7 +13,7 @@ class document_4 extends blank_document {
 
         $headerTable = array(
             array('Customer Name', @$_POST['customer_name'], 'Technician', @$_POST['technician']),
-            array('Address', @$_POST['address'], 'Inspection Date', '&nbsp;'),
+            array('Address', @$_POST['address'], 'Inspection Date', @$_POST['inspection_date']),
             array('City', @$_POST['city'], 'Site', @$_POST['site']),
             array('Contact', @$_POST['contact'])
         );
