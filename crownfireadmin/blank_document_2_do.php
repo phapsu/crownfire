@@ -18,6 +18,7 @@ $name = (isset($_REQUEST['document_name'])) ? $_REQUEST['document_name'] : null;
 $year = (isset($_REQUEST['document_year'])) ? $_REQUEST['document_year'] : null;
 //$document_name = $_POST['document_name'];
 $document_name = (isset($_REQUEST['document_name']) && !empty($_REQUEST['document_name'])) ? '['.urldecode($_REQUEST['document_name']).']'.$document_name.'_'.$year.'.pdf' : 'Document #'.$document_id.'.pdf';
+$document_name = 'blank_'.$document_name;
 $required = array();
 
 set_time_limit(0);
@@ -34,11 +35,11 @@ $propertyInfo="";
 //$html = blank_document::getDocumentHTML($typeID, $cusInfo, $propertyInfo);
 //echo $html;exit;            
 
-$cache = new JG_Cache($cfg['cache_directory']);
-$output_pdf = $cache->get('document_'.$document_id, 0);
+//$cache = new JG_Cache($cfg['cache_directory']);
+//$output_pdf = $cache->get('document_'.$document_id, 0);
 
-if ($output_pdf === FALSE)
-{
+//if ($output_pdf === FALSE)
+//{
 
 // create new PDF document
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -102,7 +103,7 @@ $output_pdf = $pdf->Output($document_name, 'S');
     if ($cfg['mode'] == 'live') {
         $cache->set('document_'.$document_id, $output_pdf);
     }
-}
+//}
 header('Content-Disposition: attachment; filename="'.$document_name.'";');
 header('Content-Transfer-Encoding: binary');
 echo $output_pdf;
