@@ -35,12 +35,11 @@ $propertyInfo="";
 //$html = blank_document::getDocumentHTML($typeID, $cusInfo, $propertyInfo);
 //echo $html;exit;            
 
-$cache = new JG_Cache($cfg['cache_directory']);
+//$cache = new JG_Cache($cfg['cache_directory']);
 //$output_pdf = $cache->get('document_'.$document_id, 0);
-$output_pdf = $cache->get('blank_document_'.$document_id, 0);
 
-if ($output_pdf === FALSE)
-{
+//if ($output_pdf === FALSE)
+//{
 
 // create new PDF document
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -101,10 +100,10 @@ $output_pdf = $pdf->Output($document_name, 'S');
 //============================================================+
 // END OF FILE
 //============================================================+
-    if ($cfg['mode'] == 'live') {
-        $cache->set('document_'.$document_id, $output_pdf);
-    }
-}
+//    if ($cfg['mode'] == 'live') {
+//        $cache->set('document_'.$document_id, $output_pdf);
+//    }
+//}
 header('Content-Disposition: attachment; filename="'.$document_name.'";');
 header('Content-Transfer-Encoding: binary');
 echo $output_pdf;
