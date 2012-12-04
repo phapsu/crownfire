@@ -74,16 +74,6 @@ class document_5 extends blank_document {
                     $size_batteries = (!empty($form['size_batteries']) ? $form['size_batteries'] : '&nbsp;');
                     
                    $html.=  '<tr align="center">
-<<<<<<< HEAD
-                              <td width="10%">'.$form['unit_type'].'</td>
-                              <td width="25%">'.$form['location'].'</td>
-                              <td width="10%">&nbsp;</td>
-                              <td width="10%">&nbsp;</td>
-                              <td width="10%">'.$unit_voltage.'</td>
-                              <td width="10%">'.$unit_watts.'</td>
-                              <td width="5%">'.$num_batteries.'</td>
-                              <td width="5%">'.$size_batteries.'</td>			  
-=======
                               <td>'.$form['unit_type'].'</td>
                               <td>'.$form['location'].'</td>
                               <td>&nbsp;</td>
@@ -92,7 +82,6 @@ class document_5 extends blank_document {
                               <td>'.$unit_watts.'</td>
                               <td>'.$num_batteries.'</td>
                               <td>'.$size_batteries.'</td>			  
->>>>>>> 97753ec3ffd4ec38f81aeec3bf1a8ffe5c3bb5a9
                             </tr>';
                 }
             }            

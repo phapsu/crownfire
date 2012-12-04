@@ -2107,7 +2107,7 @@ class document_9 extends blank_document {
         if (is_array($formInfo)) {
             $j=1;            
             foreach ($formInfo as $i => $form) {
-                if (($i>0)&($i % 20 == 0)) {
+                if (($i>0)&($i % 30 == 0)) {
                     $j++;
                     $html.= '</table>';
                     $html .= '<br pagebreak="true"/>';
