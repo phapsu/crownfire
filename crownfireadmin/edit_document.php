@@ -72,7 +72,7 @@ $documentTypeName = document::getDocumentTypeById($_REQUEST['type_id']);
             </tr>
         </table>
         <br /><br />
-        <button class="save" type="submit" name="submit_n" value="Save">Save</button>&nbsp; &nbsp; &nbsp; <button class="cancel" type="button" onClick="location.href='documents.php?user_id=<?= $_REQUEST['user_id'] ?>&property_id=<?= $document->getPropertyId() ?>'">Cancel</button>
+        <button id="btn_save" class="save" type="button" name="submit_n" value="Save">Save</button>&nbsp; &nbsp; &nbsp; <button class="cancel" type="button" onClick="location.href='documents.php?user_id=<?= $_REQUEST['user_id'] ?>&property_id=<?= $document->getPropertyId() ?>'">Cancel</button>
     </fieldset>
 </form>
 <?php
@@ -89,5 +89,14 @@ include('templates/footer.inc.php');
         $('#edit_document_2_do').attr('action', 'blank_document_2_do.php');  
         $('#edit_document_2_do')[0].submit();
     });
+    
+    $("#btn_save").click(function(){
+        
+        $('#edit_document_2_do').removeAttr('action');
+        $('#edit_document_2_do').attr('action', 'edit_document_2_do.php');  
+        $('#edit_document_2_do')[0].submit();
+    });
+    
+    
   });
   </script>

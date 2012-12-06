@@ -193,11 +193,13 @@ class Display {
 		<option value="">-- Select --</option>
 		<?php
 		foreach($techs as $t) {
-                        if ($t['cfaa_number'] != '') {
-                            $name = $t['name'].' (CFAA #:'.$t['cfaa_number'].')';
-                        } else {
-                            $name = $t['name'];
-                        }
+//                        if ($t['cfaa_number'] != '') {
+//                            $name = $t['name'].' (CFAA #:'.$t['cfaa_number'].')';
+//                        } else {
+//                            $name = $t['name'];
+//                        }
+                        
+                        $name = $t['name'];
 			?>
 			<option value="<?=$name?>" <?php echo ($t['name'] == $selected) ? ' selected' : '';?>><?=$t['name']?></option>
 			<?php

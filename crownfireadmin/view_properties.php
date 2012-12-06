@@ -40,11 +40,38 @@ if (is_array($property_list) && count($property_list) > 0) {
 		 <td><a href="delete_property_do.php?user_id=<?=$property_obj->getUserId();?>&property_id=<?=$property_obj->getPropertyId();?>"><img border="0" src="images/icons/delete.png" /></a></td>
 		 <td><img border="0" src="images/icons/mapIcon.png" title="View Map" alt="View Map" /></td>
                  <td>
-                     <?php
+                     <?php                     
                      $yearsArray = document::getYears($property_obj->getPropertyId());
-                     if (is_array($yearsArray) && count($yearsArray) > 0) {
-                         echo '<table class="emptytable" align="middle">';
+                     echo '<table class="emptytable" align="middle">';
                          echo '<tr>';
+                     
+                     //show file pdf trong thu muc documents tuong ung voi property 
+                     //$filename = "full_report_189_2012.pdf";
+                     $targetPath = $_SERVER['DOCUMENT_ROOT'].'/documents';   
+
+                     $min_year = min($yearsArray);
+                     
+                     for($i=$min_year-2; $i<$min_year; $i++){
+                         $document_name = $targetPath.'/full_report_'.$property_obj->getPropertyId().'_'.$i.'.pdf';
+                         //echo $document_name;
+                         if (file_exists($document_name)) {
+                         ?>    
+                            <td>
+                                <table class="emptytable">
+                                <tr>
+                                    <td><img border="0" src="images/icons/pdf_icon.gif" title="PDF Download <?=$i?>" alt="Download" /></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="<?=$document_name;?>"><?=$i?></a></td>                                    
+                                </tr>
+                                </table>
+                             </td>
+                          <?php                             
+                        }
+                     }
+                     
+                     if (is_array($yearsArray) && count($yearsArray) > 0) {
+                         
                          foreach($yearsArray as $year) {
                              if (!$year) {
                                  continue;
@@ -53,18 +80,19 @@ if (is_array($property_list) && count($property_list) > 0) {
                              <td>
                                 <table class="emptytable">
                                 <tr>
-                                <td><img border="0" src="images/icons/pdf_icon.gif" title="PDF Download <?=$year?>" alt="Download" /></td>
+                                    <td><img border="0" src="images/icons/pdf_icon.gif" title="PDF Download <?=$year?>" alt="Download" /></td>
                                 </tr>
                                 <tr>
-                                <td><a href="view_document_all.php?property_id=<?=$property_obj->getPropertyId()?>&year=<?=$year?>"><?=$year?></a></td>
+                                    <td><a href="view_document_all.php?property_id=<?=$property_obj->getPropertyId()?>&year=<?=$year?>"><?=$year?></a></td>
                                 </tr>
                                 </table>
                              </td>
                              <?php
                          }
-                         echo '</tr>';
-                         echo '</table>';
-                     }
+                         
+                     }                     
+                     echo '</tr>';
+                     echo '</table>';
                      ?>
                      
                  </td>

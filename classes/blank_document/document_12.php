@@ -203,7 +203,33 @@ class document_12 extends blank_document {
         $html .= '<tr valign="top"><td> '.self::dottedLine(7).'</td></tr>';
         $html .= '<tr><td>&nbsp;</td></tr>';
         
-        $html .= '</table><br />';
+        $html .= '</table><br /><br />';
+        
+        $html .= '<h4>On this date, this range hood fire supporession system was inspected and operationally tested in accoredance with the fire suppression system reaquirements of NFPA17 or 17A, 96 and the manufacturer'."'s".' manual, with the results indicted above. </h3>';
+        
+        $html .= '<table width="100%" cellpadding="5" border="1" style="font-size: 25px; border: 1px solid #000000;border: 1px solid #000000;">';
+        $html .= '<tr bgcolor="#000000" align="center">
+                    <td width="30%" align="center" style="color: #ffffff;">Service Technician</td>
+                    <td width="10%" align="center" style="color: #ffffff;">Permit No.</td>
+                    <td width="10%" align="center" style="color: #ffffff;">Date</td>
+                    <td width="10%" align="center" style="color: #ffffff;">Time</td>
+                    <td width="10%" align="center" style="color: #ffffff;">AM</td>
+                    <td width="10%" align="center" style="color: #ffffff;">PM</td>
+                    <td width="20%" align="center" style="color: #ffffff;">Customer'."'s".' Authorized Agent</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>';
+        
+        
+        
         return $html;
     }
 }

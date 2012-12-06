@@ -58,7 +58,15 @@ $pdf->writeHTML($html, true, false, true, false, '');
 $pdf->lastPage();
 
 //Close and output PDF document
-$pdf->Output('example_006.pdf', 'I');
+$targetPath = $_SERVER['DOCUMENT_ROOT'].'/documents';
+$document_name = 'full_report_'.$_REQUEST['property_id'].'_'.$_REQUEST['year'].'.pdf';
+if (file_exists($targetPath."/".$document_name)) {
+    @unlink($targetPath."/".$document_name);
+}
+
+$pdf->Output($targetPath."/".$document_name, 'F');
+$pdf->Output('full_report_'.$_REQUEST['year'].'.pdf', 'I');
+//$pdf->Output('example_006.pdf', 'I');
 
 //============================================================+
 // END OF FILE
