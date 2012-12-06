@@ -53,15 +53,15 @@ class document_4 extends blank_document {
         $html .= '<table style="font-size: 20px; border: 1px solid #000000; width: 100%;" cellpadding="5" border="1">
 								 <tr align="center" bgcolor="#000000" style="color: #FFFFFF;">
 								  <td width="5%">No.#</td>
-								  <td width="15%">Hose Location</td>
+								  <td width="15%">Extinguisher / Hose Location</td>
 								  <td width="10%">Size &amp; Type</td>
 								  <td width="10%">Manufacture</td>
 								  <td width="10%">Extinguisher #</td>
 								  <td width="10%">Manufacture Date</td>
 								  <td width="7%">Last H-Test</td>
 								  <td width="7%">Next H-Test</td>
-								  <td width="10%">Next 6 Year</td>
-								  <td width="15%">Remarks</td>
+								  <td width="7%">Next 6 Year</td>
+								  <td width="19%">Remarks</td>
 								 </tr>';
         if (!empty($customerInfo)) {
             $i = 0;
@@ -70,8 +70,8 @@ class document_4 extends blank_document {
                 foreach ($reportInfo as $key => $report) {
                     $html .= '<tr align="center">'
                             .'<td>'. stripslashes($report['report_num']).'</td>'
-                            .'<td>&nbsp;</td>'
-                            .'<td>&nbsp;</td>'
+                            .'<td>'. stripslashes($report["location"]).'</td>'
+                            .'<td>'. stripslashes($report["size_type"]).'</td>'
                             .'<td>'. stripslashes($report["manufacture"]).'</td>'
                             .'<td>'. stripslashes($report["serial"]).'</td>'
                             .'<td>'. stripslashes($report["manufacture_date"]).'</td>'
