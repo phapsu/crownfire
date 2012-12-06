@@ -1,7 +1,7 @@
 <?php
 $title = 'Properties';
 include('templates/header.inc.php');
-
+include('../config/config.php');
 $user = new users();
 $user_data = $user->getUserInfo($_REQUEST['user_id']);
 
@@ -53,7 +53,7 @@ if (is_array($property_list) && count($property_list) > 0) {
                      
                      for($i=$min_year-2; $i<$min_year; $i++){
                          $document_name = $targetPath.'/full_report_'.$property_obj->getPropertyId().'_'.$i.'.pdf';
-                         //echo $document_name;
+                         
                          if (file_exists($document_name)) {
                          ?>    
                             <td>
@@ -62,7 +62,7 @@ if (is_array($property_list) && count($property_list) > 0) {
                                     <td><img border="0" src="images/icons/pdf_icon.gif" title="PDF Download <?=$i?>" alt="Download" /></td>
                                 </tr>
                                 <tr>
-                                    <td><a href="<?=$document_name;?>"><?=$i?></a></td>                                    
+                                    <td><a href="<?echo $cfg['site_url'].'/documents/full_report_'.$property_obj->getPropertyId().'_'.$i.'.pdf';?>"><?=$i?></a></td>                                    
                                 </tr>
                                 </table>
                              </td>

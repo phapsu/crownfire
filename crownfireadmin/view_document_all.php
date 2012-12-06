@@ -58,7 +58,7 @@ $pdf->writeHTML($html, true, false, true, false, '');
 $pdf->lastPage();
 
 //Close and output PDF document
-$targetPath = $_SERVER['DOCUMENT_ROOT'].'/documents';
+$targetPath = $_SERVER['DOCUMENT_ROOT'].'/documents/';
 $document_name = 'full_report_'.$_REQUEST['property_id'].'_'.$_REQUEST['year'].'.pdf';
 if (file_exists($targetPath."/".$document_name)) {
     @unlink($targetPath."/".$document_name);
