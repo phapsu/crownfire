@@ -31,7 +31,14 @@ $document_list = $document->getDocumentsByPropertyId($_REQUEST['property_id']);
 <th width="5%">&nbsp; </th>
 </tr>
 <?php
+$type_id=0;
 foreach($document_list as $document_obj) {
+        if($type_id!=$document_obj->getTypeId())
+        {
+            $type_id = $document_obj->getTypeId();
+        }
+        else continue; 
+            
 	if ($document_obj->getStateId() == 0) {
 		$icon = 'images/icons/inactive.png';
 		$alt = 'Inactive';
