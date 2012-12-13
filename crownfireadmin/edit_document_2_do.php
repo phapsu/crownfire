@@ -20,12 +20,17 @@ $deficiency = $_POST['deficiency'];
 $document_id = (isset($_REQUEST['id'])) ? $_REQUEST['id'] : null;
 $name = (isset($_REQUEST['document_name'])) ? $_REQUEST['document_name'] : null;
 $year = (isset($_REQUEST['document_year'])) ? $_REQUEST['document_year'] : null;
+$last_year = (isset($_REQUEST['last_year'])) ? $_REQUEST['last_year'] : null;
+if($last_year!=$year){ 
+    $document_id=null;
+}
+
 $required = array();
 
 if ($validate->validateForm($required) && $err != 1) {
 
     // Ok, we validated.  First we need to add this document into the generic table
-    if ($_REQUEST['id']) {
+    if ($document_id) {
         $document = new document($_REQUEST['id']);
     } else {
         $document = new document();
@@ -40,6 +45,7 @@ if ($validate->validateForm($required) && $err != 1) {
     $document->setDeficiency($deficiency);
     $document->setDateUpdated(time());
     $new_document_id = $document->save();
+   
     
     /**
      * Clear cache

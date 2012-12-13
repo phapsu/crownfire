@@ -80,12 +80,12 @@ include('config/meta.php');
         <div id="content_area" style="background-color: #fff">
             <div style="margin: 0 auto;width: 960px;padding: 20px 0px 0px 0px;">
                 <div class="slider-wrapper theme-light">
-                    <div id="nivo-slider" class="nivoSlider">
-                        <img src="images/slider/toystory.jpg" data-thumb="images/slider/toystory.jpg" alt="" />
-                        <img src="images/slider/walle.jpg" data-thumb="images/slider/walle.jpg" alt="" />
-                        <a href="http://dev7studios.com"><img src="images/slider/up.jpg" data-thumb="images/slider/up.jpg" alt="" title="This is an example of a caption" /></a>
-                        <img src="images/slider/walle.jpg" data-thumb="images/slider/walle.jpg" alt="" data-transition="slideInLeft" />
-                        <img src="images/slider/nemo.jpg" data-thumb="images/slider/nemo.jpg" alt="" title="#htmlcaption" />
+                    <div id="nivo-slider" class="nivoSlider">                     
+                        <img src="images/slider/crownfire1.jpg" data-thumb="images/slider/crownfire1.jpg" alt="" title="Experienced fire safety technicians to ensure your safety"/>
+                        <img src="images/slider/crownfire2.jpg" data-thumb="images/slider/crownfire2.jpg" alt="" title="24 HOUR EMERGENCY SERVICE CALL Toll Free: 1.8773243.9664"/>
+                        <img src="images/slider/crownfire6.jpg" data-thumb="images/slider/crownfire6.jpg" alt="" title="Crown Fire Equipment Ltd will make sure that you are never left in the dark."/>
+                        <img src="images/slider/crownfire7.jpg" data-thumb="images/slider/crownfire7.jpg" alt="" title="Offering all-encompassing customer service for all of your fire safety and protection needs."/>
+                        <img src="images/slider/crownfire10.jpg" data-thumb="images/slider/crownfire10.jpg" alt="" title="Take good care of the customer and everything else will take care of itself."/>
                     </div>
                     <div id="htmlcaption" class="nivo-html-caption">
                         <strong>This</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>. 

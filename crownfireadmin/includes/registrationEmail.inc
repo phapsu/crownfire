@@ -1,6 +1,6 @@
 Dear {{first_name}},
 <br /><br />
-Your Crownfire reports are available on demand from our website.  You can find us online at
+Your safety inspection reports are available on demand for you from our website. You can find us online at:
 <br /><br />
 <a href="http://www.crownfire.ca">http://www.crownfire.ca</a>.
 <br /><br />

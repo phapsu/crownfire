@@ -25,6 +25,7 @@ $documentTypeName = document::getDocumentTypeById($_REQUEST['type_id']);
             <tr>
                 <td width="20%">Document Year:</td>
                 <td><input type="text" name="document_year" class="required" value="<?php echo $document->getYear(); ?>" /></td>
+                <input type="hidden" name="last_year" value="<?php echo $document->getYear(); ?>">
             </tr>
         </table>
         <button value="Blank Document" id="blank_document" name="blank_document" type="button" style="float: right; margin-top: -30px; position: relative;">Blank Document</button>
