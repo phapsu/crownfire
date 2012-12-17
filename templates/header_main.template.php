@@ -56,6 +56,7 @@ include('config/meta.php');
                                             <li><strong>Mississauga</strong> (905) 670-5122</li>
                                             <li><strong>Newmarket</strong> (905) 868-8599</li>
                                             <li><strong>Hamilton, Burlington, Dundas</strong> (905) 521-0333</li>
+                                            <li style="width:350px;"><strong>London</strong> (519) 432-6946, Kitchener</strong> (519) 570-3432</li>                                            
                                     </ul>
                             </div>
                     </div>
