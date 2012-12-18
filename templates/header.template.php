@@ -34,11 +34,11 @@ include('config/meta.php');
 </head>
 <body onLoad="initialize();">
 	<div id="header" style="padding-left: 0px;">
-            <div class="tupperware">
+            <div class="tupperware" style="overflow: visible;">
                     <h1 class="tupperwareheader"><a href="/" title="Crownfire Equipment LTD">Crownfire Equipment LTD</a></h1>
                     <div id="headerText">
                             <div  style="width: 180px; float: left;">
-                                    <h4>Contact Us</h4>
+                                    <h4>Call Us Now</h4>
                                     <ul class="telephone_list">
                                             <li><strong>Toll-free</strong> (877) 243-9664</li>
                                             <li><strong>Ajax</strong> (905) 427-8441</li>
@@ -52,6 +52,7 @@ include('config/meta.php');
                                             <li><strong>Mississauga</strong> (905) 670-5122</li>
                                             <li><strong>Newmarket</strong> (905) 868-8599</li>
                                             <li><strong>Hamilton, Burlington, Dundas</strong> (905) 521-0333</li>
+                                            <li style="width:350px;"><strong>London</strong> (519) 432-6946, <strong>Kitchener</strong> (519) 570-3432</li>
                                     </ul>
                             </div>
                     </div>

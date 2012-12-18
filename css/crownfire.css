@@ -445,7 +445,7 @@ a.product_big_image img {
 	background: url(../img/bg/right_column.png) 100% 0 repeat-y;
 }
 .tupperware {
-/*	overflow: auto;*/
+	overflow: auto;
 }
 .sidebar {
 	background: #fff;

@@ -49,7 +49,7 @@
 	<div id="footer">
 		<div class="tupperware">
 			<div class="third_col">
-				<h4>Contact Us</h4>
+				<h4>Call Us Now</h4>
 				<ul class="telephone_list">
 					<li><strong>Toll-free</strong> (877) 243-9664</li>
 					<li><strong>Mississauga</strong> (905) 670-5122</li>
@@ -58,7 +58,9 @@
 					<li><strong>Brantford</strong> (519) 756-8962</li>
 					<li><strong>Toronto</strong> (905) 851-9119</li>
 					<li><strong>Hamilton, Burlington, Dundas</strong> (905) 521-0333</li>
-					<li><strong>Fax</strong> (905) 851-5760</li>
+					<li><strong>London</strong> (519) 432-6946</li>
+					<li><strong>Kitchener</strong> (519) 570-3432</li>
+                                        <li><strong>Fax</strong> (905) 851-5760</li>
 				</ul>
 			</div>
 			<div class="third_col">
