@@ -21,7 +21,8 @@ $document_id = (isset($_REQUEST['id'])) ? $_REQUEST['id'] : null;
 $name = (isset($_REQUEST['document_name'])) ? $_REQUEST['document_name'] : null;
 $year = (isset($_REQUEST['document_year'])) ? $_REQUEST['document_year'] : null;
 $last_year = (isset($_REQUEST['last_year'])) ? $_REQUEST['last_year'] : null;
-if($last_year!=$year){ 
+
+if($last_year!=1 && $last_year!=$year){ 
     $document_id=null;
 }
 

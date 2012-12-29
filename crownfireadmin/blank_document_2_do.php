@@ -17,7 +17,7 @@ $name = (isset($_REQUEST['document_name'])) ? $_REQUEST['document_name'] : null;
 
 $year = (isset($_REQUEST['document_year'])) ? $_REQUEST['document_year'] : null;
 //$document_name = $_POST['document_name'];
-$document_name = (isset($_REQUEST['document_name']) && !empty($_REQUEST['document_name'])) ? '['.urldecode($_REQUEST['document_name']).']'.$document_name.'_'.$year.'.pdf' : 'Document #'.$document_id.'.pdf';
+$document_name = (isset($_REQUEST['document_name']) && !empty($_REQUEST['document_name'])) ? '['.urldecode($_REQUEST['document_name']).']_'.$year.'.pdf' : 'Document #'.$document_id.'.pdf';
 $document_name = 'blank_'.$document_name;
 $required = array();
 

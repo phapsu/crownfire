@@ -100,5 +100,3 @@ class document_5 extends blank_document {
 
 }
 ?>
-
-

@@ -34,4 +34,4 @@ class document_11 extends blank_document {
         return $html;
     }
 }
-?> 
+?>

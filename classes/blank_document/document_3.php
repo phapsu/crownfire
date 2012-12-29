@@ -57,5 +57,3 @@ class document_3 extends blank_document {
     }
 }
 ?>
-
-              

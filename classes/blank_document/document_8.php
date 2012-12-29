@@ -105,6 +105,4 @@ class document_8 extends blank_document {
     }
 
 }
-
 ?>
-               

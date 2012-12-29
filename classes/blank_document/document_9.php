@@ -2160,5 +2160,4 @@ class document_9 extends blank_document {
     }
 
 }
-
 ?>

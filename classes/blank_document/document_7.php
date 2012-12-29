@@ -142,5 +142,4 @@ class document_7 extends blank_document {
     }
 
 }
-
-?>       
+?>

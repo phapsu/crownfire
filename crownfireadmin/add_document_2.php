@@ -78,6 +78,7 @@ if (isset($_REQUEST['existing_id'])) {
             <tr>
                 <td width="20%">Document Year:</td>
                 <td><input type="text" name="document_year" class="required" value="<?php echo date('Y'); ?>" /></td>
+                <input type="hidden" name="last_year" value="1">
             </tr>
         </table>
         <hr color="Red" />
