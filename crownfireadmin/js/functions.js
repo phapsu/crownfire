@@ -1,63 +1,74 @@
 
 
 function showIt(div){
-	if (document.getElementById('button_add')) {
-			hideAll();
-	}
+    if (document.getElementById('button_add')) {
+        hideAll();
+    }
     if (document.getElementById) {  // for Netscape
-      myDiv = document.getElementById(div);
-         myDiv.style.display = 'inline';
+        myDiv = document.getElementById(div);
+        myDiv.style.display = 'inline';
     }
 
     if (document.all) {     // for IE
-      eval("myDiv = "+div+";");
-         myDiv.style.display = 'inline';
+        eval("myDiv = "+div+";");
+        myDiv.style.display = 'inline';
     }
+    
+    
+    var coolVar = div;
+    var coolVarParts = coolVar.split('-'); 
+    var num=coolVarParts[1];       
+    
+    $('.zone_num'+num).removeAttr('disabled');    
+    $('.unit_type'+num).removeAttr('disabled');    
+    $('.zone_name'+num).removeAttr('disabled');
+    $('.alarm_circuit'+num).removeAttr('disabled');
+    $('.super_circuit'+num).removeAttr('disabled');
 }
 
 function hideIt(div){
-     if (document.getElementById) {  // for Netscape
-       myDiv = document.getElementById(div);
-          myDiv.style.display = 'none';
-     }
+    if (document.getElementById) {  // for Netscape
+        myDiv = document.getElementById(div);
+        myDiv.style.display = 'none';
+    }
 
-     if (document.all) {     // for IE
-       eval("myDiv = "+div+";");
-          myDiv.style.display = 'none';
-     }
+    if (document.all) {     // for IE
+        eval("myDiv = "+div+";");
+        myDiv.style.display = 'none';
+    }
 }
 
 
 function cofirmMultipleDelete(theForm) {
-	if (confirm('Are you sure?')) {
-		theForm.submit();
-	}
+    if (confirm('Are you sure?')) {
+        theForm.submit();
+    }
 }
 
 function confirmSingleDelete() {
-	if (confirm('Are you sure?')) {
-		return true;
-	} else {
-		return false;
-	}
+    if (confirm('Are you sure?')) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function checkOptionField(field) {
-	if (document.getElementById(field+'new').value == '') {
-		hideIt(field+'Option'); 
-		hideIt(field+'CancelLink'); 
-		showIt(field+'_id'); 
-		showIt(field+'NewLink');
-	} else {
-		hideIt(field+'_id'); 
-		hideIt(field+'NewLink'); 
-		showIt(field+'Option'); 		
-		showIt(field+'CancelLink');	
-	}
+    if (document.getElementById(field+'new').value == '') {
+        hideIt(field+'Option'); 
+        hideIt(field+'CancelLink'); 
+        showIt(field+'_id'); 
+        showIt(field+'NewLink');
+    } else {
+        hideIt(field+'_id'); 
+        hideIt(field+'NewLink'); 
+        showIt(field+'Option'); 		
+        showIt(field+'CancelLink');	
+    }
 }
 
 function openLogWindow(section, type, id) {
-	window.open('logger.php?section='+section+'&type='+type+'&id='+id,"mywindow","location=0,status=0,scrollbars=1,width=800,height=450");
+    window.open('logger.php?section='+section+'&type='+type+'&id='+id,"mywindow","location=0,status=0,scrollbars=1,width=800,height=450");
 }
 
 function saveIt() {
@@ -65,5 +76,5 @@ function saveIt() {
 }
 
 function openDrawWindow(id) {
-	window.open('draw.php?document_id='+id,'mywin','left=20,top=20,width=700,height=400,toolbar=0,resizable=0');
+    window.open('draw.php?document_id='+id,'mywin','left=20,top=20,width=700,height=400,toolbar=0,resizable=0');
 }

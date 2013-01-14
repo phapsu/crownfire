@@ -55,7 +55,7 @@ if (is_array($zoneInfo) && count($zoneInfo) > 0) {
 	foreach($zoneInfo as $key => $zone) {
 		$i++;
 		?>
-		<div id="zone<?=$i?>" style="display: block;">
+		<div id="zone-<?=$i?>" style="display: block;">
 		 <table>
 		  <tr>
 		   <td>Zone Name:</td>
@@ -68,7 +68,7 @@ if (is_array($zoneInfo) && count($zoneInfo) > 0) {
 		   <td><input type="text"  id="super_circuit<?=$i?>" name="supervisory_circuit[<?=$zone['id']?>]" value="<?=$zone['supervisory_circuit']?>" style="width: 50px;" /></td>
 		   <td>
 		   	<div id="zone_link<?=$i?>" style="display: block;">
-		   	 <a href="javascript:void(0);" onClick="hideIt('zone<?=$i?>'); document.getElementById('zone_name<?=$i?>').value='';"><img src="img/icons/cancel.png" border="0" /></a>
+		   	 <a href="javascript:void(0);" onClick="hideIt('zone-<?=$i?>'); document.getElementById('zone_name<?=$i?>').value='';"><img src="img/icons/cancel.png" border="0" /></a>
 		   	</div>
 		   </td>
 		  </tr>
@@ -82,27 +82,29 @@ if (is_array($zoneInfo) && count($zoneInfo) > 0) {
 for($i=count($zoneInfo)+1;$i<=$zone_count;$i++) {
 	if (count($zoneInfo)+1 == $i) {
 		$display = 'block';
+                $disabled ="";
 	} else {
 		$display = 'none';
+                $disabled ="disabled='disabled'";
 	}
 	?>
-	<div id="zone<?=$i?>" style="display: <?=$display?>">
+	<div id="zone-<?=$i?>" style="display: <?=$display?>">
 	 <table>
 	  <tr>
 	   <td>Zone Name:</td>
-	   <td><input type="text" id="zone_name<?=$i?>" name="zone_name[]" value="" style="width: 150px;" /></td>
+	   <td><input type="text" id="zone_name<?=$i?>" class="zone_name<?=$i?>" name="zone_name[]" value="" style="width: 150px;" <?=$disabled;?>/></td>
 	   <td>Zone #:</td>
-	   <td><input type="text"  id="zone_num<?=$i?>" name="zone_num[]" value="" style="width: 100px;" /></td>
+	   <td><input type="text"  id="zone_num<?=$i?>" class="zone_num<?=$i?>" name="zone_num[]" value="" style="width: 100px;" <?=$disabled;?>/></td>
 	   <td>Alarm Circuit #:</td>
-	   <td><input type="text"  id="alarm_circuit<?=$i?>" name="alarm_circuit[]" value="" style="width: 50px;" /></td>
+	   <td><input type="text"  id="alarm_circuit<?=$i?>" class="alarm_circuit<?=$i?>" name="alarm_circuit[]" value="" style="width: 50px;" <?=$disabled;?>/></td>
 	   <td>Supervisory Circuit:</td>
-	   <td><input type="text"  id="super_circuit<?=$i?>" name="supervisory_circuit[]" value="" style="width: 50px;" /></td>
+	   <td><input type="text"  id="super_circuit<?=$i?>" class="super_circuit<?=$i?>" name="supervisory_circuit[]" value="" style="width: 50px;" <?=$disabled;?>/></td>
 	   <td>
 	   	<div id="zone_link<?=$i?>" style="display: block;">
-	   		<a href="javascript:void(0);" onClick="showIt('zone<?=$i+1?>'); hideIt('zone_link<?=$i?>'); showIt('zone_delete<?=$i?>'); "><img src="img/icons/add.png" border="0" /></a>
+	   		<a href="javascript:void(0);" onClick="showIt('zone-<?=$i+1?>'); hideIt('zone_link<?=$i?>'); showIt('zone_delete<?=$i?>'); "><img src="img/icons/add.png" border="0" /></a>
 	   	</div>
 	   	<div id="zone_delete<?=$i?>" style="display: none;">
-			<a href="javascript:void(0);" onClick="hideIt('zone<?=$i?>'); document.getElementById('zone_name<?=$i?>').value='';"><img src="img/icons/cancel.png" border="0" /></a>
+			<a href="javascript:void(0);" onClick="hideIt('zone-<?=$i?>'); document.getElementById('zone_name<?=$i?>').value='';"><img src="img/icons/cancel.png" border="0" /></a>
 	   	</div>
 	   </td>
 	  </tr>

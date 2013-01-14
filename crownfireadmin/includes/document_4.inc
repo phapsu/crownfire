@@ -74,7 +74,7 @@ if ($validate->is_error()) {
                         }
 			?>
                         <li id="<?php echo $report['weight']; ?>">
-			<div id="zone<?=$i?>" style="display: block;">
+			<div id="zone-<?=$i?>" style="display: block;">
 			 <table width="100%">
 			  <tr align="center">
 			  <td width="5%"><input type="text" id="zone_num<?=$i?>" name="report_num[<?=$report['id']?>]" value="<?=stripslashes($report['report_num'])?>" style="width: 25px;" /></td>
@@ -89,7 +89,7 @@ if ($validate->is_error()) {
 			  <td width="20%"><input type="text" id="zone_name<?=$i?>" name="remarks[<?=$report['id']?>]" value="<?=stripslashes($report['remarks'])?>" style="width: 120px;" /></td>
 			  <td width="5%">
 			   <div id="zone_link<?=$i?>" style="display: block;">
-		   		 <a href="javascript:void(0);" onClick="hideIt('zone<?=$i?>'); document.getElementById('zone_num<?=$i?>').value='';"><img src="img/icons/cancel.png" border="0" /></a>
+		   		 <a href="javascript:void(0);" onClick="hideIt('zone-<?=$i?>'); document.getElementById('zone_num<?=$i?>').value='';"><img src="img/icons/cancel.png" border="0" /></a>
 		   	   </div>
 			   </td>
 			  </tr>
@@ -105,30 +105,32 @@ if ($validate->is_error()) {
                 $max++;
 		if (count($reportInfo)+1 == $i) {
 			$display='block';
+                        $disabled ="";
 		} else {
 			$display = 'none';
+                        $disabled ="disabled='disabled'";
 		}
 		?>
                 <li>
-		<div id="zone<?=$i?>" style="display: <?=$display?>">
+		<div id="zone-<?=$i?>" style="display: <?=$display?>">
 		 <table width="100%">
 		  <tr align="center">
-		  <td width="5%"><input type="text" id="zone_num<?=$i?>" name="report_num[<?php echo $max;?>]" value="" style="width: 25px;" /></td>
-		  <td width="15%"><input type="text" id="zone_name<?=$i?>" name="location[<?php echo $max;?>]" value="" style="width: 80px;" /></td>
-		  <td width="10%"><input type="text" id="zone_name<?=$i?>" name="size_type[<?php echo $max;?>]" value="" style="width: 40px;" /></td>
-		  <td width="10%"><input type="text" id="zone_name<?=$i?>" name="manufacture[<?php echo $max;?>]" value="" style="width: 60px;" /></td>
-		  <td width="10%"><input type="text" id="zone_name<?=$i?>" name="serial[<?php echo $max;?>]" value="" style="width: 60px;" /></td>
-		  <td width="10%"><input type="text" id="zone_name<?=$i?>" name="manufacture_date[<?php echo $max;?>]" value="" style="width: 60px;" /></td>
-		  <td width="5%"><input type="text" id="zone_name<?=$i?>" name="last_h_test[<?php echo $max;?>]" value="" style="width: 30px;" /></td>
-		  <td width="5%"><input type="text" id="zone_name<?=$i?>" name="next_h_test[<?php echo $max;?>]" value="" style="width: 30px;" /></td>
-		  <td width="5%"><input type="text" id="zone_name<?=$i?>" name="next_six_year[<?php echo $max;?>]" value="" style="width: 30px;" /></td>
-		  <td width="20%"><input type="text" id="zone_name<?=$i?>" name="remarks[<?php echo $max;?>]" value="" style="width: 120px;" /></td>
+		  <td width="5%"><input type="text" id="zone_num<?=$i?>" class="zone_num<?=$i?>" name="report_num[<?php echo $max;?>]" value="" style="width: 25px;" <?=$disabled;?> /></td>
+		  <td width="15%"><input type="text" id="zone_name<?=$i?>" class="zone_name<?=$i?>" name="location[<?php echo $max;?>]" value="" style="width: 80px;" <?=$disabled;?> /></td>
+		  <td width="10%"><input type="text" id="zone_name<?=$i?>" class="zone_name<?=$i?>" name="size_type[<?php echo $max;?>]" value="" style="width: 40px;" <?=$disabled;?> /></td>
+		  <td width="10%"><input type="text" id="zone_name<?=$i?>" class="zone_name<?=$i?>" name="manufacture[<?php echo $max;?>]" value="" style="width: 60px;" <?=$disabled;?> /></td>
+		  <td width="10%"><input type="text" id="zone_name<?=$i?>" class="zone_name<?=$i?>" name="serial[<?php echo $max;?>]" value="" style="width: 60px;" <?=$disabled;?> /></td>
+		  <td width="10%"><input type="text" id="zone_name<?=$i?>" class="zone_name<?=$i?>" name="manufacture_date[<?php echo $max;?>]" value="" style="width: 60px;" <?=$disabled;?> /></td>
+		  <td width="5%"><input type="text" id="zone_name<?=$i?>" class="zone_name<?=$i?>" name="last_h_test[<?php echo $max;?>]" value="" style="width: 30px;" <?=$disabled;?> /></td>
+		  <td width="5%"><input type="text" id="zone_name<?=$i?>" class="zone_name<?=$i?>" name="next_h_test[<?php echo $max;?>]" value="" style="width: 30px;" <?=$disabled;?> /></td>
+		  <td width="5%"><input type="text" id="zone_name<?=$i?>" class="zone_name<?=$i?>" name="next_six_year[<?php echo $max;?>]" value="" style="width: 30px;" <?=$disabled;?> /></td>
+		  <td width="20%"><input type="text" id="zone_name<?=$i?>" class="zone_name<?=$i?>" name="remarks[<?php echo $max;?>]" value="" style="width: 120px;" <?=$disabled;?> /></td>
 		  <td width="5%">
 		   	<div id="zone_link<?=$i?>" style="display: block;">
-	   			<a href="javascript:void(0);" onClick="showIt('zone<?=$i+1?>'); hideIt('zone_link<?=$i?>'); showIt('zone_delete<?=$i?>'); "><img src="img/icons/add.png" border="0" /></a>
+	   			<a href="javascript:void(0);" onClick="showIt('zone-<?=$i+1?>'); hideIt('zone_link<?=$i?>'); showIt('zone_delete<?=$i?>'); "><img src="img/icons/add.png" border="0" /></a>
 	   		</div>
 	   		<div id="zone_delete<?=$i?>" style="display: none;">
-				<a href="javascript:void(0);" onClick="hideIt('zone<?=$i?>'); document.getElementById('zone_num<?=$i?>').value='';"><img src="img/icons/cancel.png" border="0" /></a>
+				<a href="javascript:void(0);" onClick="hideIt('zone-<?=$i?>'); document.getElementById('zone_num<?=$i?>').value='';"><img src="img/icons/cancel.png" border="0" /></a>
 	   		</div>
 		   </td>
 		  </tr>

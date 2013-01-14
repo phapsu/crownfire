@@ -1,6 +1,8 @@
 <?php
-
-session_start();
+//echo '<pre>';
+//print_r($_POST);
+//echo '</pre>'; exit;
+@session_start();
 include("includes/init.php");
 include('../includes/JG_Cache.php');
 ///////////////////////////////////////////////////////////

@@ -2,7 +2,7 @@
 include('includes/init.php');
 set_time_limit(0);
 ini_set("memory_limit","500M");
-$document_id = $_REQUEST['id'];
+//$document_id = @$_REQUEST['id'];
 $property_id    = $_REQUEST['property_id'];
 $year           = $_REQUEST['year'];
 
@@ -58,13 +58,13 @@ $pdf->writeHTML($html, true, false, true, false, '');
 $pdf->lastPage();
 
 //Close and output PDF document
-$targetPath = $_SERVER['DOCUMENT_ROOT'].'/documents/';
-$document_name = 'full_report_'.$_REQUEST['property_id'].'_'.$_REQUEST['year'].'.pdf';
-if (file_exists($targetPath."/".$document_name)) {
-    @unlink($targetPath."/".$document_name);
-}
-
-$pdf->Output($targetPath."/".$document_name, 'F');
+//$targetPath = $_SERVER['DOCUMENT_ROOT'].'/documents/';
+//$document_name = 'full_report_'.$_REQUEST['property_id'].'_'.$_REQUEST['year'].'.pdf';
+//if (file_exists($targetPath."/".$document_name)) {
+//    @unlink($targetPath."/".$document_name);
+//}
+//
+//$pdf->Output($targetPath."/".$document_name, 'F');
 $pdf->Output('full_report_'.$_REQUEST['year'].'.pdf', 'I');
 //$pdf->Output('example_006.pdf', 'I');
 

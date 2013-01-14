@@ -92,6 +92,21 @@ include('templates/footer.inc.php');
     });
     
     $("#btn_save").click(function(){
+//          var user_id = "<?= $_REQUEST['user_id'] ?>";
+//          var property_id = "<?= $_REQUEST['property_id'] ?>";
+//           
+//           
+//          $.ajax({
+//               type: "POST",
+//               url: "edit_document_2_do.php",
+//               data: $("#edit_document_2_do").serialize(),
+//               success: function(){
+//                 window.location.href='/crownfireadmin/documents.php?user_id='+user_id+'&property_id='+property_id;
+//               }
+//             })
+        
+        
+        
         
         $('#edit_document_2_do').removeAttr('action');
         $('#edit_document_2_do').attr('action', 'edit_document_2_do.php');  

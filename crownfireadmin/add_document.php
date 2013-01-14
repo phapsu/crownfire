@@ -5,7 +5,7 @@ include('templates/header.inc.php');
 $users = new users();
 $userInfo = $users->getUserInfo($_REQUEST['user_id']);
 $doc = new document();
-$listDocumentID = $doc->getListDocumentTypeIdByPropertyId($_REQUEST['property_id']);
+//$listDocumentID = $doc->getListDocumentTypeIdByPropertyId($_REQUEST['property_id']);
 $document_types = $doc->getDocumentTypes();
 ?>
 <?= $display->userInfoWindow($userInfo) ?>
@@ -20,9 +20,9 @@ $document_types = $doc->getDocumentTypes();
                         <option value="">-- Select --</option>
                         <?php
                         foreach ($document_types as $typeArray) {
-                            if(in_array($typeArray['id'], $listDocumentID)){
-                                continue;
-                            }
+//                            if(in_array($typeArray['id'], $listDocumentID)){
+//                                continue;
+//                            }
                             echo '<option value="' . $typeArray['id'] . '">' . $typeArray['type'] . '</option>';
                         }
                         ?>

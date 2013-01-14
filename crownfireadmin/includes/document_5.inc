@@ -82,7 +82,7 @@ if ($validate->is_error()) {
                         }
 			?>
                         <li id="<?php echo $formInfo['weight']; ?>">
-			<div id="zone<?=$i?>" style="display: block;">
+			<div id="zone-<?=$i?>" style="display: block;">
 			 <table width="100%">
 			  <tr align="center">
 			  <td width="10%"><input type="text" id="unit_type<?=$i?>" name="unit_type[]" value="<?=$form['unit_type']?>" style="width: 45px;" /></td>
@@ -95,7 +95,7 @@ if ($validate->is_error()) {
 			  <td width="5%"><input type="text" id="zone_name<?=$i?>" name="size_batteries[]" value="<?=$form['size_batteries']?>" style="width: 40px;" /></td>
 			  <td width="5%">
                             <div id="zone_link<?=$i?>" style="display: block;">
-                                            <a href="javascript:void(0);" onClick="showIt('zone_link<?=$j?>'); hideIt('zone<?=$i?>'); document.getElementById('unit_type<?=$i?>').value='';"><img src="img/icons/cancel.png" border="0" /></a>
+                                            <a href="javascript:void(0);" onClick="showIt('zone_link<?=$j?>'); hideIt('zone-<?=$i?>'); document.getElementById('unit_type<?=$i?>').value='';"><img src="img/icons/cancel.png" border="0" /></a>
                             </div>
 			   </td>
 			  </tr>
@@ -111,28 +111,30 @@ if ($validate->is_error()) {
 		$x++;
 		if (count($formInfo)+1==$i) {
 			$display = 'block';
+                        $disabled ="";
 		} else {
 			$display = 'none';
+                        $disabled ="disabled='disabled'";
 		}
 		?>
                 <li>
-		<div id="zone<?=$i?>" style="display: <?=$display?>">
+		<div id="zone-<?=$i?>" style="display: <?=$display?>">
 		 <table width="100%">
 		  <tr align="center">
-		  <td width="10%"><input type="text" id="unit_type<?=$i?>" name="unit_type[]" value="" style="width: 45px;" /></td>
-		  <td width="25%"><input type="text" id="zone_name<?=$i?>" name="location[]" value="" style="width: 180px;" /></td>
-		  <td width="10%"><input type="text" id="zone_name<?=$i?>" name="time_illuminated[]" value="" style="width: 60px;" /></td>
-		  <td width="10%"><input type="text" id="zone_name<?=$i?>" name="pass_or_fail[]" value="" style="width: 60px;" /></td>
-		  <td width="10%"><input type="text" id="zone_name<?=$i?>" name="unit_voltage[]" value="" style="width: 60px;" /></td>
-		  <td width="10%"><input type="text" id="zone_name<?=$i?>" name="unit_watts[]" value="" style="width: 60px;" /></td>
-		  <td width="5%"><input type="text" id="zone_name<?=$i?>" name="num_batteries[]" value="" style="width: 45px;" /></td>
-		  <td width="5%"><input type="text" id="zone_name<?=$i?>" name="size_batteries[]" value="" style="width: 40px;" /></td>
+		  <td width="10%"><input type="text" id="unit_type<?=$i?>" class="unit_type<?=$i?>" name="unit_type[]" value="" style="width: 45px;" <?=$disabled;?> /></td>
+		  <td width="25%"><input type="text" id="zone_name<?=$i?>" class="zone_name<?=$i?>" name="location[]" value="" style="width: 180px;"<?=$disabled;?> /></td>
+		  <td width="10%"><input type="text" id="zone_name<?=$i?>" class="zone_name<?=$i?>" name="time_illuminated[]" value="" style="width: 60px;" <?=$disabled;?> /></td>
+		  <td width="10%"><input type="text" id="zone_name<?=$i?>" class="zone_name<?=$i?>" name="pass_or_fail[]" value="" style="width: 60px;" <?=$disabled;?> /></td>
+		  <td width="10%"><input type="text" id="zone_name<?=$i?>" class="zone_name<?=$i?>" name="unit_voltage[]" value="" style="width: 60px;" <?=$disabled;?> /></td>
+		  <td width="10%"><input type="text" id="zone_name<?=$i?>" class="zone_name<?=$i?>" name="unit_watts[]" value="" style="width: 60px;" <?=$disabled;?> /></td>
+		  <td width="5%"><input type="text" id="zone_name<?=$i?>" class="zone_name<?=$i?>" name="num_batteries[]" value="" style="width: 45px;" <?=$disabled;?> /></td>
+		  <td width="5%"><input type="text" id="zone_name<?=$i?>" class="zone_name<?=$i?>" name="size_batteries[]" value="" style="width: 40px;" <?=$disabled;?> /></td>
 		  <td width="5%">
 		   	<div id="zone_link<?=$i?>" style="display: block;">
-   				<a href="javascript:void(0);" onClick="showIt('zone<?=$i+1?>'); hideIt('zone_link<?=$i?>'); showIt('zone_delete<?=$i?>'); "><img src="img/icons/add.png" border="0" /></a>
+   				<a href="javascript:void(0);" onClick="showIt('zone-<?=$i+1?>'); hideIt('zone_link<?=$i?>'); showIt('zone_delete<?=$i?>'); "><img src="img/icons/add.png" border="0" /></a>
 	   		</div>
 	   		<div id="zone_delete<?=$i?>" style="display: none;">
-				<a href="javascript:void(0);" onClick="hideIt('zone<?=$i?>'); document.getElementById('unit_type<?=$i?>').value='';"><img src="img/icons/cancel.png" border="0" /></a>
+				<a href="javascript:void(0);" onClick="hideIt('zone-<?=$i?>'); document.getElementById('unit_type<?=$i?>').value='';"><img src="img/icons/cancel.png" border="0" /></a>
 	   		</div>
 		   </td>
 		  </tr>
