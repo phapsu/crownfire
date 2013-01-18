@@ -10,6 +10,11 @@ include('../includes/JG_Cache.php');
 unset($_SESSION['post']);
 unset($_SESSION['general_error']);
 ///////////////////////////////////////////////////////////
+//echo '<pre>';
+//
+//var_dump($_POST); 
+//echo '</pre>'; exit;
+
 
 $err = 0;
 // Important stuff
@@ -20,6 +25,7 @@ $type_id = $_POST['type_id'];
 $state_id = $_POST['state_id'];
 $deficiency = $_POST['deficiency'];
 $document_id = (isset($_REQUEST['id'])) ? $_REQUEST['id'] : null;
+$document_id_9 = $document_id;
 $name = (isset($_REQUEST['document_name'])) ? $_REQUEST['document_name'] : null;
 $year = (isset($_REQUEST['document_year'])) ? $_REQUEST['document_year'] : null;
 $last_year = (isset($_REQUEST['last_year'])) ? $_REQUEST['last_year'] : null;
@@ -575,6 +581,54 @@ if ($validate->validateForm($required) && $err != 1) {
                 $document->query($query);
             }
 
+            
+            //edit insert new document
+            if($last_year!=1 && $last_year!=$year){ 
+                $document_9 = new document($document_id_9);
+                $formInfo = $document_9->getData('document_data_9_device','document_id',$document_id_9,true, null, true);
+                               
+                if($formInfo){
+                    $formInfo = array_reverse($formInfo);
+                    
+                    $sql ='insert into document_data_9_device
+                        (document_id, location, device, correctly_installed, requires_service, alarm, confirmed, zone_address, smoke_sensitivity, remarks) values ';
+                    foreach($formInfo as $i=> $row)
+                    {
+                        if($i==0){
+                            $sql.="('".$new_document_id."', '";
+                            $sql.= $row['location']."', '";
+                            $sql.= $row['device']."', '";
+                            $sql.= $row['correctly_installed']."', '";
+                            $sql.= $row['requires_service']."', '";
+                            $sql.= $row['alarm']."', '";
+                            $sql.= $row['confirmed']."', '";
+                            $sql.= $row['zone_address']."', '";
+                            $sql.= $row['smoke_sensitivity']."', '";
+                            $sql.= $row['remarks']."'";
+                            $sql.=")";
+                        }
+                        else{
+                            $sql.=", ('".$new_document_id."', '";
+                            $sql.= $row['location']."', '";
+                            $sql.= $row['device']."', '";
+                            $sql.= $row['correctly_installed']."', '";
+                            $sql.= $row['requires_service']."', '";
+                            $sql.= $row['alarm']."', '";
+                            $sql.= $row['confirmed']."', '";
+                            $sql.= $row['zone_address']."', '";
+                            $sql.= $row['smoke_sensitivity']."', '";
+                            $sql.= $row['remarks']."'";
+                            $sql.=")";
+                        }
+                    }
+                    
+                    //print_r($sql); exit;
+                    
+                    $document_9->query($sql);                    
+                }
+            }
+            
+            
             // Let's save the new device
             // Save the fire extinguisher / fire hose report
             /*

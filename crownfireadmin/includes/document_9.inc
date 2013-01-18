@@ -547,3 +547,15 @@ if ($_REQUEST['existing_id']) {
 <iframe src="device_records.php?id=<?=$id?>&temp_id=<?=$temp_id;?>" width="100%" height="400">
   <p>Your browser does not support iframes.</p>
 </iframe>
+
+<!--<div id="device_container">
+</div>
+
+<script>
+    $(function(){
+        $url = "<?php echo $cfg['site_url'];?>"+"/crownfireadmin/device_records.php"; 
+        $.get($url, function(data) {
+            $('#device_container').html(data);        
+        });
+    })
+</script>-->
